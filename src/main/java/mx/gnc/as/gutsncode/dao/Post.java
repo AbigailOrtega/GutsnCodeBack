@@ -68,6 +68,8 @@ public class Post {
 	@JoinColumn(name = "CHILD_ID")
 	private Post childId;
 	
+	public Post() {};
+	
 	public Post(String name, BigInteger numberView, 
 			Status statusId, String topic, 
 			Date lastUpDate, Founder writerId, 

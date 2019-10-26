@@ -37,7 +37,6 @@ public class Rest {
 		
 		}
 		
-		
 		System.out.println(TypePost.EXPERIENCE.getTypePostId());
 		postRepository.save(new Post("java 8",new BigInteger("0"),Status.EDITION,"java",new Date(), founder,founder ,new Date(),TypePost.NEW,"java 8 fabuloso", "fdfasdf"));
 		
