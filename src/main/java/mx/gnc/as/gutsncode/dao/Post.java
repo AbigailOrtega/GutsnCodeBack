@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+
 @Data
 @Entity
 @Table(name = "POST")
@@ -111,5 +112,9 @@ public class Post {
 		this.title=title;
 		this.location=location;
 		
+	}
+
+	public Long getPostId() {
+		return postId;
 	}
 }

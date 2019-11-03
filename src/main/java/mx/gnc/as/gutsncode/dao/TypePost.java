@@ -21,4 +21,12 @@ public enum TypePost {
 	private String descripcion;
 	//private byte[] image;
 
+	public Long getTypePostId() {
+		return typePostId;
+	}
+
+	public void setTypePostId(Long typePostId) {
+		this.typePostId = typePostId;
+	}
+
 }
