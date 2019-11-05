@@ -29,6 +29,8 @@ public class Rest {
 		Founder founder= null;
 		repositoryF.save(
 				new Founder("Abi", "Ortega", "Valdivia", "asdlfjasdlf", "abigailortega31@gmail.com", "jflasdjflsd"));
+		repositoryF.save(
+				new Founder("Sebas", "Cuatepotzo", "Martinez", "asdlfjasdlf", "sstsacm@gmail.com", "jflasdjflsd"));
 		List<Founder> list = repositoryF.findAll();
 		
 		for (Founder founderr : list) {
@@ -39,8 +41,6 @@ public class Rest {
 		
 		System.out.println(TypePost.EXPERIENCE.getTypePostId());
 		postRepository.save(new Post("java 8",new BigInteger("0"),Status.EDITION,"java",new Date(), founder,founder ,new Date(),TypePost.NEW,"java 8 fabuloso", "fdfasdf"));
-		
-		
 		
 		for (Founder founderr : list) {
 			System.out.println(founderr.getName());
