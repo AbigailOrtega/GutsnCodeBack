@@ -36,10 +36,9 @@ public class BringPost {
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Integer pageNumber = Integer.valueOf(jsonObj.getInt("postid"));
-		Post post = new Post();
-		post.setPostId(Long.valueOf(pageNumber)); 
+		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
 //		List<Text> text = postRepository.getTextContent(post);
+		System.out.println(pageNumber);
 		List<Text> text = postRepository.getTextContent(pageNumber);
 		return text;
 	}

@@ -20,8 +20,8 @@ public interface PostRepository extends   CrudRepository<Post, Long>{
 	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type order by lastUpDate desc")
 	List<Post> findTop2LastTwenty( Status status, TypePost type, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Text p where p.postId=:integer")
-	List<Text> getTextContent(Integer integer);
+	@Query(value = "SELECT p FROM Text p where p.postId.postId=?1")
+	List<Text> getTextContent(Long postId);
 	
 //	@Query(value = "SELECT p FROM Post  order by lastUpDate desc")
 //	List<Post> findTop2LastTwenty( Status status, TypePost type, Pageable  pageRequest);

@@ -34,12 +34,13 @@ insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, 
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('POST19',0,0,'TEST','2018-10-01',1,1,'2019-10-02', 1, 'POST 19', 'CDMX');
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('POST20',0,0,'TEST','2009-11-01',1,1,'2019-11-02', 1, 'POST 20', 'CDMX');
 
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1,1,15,'Este es un texto muy muy largo', '');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (2,0,15,'','Este es un texto muy muy largo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (3,2,15,'Este es un texto muy muy largo', 'Este es un texto muy muy largo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (4,1,14,'Este es un texto muy muy largo', '');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (5,0,14,'','Este es un texto muy muy largo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (6,2,14,'Este es un texto muy muy largo', 'Este es un texto muy muy largo');
 
-insert into TEXT (TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1,15,'Este es un texto muy muy largo', '');
-insert into TEXT (TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (0,15,'','Este es un texto muy muy largo');
-insert into TEXT (TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (2,15,'Este es un texto muy muy largo', 'Este es un texto muy muy largo');
-insert into TEXT (TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1,14,'Este es un texto muy muy largo', '');
-insert into TEXT (TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (0,14,'','Este es un texto muy muy largo');
-insert into TEXT (TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (2,14,'Este es un texto muy muy largo', 'Este es un texto muy muy largo');
-    
+INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES('1', 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 1, 'java', 'top');
+INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES('2', 'Java.png', 'Javas logo', FILE_READ('/opt/spring.png'), 2, 'java', 'top');    
     

@@ -8,21 +8,21 @@ public enum TypeText {
 	ANOTATION(3L,"ANOTATION","ANOTATION");
 	
 	private TypeText(Long typePostId, String name, String descripcion) {
-		this.typePostId=typePostId;
+		this.typeTextId=typePostId;
 		this.name=name;
 		this.descripcion=descripcion;
 	}
-	private Long typePostId;
+	private Long typeTextId;
 	private String name;
 	private String descripcion;
 	//private byte[] image;
 
 	public Long getTypePostId() {
-		return typePostId;
+		return typeTextId;
 	}
 
 	public void setTypePostId(Long typePostId) {
-		this.typePostId = typePostId;
+		this.typeTextId = typePostId;
 	}
 	
 }

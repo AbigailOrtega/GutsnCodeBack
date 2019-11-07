@@ -24,7 +24,7 @@ public class Text {
 	private String textId;
 	
 	@Enumerated(EnumType.ORDINAL)
-	private TypeText typeText;
+	private TypeText typeTextId;
 	
 	@ManyToOne
 	@JoinColumn(name = "POST_ID")
@@ -35,10 +35,10 @@ public class Text {
 	@Column(name = "TEXT_REALIZE")
 	private String textRealize;
 	
-	public Text(String textId, TypeText typeText, Post postId, String textBeta, String textRealize) {
+	public Text(String textId, TypeText typeTextId, Post postId, String textBeta, String textRealize) {
 		super();
 		this.textId = textId;
-		this.typeText = typeText;
+		this.typeTextId = typeTextId;
 		this.postId = postId;
 		this.textBeta = textBeta;
 		this.textRealize = textRealize;
