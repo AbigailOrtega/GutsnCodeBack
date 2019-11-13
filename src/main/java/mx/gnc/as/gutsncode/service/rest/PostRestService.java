@@ -20,9 +20,9 @@ public class PostRestService {
 	@Autowired
 	private PostRepository postRepository;
 
-	@GetMapping("/getLastTwentyPost/{page}")
-	public List<Post> getLastTwentyPosts(@PathVariable("page") int page){
-		List<Post> last2TwentyPosts=postRepository.findTop2LastTwenty(Status.PUBLISHED,TypePost.POST, PageRequest.of(page, 2));
-		return last2TwentyPosts;
-	}
+//	@GetMapping("/getLastTwentyPost/{page}")
+//	public List<Post> getLastTwentyPosts(@PathVariable("page") int page){
+//		List<Post> last2TwentyPosts=postRepository.findTop2LastTwenty(Status.PUBLISHED,TypePost.POST, PageRequest.of(page, 2));
+//		return last2TwentyPosts;
+//	}
 }

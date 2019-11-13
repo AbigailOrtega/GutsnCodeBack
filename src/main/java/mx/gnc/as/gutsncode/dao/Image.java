@@ -20,9 +20,9 @@ public class Image {
 	@Column(name="IMAGE_ID")
 	private Long imageId;
 	@Column(name="IMAGE_NAME")
-	private String imagename;
+	private String imageName;
 	@Column(name="DESCRIPTION")
-	private String Description;
+	private String description;
 	@Column(name="IMAGE")
 	private Blob image;
 	
@@ -35,12 +35,12 @@ public class Image {
 	@Column(name="CARDINALITY")
 	private String cardinality;
 	
-	public Image(Long imageId, String imagename, String description, Blob image, Text textId, String footer,
+	public Image(Long imageId, String imageName, String description, Blob image, Text textId, String footer,
 			String cardinality) {
 		super();
 		this.imageId = imageId;
-		this.imagename = imagename;
-		Description = description;
+		this.imageName = imageName;
+		this.description = description;
 		this.image = image;
 		this.textId = textId;
 		this.footer = footer;

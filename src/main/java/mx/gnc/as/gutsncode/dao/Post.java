@@ -14,16 +14,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "POST")
+@ApiModel("POST MODEL")
 public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "POST_ID")
+	@ApiModelProperty(value = "the post's id", required = true)
 	private Long postId ;
+	@ApiModelProperty(value = "the post's name", required = true)
 	@Column(name = "NAME")
 	private String name;
 	@Column(name = "NUMBER_VIEW")
