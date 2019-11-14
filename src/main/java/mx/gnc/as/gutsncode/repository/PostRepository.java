@@ -3,6 +3,7 @@ package mx.gnc.as.gutsncode.repository;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -19,13 +20,22 @@ public interface PostRepository extends   CrudRepository<Post, Long>{
 	List<Post> findAll();
 	
 	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic% order by lastUpDate desc")
-//	List<Post> findTop2LastTwenty( Status status, TypePost type, Pageable  pageRequest);
 	List<Post> findTop2LastTwenty( Status status, TypePost type, String topic, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Text p where p.postId.postId=?1")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic%")
+	Integer numberTotalPost( Status status, TypePost type, String topic);
+	
+	@Modifying
+	@Query(value = "UPDATE Post p SET p.numberView = p.numberView + :newVisits where p.postId.postId=:postId")
+	Integer incrementViewCounter( Long postId, Integer  newVisits);
+	
+	@Query(value = "SELECT p FROM Text p where p.postId.postId=:postId")
 	List<Text> getTextContent(Long postId);
 	
-	@Query(value= "SELECT i FROM Image i where i.imageId=?1")
+	@Query(value = "SELECT p FROM Post p where p.postId.postId=:postId")
+	Post getPostContent(Long postId);
+	
+	@Query(value= "SELECT i FROM Image i where i.imageId=:postId")
 	Image getImage(Long postId);
 //	@Query(value = "SELECT p FROM Post  order by lastUpDate desc")
 //	List<Post> findTop2LastTwenty( Status status, TypePost type, Pageable  pageRequest);

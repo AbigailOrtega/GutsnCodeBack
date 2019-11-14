@@ -22,27 +22,52 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.repository.PostRepository;
 
 @RestController
-@RequestMapping("/algo")
+@RequestMapping("/serviciosUsers")
 @Api(value = "Post microservice", description = "This API has a CRUD for posts")
 @CrossOrigin()
 public class BringPost {
+	
+	private final Integer defaultSizePage = 5;
 	
 	@Autowired
 	private PostRepository postRepository;
 	
 	@GetMapping("/recentPost")
 	@ApiOperation(value = "Find in 20 by 20 most recent post or news", notes = "Return a post o new by id" )
-	public List<Post> dme20(@RequestBody String jsonRequest) {
+	public List<Post> postBy20(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
 		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):1;
+		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
 		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
 		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
-		List<Post> listPost = postRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), topic, PageRequest.of(pageNumber, 5));
+		List<Post> listPost = postRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), topic, PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
 	
+	@GetMapping("/totalPages")
+	@ApiOperation(value = "Find the total numbers of the pages", notes = "An integer" )
+	public Integer totalPages(@RequestBody String jsonRequest) {
+	
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
+		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
+		Integer listPost = postRepository.numberTotalPost(Status.PUBLISHED, TypePost.getEnum(tipo), topic);
+		return (listPost/this.defaultSizePage) + 1;
+	}
+	
+	@GetMapping("/getInfoPost")
+	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
+	public Post getInfoPost(@RequestBody String jsonRequest) {
+	
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		Long postId = Long.valueOf(jsonObj.getInt("postid"));
+		System.out.println(postId);
+		Post post = postRepository.getPostContent(postId);
+		return post;
+	}
+		
 	@GetMapping("/getText")
 	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
