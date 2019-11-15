@@ -1,11 +1,13 @@
 package mx.gnc.as.gutsncode.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
@@ -26,13 +28,19 @@ public interface PostRepository extends   CrudRepository<Post, Long>{
 	Integer numberTotalPost( Status status, TypePost type, String topic);
 	
 	@Modifying
+	@Transactional
 	@Query(value = "UPDATE Post p SET p.numberView = p.numberView + :newVisits where p.postId.postId=:postId")
-	Integer incrementViewCounter( Long postId, Integer  newVisits);
+	Integer incrementViewCounter( Long postId, BigInteger  newVisits);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM Post p where p.postId.postId=:postId")
+	Integer deletePost(Long postId);
 	
 	@Query(value = "SELECT p FROM Text p where p.postId.postId=:postId")
 	List<Text> getTextContent(Long postId);
 	
-	@Query(value = "SELECT p FROM Post p where p.postId.postId=:postId")
+	@Query(value = "SELECT p FROM Post p where p.postId=:postId")
 	Post getPostContent(Long postId);
 	
 	@Query(value= "SELECT i FROM Image i where i.imageId=:postId")
