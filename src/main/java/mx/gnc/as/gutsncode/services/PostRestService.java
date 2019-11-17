@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.service.rest;
+package mx.gnc.as.gutsncode.services;
 
 import java.util.ArrayList;
 import java.util.List;

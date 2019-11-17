@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.service.rest;
+package mx.gnc.as.gutsncode.services;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -25,7 +25,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.repository.PostRepository;
 
 @RestController
-@RequestMapping("/serviciosUsers")
+@RequestMapping("/newsU")
 @Api(value = "Post microservice", description = "This API has a CRUD for posts")
 @CrossOrigin()
 public class BringPost {

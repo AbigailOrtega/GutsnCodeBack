@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.service.rest;
+package mx.gnc.as.gutsncode.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -21,18 +21,22 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "POST")
-@ApiModel("POST MODEL")
+//@ApiModel("POST MODEL")
 public class Post {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "POST_ID")
-	@ApiModelProperty(value = "the post's id", required = true)
+//	@ApiModelProperty(value = "the post's id", required = true)
 	private Long postId ;
-	@ApiModelProperty(value = "the post's name", required = true)
+	
+//	@ApiModelProperty(value = "the post's name", required = true)
 	@Column(name = "NAME")
 	private String name;
+	
 	@Column(name = "NUMBER_VIEW")
 	private BigInteger numberView;
+	
 	@Enumerated(EnumType.ORDINAL)
 	private TypePost typePostId;
 	
