@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.services.post;
+package mx.gnc.as.gutsncode.services.newsu;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -17,7 +17,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 
 
-public interface PostURepository extends   CrudRepository<Post, Long>{
+public interface NewsURepository extends   CrudRepository<Post, Long>{
 	
 	List<Post> findAll();
 	
