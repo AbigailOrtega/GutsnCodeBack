@@ -34,7 +34,7 @@ public class GnCuServices {
 	@Autowired
 	private GnCuRepository GnCRepository;
 	
-	@GetMapping("/getData")
+	@GetMapping("/getGNCData")
 	@ApiOperation(value = "Find in 20 by 20 most recent post or news", notes = "Return a post o new by id" )
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
 	
@@ -48,7 +48,7 @@ public class GnCuServices {
 		return listPost;
 	}
 	
-	@GetMapping("/getInfoPost")
+	@GetMapping("/getInfoGNC")
 	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
 	public Post getInfoPost(@RequestBody String jsonRequest) {
 	
@@ -58,7 +58,7 @@ public class GnCuServices {
 		return post;
 	}
 	
-	@PostMapping("/addNewView")
+	@PostMapping("/addNewViewGNC")
 	public Integer newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
@@ -67,7 +67,7 @@ public class GnCuServices {
 		return view;
 	}
 	
-	@DeleteMapping("/deletePost")
+	@DeleteMapping("/deletePostGNC")
 	public Integer deletePost(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
@@ -75,7 +75,7 @@ public class GnCuServices {
 		return view;
 	}
 		
-	@GetMapping("/getText")
+	@GetMapping("/getTextGNC")
 	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -83,17 +83,5 @@ public class GnCuServices {
 		List<Text> text = GnCRepository.getTextContent(pageNumber);
 		return text;
 	}
-	
-	@GetMapping("/getImage")
-	public Image dmeImage(@RequestBody String jsonRequest) {
-	
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-//		List<Text> text = GnCRepository.getTextContent(post);
-		Image text = GnCRepository.getImage(image);
-		return text;
-	}
-	
-	
 	
 }
