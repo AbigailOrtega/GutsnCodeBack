@@ -42,7 +42,7 @@ public class NewsUServices {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
-		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):1;
+		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):0;
 		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
 		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
 		List<Post> listPost = newsURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.NEW, topic, PageRequest.of(pageNumber, maxPost));

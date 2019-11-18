@@ -42,7 +42,7 @@ public class GnCuServices {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
-		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):1;
+		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):0;
 		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
 //		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
 		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
