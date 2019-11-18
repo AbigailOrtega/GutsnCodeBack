@@ -35,4 +35,8 @@ public interface NewsURepository extends   CrudRepository<Post, Long>{
 	@Query(value= "SELECT i FROM Image i where i.imageId=:postId")
 	Image getImage(Long postId);
 	
+	@Modifying
+	@Query(value= "INSERT INTO Post p insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION) VALUES ('NEWS5',0,0,'Java','2013-05-01',1,1,'2019-05-02', 0, 'NEWS 15', 'CDMX')")
+	Post createNew();
+	
 }

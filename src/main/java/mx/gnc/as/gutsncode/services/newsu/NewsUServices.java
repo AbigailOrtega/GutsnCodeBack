@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.services.newsu;
 
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
@@ -42,9 +44,9 @@ public class NewsUServices {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
-		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):0;
+		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
 		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
+		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
 		List<Post> listPost = newsURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.NEW, topic, PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
@@ -97,6 +99,27 @@ public class NewsUServices {
 //		List<Text> text = postRepository.getTextContent(post);
 		Image text = newsURepository.getImage(image);
 		return text;
+	}
+	
+	@PostMapping("/createNew")
+	public Boolean createNew(@RequestBody String jsonRequest){
+		
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		
+//		String name = String.valueOf(jsonObj.getInt("postid"));
+//		BigInteger numberView = BigInteger.valueOf(jsonObj.getInt("postid"));
+//		Status statusId = Status.EDITION;
+//		String topic = String.valueOf(jsonObj.getInt("postid"));
+//		Date lastUpDate = new Date();
+//		Long writerId = Long.valueOf(jsonObj.getInt("postid"));
+//		Long reviewerId = Long.valueOf(jsonObj.getInt("postid"));
+//		Date dateReview = new Date();
+//		TypePost type = TypePost.NEW;
+//		String title = String.valueOf(jsonObj.getInt("postid"));
+//		String location = String.valueOf(jsonObj.getInt("postid"));
+		
+		newsURepository.createNew();
+		return Boolean.valueOf("true");
 	}
 	
 	
