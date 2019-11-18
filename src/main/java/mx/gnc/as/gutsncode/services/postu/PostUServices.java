@@ -27,7 +27,7 @@ import mx.gnc.as.gutsncode.services.GeneralServices;
 
 @RestController
 @RequestMapping("/postU")
-@CrossOrigin()
+@CrossOrigin(origins = "http://localhost:4200")
 public class PostUServices {
 	
 	private final Integer defaultSizePage = 5;
