@@ -101,26 +101,26 @@ public class NewsUServices {
 		return text;
 	}
 	
-	@PostMapping("/createNew")
-	public Boolean createNew(@RequestBody String jsonRequest){
-		
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		
-//		String name = String.valueOf(jsonObj.getInt("postid"));
-//		BigInteger numberView = BigInteger.valueOf(jsonObj.getInt("postid"));
-//		Status statusId = Status.EDITION;
-//		String topic = String.valueOf(jsonObj.getInt("postid"));
-//		Date lastUpDate = new Date();
-//		Long writerId = Long.valueOf(jsonObj.getInt("postid"));
-//		Long reviewerId = Long.valueOf(jsonObj.getInt("postid"));
-//		Date dateReview = new Date();
-//		TypePost type = TypePost.NEW;
-//		String title = String.valueOf(jsonObj.getInt("postid"));
-//		String location = String.valueOf(jsonObj.getInt("postid"));
-		
-		newsURepository.createNew();
-		return Boolean.valueOf("true");
-	}
+//	@PostMapping("/createNew")
+//	public Boolean createNew(@RequestBody String jsonRequest){
+//		
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		
+////		String name = String.valueOf(jsonObj.getInt("postid"));
+////		BigInteger numberView = BigInteger.valueOf(jsonObj.getInt("postid"));
+////		Status statusId = Status.EDITION;
+////		String topic = String.valueOf(jsonObj.getInt("postid"));
+////		Date lastUpDate = new Date();
+////		Long writerId = Long.valueOf(jsonObj.getInt("postid"));
+////		Long reviewerId = Long.valueOf(jsonObj.getInt("postid"));
+////		Date dateReview = new Date();
+////		TypePost type = TypePost.NEW;
+////		String title = String.valueOf(jsonObj.getInt("postid"));
+////		String location = String.valueOf(jsonObj.getInt("postid"));
+//		
+//		newsURepository.createNew();
+//		return Boolean.valueOf("true");
+//	}
 	
 	
 	
