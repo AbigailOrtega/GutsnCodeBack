@@ -2,6 +2,7 @@ package mx.gnc.as.gutsncode.services.newsu;
 
 import java.math.BigInteger;
 import java.sql.Blob;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -36,7 +37,8 @@ public interface NewsURepository extends   CrudRepository<Post, Long>{
 	Image getImage(Long postId);
 	
 //	@Modifying
-//	@Query(value= "INSERT INTO POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION) VALUES ('NEWS5',0,0,'Java','2013-05-01',1,1,'2019-05-02', 0, 'NEWS 15', 'CDMX')")
-//	Post createNew();
+//	@Query(value= "INSERT INTO Post (name, topic, lastUpdate, writter, reviewerId, dateReviewer, title, location) values (:name, :topic, :lastUpdate, :writter, :reviewerId, :dateReviewer, :title, :location)")
+////	@Query(value= "INSERT INTO Post (name, statusId, topic, lastUpdate, writter, reviewerId, dateReviewer, typePostId, title, location) VALUES (:name, 3, :topic, :lastUpdate, :writter, :reviewerId, :dateReviewer, 0, :title, :location)")
+//	Post createNew(String name, String topic, Date lastUpdate, Long writter, Long reviewerId, Date dateReviewer, String title, String location);
 	
 }

@@ -41,7 +41,7 @@ public class NewsUServices {
 	
 	@PostMapping("/recentNews")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
-	
+		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
 		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
@@ -55,9 +55,10 @@ public class NewsUServices {
 	public Integer totalPages(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
+		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
+		Integer maxPost = jsonObj.has("maxPost")? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
 		Integer listPost = newsURepository.numberTotalPost(Status.PUBLISHED, TypePost.NEW, topic);
-		return (listPost/this.defaultSizePage) + 1;
+		return (listPost/(maxPost + 1)) + 1;
 	}
 	
 	@PostMapping("/getInfoPost")
@@ -101,26 +102,27 @@ public class NewsUServices {
 		return text;
 	}
 	
-//	@PostMapping("/createNew")
-//	public Boolean createNew(@RequestBody String jsonRequest){
-//		
-//		JSONObject jsonObj = new JSONObject(jsonRequest);
-//		
-////		String name = String.valueOf(jsonObj.getInt("postid"));
-////		BigInteger numberView = BigInteger.valueOf(jsonObj.getInt("postid"));
-////		Status statusId = Status.EDITION;
-////		String topic = String.valueOf(jsonObj.getInt("postid"));
-////		Date lastUpDate = new Date();
-////		Long writerId = Long.valueOf(jsonObj.getInt("postid"));
-////		Long reviewerId = Long.valueOf(jsonObj.getInt("postid"));
-////		Date dateReview = new Date();
-////		TypePost type = TypePost.NEW;
-////		String title = String.valueOf(jsonObj.getInt("postid"));
-////		String location = String.valueOf(jsonObj.getInt("postid"));
-//		
-//		newsURepository.createNew();
-//		return Boolean.valueOf("true");
-//	}
+	@PostMapping("/createNew")
+	public Boolean createNew(@RequestBody String jsonRequest){
+		
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		
+//		String name = String.valueOf(jsonObj.getInt("postid"));
+//		BigInteger numberView = BigInteger.valueOf(jsonObj.getInt("postid"));
+//		Status statusId = Status.EDITION;
+//		String topic = String.valueOf(jsonObj.getInt("postid"));
+//		Date lastUpDate = new Date();
+//		Long writerId = Long.valueOf(jsonObj.getInt("postid"));
+//		Long reviewerId = Long.valueOf(jsonObj.getInt("postid"));
+//		Date dateReview = new Date();
+//		TypePost type = TypePost.NEW;
+//		String title = String.valueOf(jsonObj.getInt("postid"));
+//		String location = String.valueOf(jsonObj.getInt("postid"));
+		
+//		newsURepository.createNew("Aqui empieza todo", "java".toLowerCase(), new Date(), Long.valueOf(1), Long.valueOf(1), new Date(), "Aqui empieza todo", "CDMX");
+//		newsURepository.createNew(String name, String topic, Date lastUpdate, Long writter, Long reviewerId, Date dateReviewer, String title, String location);
+		return Boolean.valueOf("true");
+	}
 	
 	
 	

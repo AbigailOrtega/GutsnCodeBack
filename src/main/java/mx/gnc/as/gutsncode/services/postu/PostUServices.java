@@ -29,58 +29,60 @@ import mx.gnc.as.gutsncode.services.GeneralServices;
 @RequestMapping("/postU")
 @CrossOrigin(origins = "http://localhost:4200")
 public class PostUServices {
-	
+
 	private final Integer defaultSizePage = 5;
-	
+
 	@Autowired
 	private PostRepository postRepository;
-	
+
 	@Autowired
 	private GeneralServices generalServices;
-	
+
 	@PostMapping("/recentPost")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
-	
+
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		
-		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
-		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
+
+		Integer pageNumber = jsonObj.has("page") ? Integer.valueOf(jsonObj.getInt("page")) : 0;
+		Integer maxPost = jsonObj.has("maxPost") ? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
+		String topic = jsonObj.has("topic") ? jsonObj.getString("topic").toLowerCase() : "";
 		List<Post> listPost = postRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.POST, topic, PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
-	
+
 	@PostMapping("/totalPages")
 	public Integer totalPages(@RequestBody String jsonRequest) {
+		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
+		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase() : "";
+		Integer maxPost = jsonObj.has("maxPost")? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
 		Integer listPost = postRepository.numberTotalPost(Status.PUBLISHED, TypePost.POST, topic);
-		return (listPost/this.defaultSizePage) + 1;
+		return (listPost / (maxPost + 1)) + 1;
 	}
-	
+
 	@PostMapping("/getInfoPost")
 	public Post getInfoPost(@RequestBody String jsonRequest) {
-	
+
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
 		Post post = postRepository.getPostContent(postId);
 		return post;
 	}
-	
+
 	@PostMapping("/addView")
 	public Integer newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
 		return generalServices.addView(postId);
 	}
-	
+
 	@DeleteMapping("/deletePost")
 	public Integer deletePost(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
 		return generalServices.deletePost(postId);
 	}
-		
+
 	@PostMapping("/getText")
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -88,16 +90,14 @@ public class PostUServices {
 		List<Text> text = postRepository.getTextContent(pageNumber);
 		return text;
 	}
-	
+
 	@GetMapping("/getImage")
 	public Image dmeImage(@RequestBody String jsonRequest) {
-	
+
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long image = Long.valueOf(jsonObj.getInt("imageId"));
 		Image text = postRepository.getImage(image);
 		return text;
 	}
-	
-	
-	
+
 }
