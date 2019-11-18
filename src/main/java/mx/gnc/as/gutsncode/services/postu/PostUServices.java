@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.services.postu;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,9 @@ import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
+import mx.gnc.as.gutsncode.dao.TextOnlyRequieredData;
 import mx.gnc.as.gutsncode.dao.TypePost;
-import mx.gnc.as.gutsncode.repository.PostRepository;
+import mx.gnc.as.gutsncode.repository.Repository;
 import mx.gnc.as.gutsncode.services.GeneralServices;
 
 @RestController
@@ -33,7 +35,7 @@ public class PostUServices {
 	private final Integer defaultSizePage = 5;
 
 	@Autowired
-	private PostRepository postRepository;
+	private PostURepository postURepository;
 
 	@Autowired
 	private GeneralServices generalServices;
@@ -46,7 +48,7 @@ public class PostUServices {
 		Integer pageNumber = jsonObj.has("page") ? Integer.valueOf(jsonObj.getInt("page")) : 0;
 		Integer maxPost = jsonObj.has("maxPost") ? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
 		String topic = jsonObj.has("topic") ? jsonObj.getString("topic").toLowerCase() : "";
-		List<Post> listPost = postRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.POST, topic, PageRequest.of(pageNumber, maxPost));
+		List<Post> listPost = postURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.POST, topic, PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
 
@@ -56,7 +58,7 @@ public class PostUServices {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase() : "";
 		Integer maxPost = jsonObj.has("maxPost")? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
-		Integer listPost = postRepository.numberTotalPost(Status.PUBLISHED, TypePost.POST, topic);
+		Integer listPost = postURepository.numberTotalPost(Status.PUBLISHED, TypePost.POST, topic);
 		return (listPost / (maxPost + 1)) + 1;
 	}
 
@@ -65,7 +67,7 @@ public class PostUServices {
 
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Post post = postRepository.getPostContent(postId);
+		Post post = postURepository.getPostContent(postId);
 		return post;
 	}
 
@@ -84,20 +86,27 @@ public class PostUServices {
 	}
 
 	@PostMapping("/getText")
-	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
+	public List<TextOnlyRequieredData> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
-		List<Text> text = postRepository.getTextContent(pageNumber);
-		return text;
+		List<Text> text = postURepository.getTextContent(pageNumber);
+		List<TextOnlyRequieredData> textReduced = new ArrayList<TextOnlyRequieredData>();
+		for (Text text2 : text) {
+			textReduced.add(new TextOnlyRequieredData(
+					text2.getTextId(), text2.getTypeTextId().getTypePostId().toString(),
+					text2.getTextRealize(), text2.getTextBeta(), new Byte[0])
+					);
+		}
+		return textReduced;
 	}
 
-	@GetMapping("/getImage")
-	public Image dmeImage(@RequestBody String jsonRequest) {
-
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-		Image text = postRepository.getImage(image);
-		return text;
-	}
+//	@GetMapping("/getImage")
+//	public Image dmeImage(@RequestBody String jsonRequest) {
+//
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		Long image = Long.valueOf(jsonObj.getInt("imageId"));
+//		Image text = postURepository.getImage(image);
+//		return text;
+//	}
 
 }

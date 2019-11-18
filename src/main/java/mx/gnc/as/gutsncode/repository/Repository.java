@@ -17,7 +17,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 
 
-public interface PostRepository extends   CrudRepository<Post, Long>{
+public interface Repository extends   CrudRepository<Post, Long>{
 	
 	List<Post> findAll();
 	

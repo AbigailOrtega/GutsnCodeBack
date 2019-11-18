@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.services.gncu;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
+import mx.gnc.as.gutsncode.dao.TextOnlyRequieredData;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.services.GeneralServices;
 
@@ -74,11 +76,19 @@ public class GnCuServices {
 		
 	@PostMapping("/getTextGNC")
 	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
-	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
+	public List<TextOnlyRequieredData> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
-		List<Text> text = gncRepository.getTextContent(pageNumber);
-		return text;
+		Long postId = Long.valueOf(jsonObj.getInt("postid"));
+		List<Text> text = gncRepository.getTextContent(postId);
+		List<TextOnlyRequieredData> textReduced = new ArrayList<TextOnlyRequieredData>();
+		for (Text text2 : text) {
+			textReduced.add(new TextOnlyRequieredData(
+					text2.getTextId(), text2.getTypeTextId().getTypePostId().toString(),
+					text2.getTextRealize(), text2.getTextBeta(), new Byte[0])
+					);
+		}
+		
+		return textReduced;
 	}
 	
 	@GetMapping("/getImage")

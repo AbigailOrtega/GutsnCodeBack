@@ -13,7 +13,7 @@ import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.repository.FounderRepository;
-import mx.gnc.as.gutsncode.repository.PostRepository;
+import mx.gnc.as.gutsncode.repository.Repository;
 
 @RestController
 public class Rest {
@@ -22,7 +22,7 @@ public class Rest {
 	private FounderRepository repositoryF;
 	
 	@Autowired
-	private PostRepository postRepository;
+	private Repository postRepository;
 
 	@GetMapping("/hola")
 	public String rest() {

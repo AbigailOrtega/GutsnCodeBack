@@ -26,7 +26,7 @@ public interface PostURepository extends   CrudRepository<Post, Long>{
 	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic%")
 	Integer numberTotalPost( Status status, TypePost type, String topic);
 	
-	@Query(value = "SELECT p FROM Text p where p.postId.postId=:postId")
+	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
 	List<Text> getTextContent(Long postId);
 	
 	@Query(value = "SELECT p FROM Post p where postId=:postId")

@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.services.newsu;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
+import mx.gnc.as.gutsncode.dao.TextOnlyRequieredData;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.services.GeneralServices;
 
@@ -85,11 +87,19 @@ public class NewsUServices {
 	}
 		
 	@PostMapping("/getText")
-	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
+	public List<TextOnlyRequieredData> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
 		List<Text> text = newsURepository.getTextContent(pageNumber);
-		return text;
+		List<TextOnlyRequieredData> textReduced = new ArrayList<TextOnlyRequieredData>();
+		for (Text text2 : text) {
+			textReduced.add(new TextOnlyRequieredData(
+					text2.getTextId(), text2.getTypeTextId().getTypePostId().toString(),
+					text2.getTextRealize(), text2.getTextBeta(), new Byte[0])
+					);
+		}
+		
+		return textReduced;
 	}
 	
 	@PostMapping("/getImage")
