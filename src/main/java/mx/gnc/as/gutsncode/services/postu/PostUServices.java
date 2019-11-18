@@ -23,6 +23,7 @@ import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.repository.PostRepository;
+import mx.gnc.as.gutsncode.services.GeneralServices;
 
 @RestController
 @RequestMapping("/postU")
@@ -33,6 +34,9 @@ public class PostUServices {
 	
 	@Autowired
 	private PostRepository postRepository;
+	
+	@Autowired
+	private GeneralServices generalServices;
 	
 	@PostMapping("/recentPost")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
@@ -67,16 +71,14 @@ public class PostUServices {
 	public Integer newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Integer view = postRepository.incrementViewCounter(postId, new BigInteger("1"));
-		return view;
+		return generalServices.addView(postId);
 	}
 	
 	@DeleteMapping("/deletePost")
 	public Integer deletePost(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Integer view  = postRepository.deletePost(postId);
-		return view;
+		return generalServices.deletePost(postId);
 	}
 		
 	@PostMapping("/getText")
@@ -92,7 +94,6 @@ public class PostUServices {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-//		List<Text> text = postRepository.getTextContent(post);
 		Image text = postRepository.getImage(image);
 		return text;
 	}

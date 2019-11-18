@@ -22,6 +22,7 @@ import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
+import mx.gnc.as.gutsncode.services.GeneralServices;
 
 @RestController
 @RequestMapping("/newsU")
@@ -32,8 +33,11 @@ public class NewsUServices {
 	
 	@Autowired
 	private NewsURepository newsURepository;
+
+	@Autowired
+	private GeneralServices generalServices;
 	
-	@PostMapping("/recentPost")
+	@PostMapping("/recentNews")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -67,17 +71,14 @@ public class NewsUServices {
 	public Integer newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		BigInteger newView = new BigInteger("1");
-		Integer view = newsURepository.incrementViewCounter(postId, newView);
-		return view;
+		return generalServices.addView(postId);
 	}
 	
 	@DeleteMapping("/deletePost")
 	public Integer deletePost(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Integer view  = newsURepository.deletePost(postId);
-		return view;
+		return generalServices.deletePost(postId);
 	}
 		
 	@PostMapping("/getText")

@@ -45,7 +45,5 @@ public interface PostRepository extends   CrudRepository<Post, Long>{
 	
 	@Query(value= "SELECT i FROM Image i where i.imageId=:postId")
 	Image getImage(Long postId);
-//	@Query(value = "SELECT p FROM Post  order by lastUpDate desc")
-//	List<Post> findTop2LastTwenty( Status status, TypePost type, Pageable  pageRequest);
 	
 }

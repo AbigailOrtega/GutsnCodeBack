@@ -22,6 +22,7 @@ import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
+import mx.gnc.as.gutsncode.services.GeneralServices;
 
 @RestController
 @RequestMapping("/gncU")
@@ -31,7 +32,10 @@ public class GnCuServices {
 	private final Integer defaultSizePage = 5;
 	
 	@Autowired
-	private GnCuRepository GnCRepository;
+	private GnCuRepository gncRepository;
+	
+	@Autowired
+	private GeneralServices generalServices;
 	
 	@PostMapping("/getGNCData")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
@@ -42,7 +46,7 @@ public class GnCuServices {
 		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
 //		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
 		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
-		List<Post> listPost = GnCRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), "", PageRequest.of(pageNumber, maxPost));
+		List<Post> listPost = gncRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), "", PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
 	
@@ -50,7 +54,7 @@ public class GnCuServices {
 	public Post getInfoPost(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Post post = GnCRepository.getPostContent(postId);
+		Post post = gncRepository.getPostContent(postId);
 		return post;
 	}
 	
@@ -58,17 +62,14 @@ public class GnCuServices {
 	public Integer newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		BigInteger newView = new BigInteger("1");
-		Integer view = GnCRepository.incrementViewCounter(postId, newView);
-		return view;
+		return generalServices.addView(postId);
 	}
 	
 	@DeleteMapping("/deletePostGNC")
 	public Integer deletePost(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Integer view  = GnCRepository.deletePost(postId);
-		return view;
+		return generalServices.deletePost(postId);
 	}
 		
 	@PostMapping("/getTextGNC")
@@ -76,7 +77,16 @@ public class GnCuServices {
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
-		List<Text> text = GnCRepository.getTextContent(pageNumber);
+		List<Text> text = gncRepository.getTextContent(pageNumber);
+		return text;
+	}
+	
+	@GetMapping("/getImage")
+	public Image dmeImage(@RequestBody String jsonRequest) {
+	
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		Long image = Long.valueOf(jsonObj.getInt("imageId"));
+		Image text = gncRepository.getImage(image);
 		return text;
 	}
 	
