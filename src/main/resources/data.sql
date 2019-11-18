@@ -24,17 +24,30 @@ insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, 
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('POST13',0,0,'Java','2012-04-01',1,1,'2019-04-02', 1, 'POST 13', 'CDMX');
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('POST14',0,0,'Java','2013-05-01',1,1,'2019-05-02', 1, 'POST 14', 'CDMX');
 
-insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('ACERCA DE NOSOTROS',0,0,'GutsNCode','2019-11-17',1,1,'2019-11-17', 1, 'ACERCA DE NOSOTROS', 'CDMX');
-insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('FUNDADORES',0,0,'GutsNCode','2019-11-17',1,1,'2019-11-17', 3, 'FUNDADORES', 'CDMX');
-insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES ('EXPERIENCIAS',0,0,'GutsNCode','2019-11-17',1,1,'2019-11-17', 2, 'EXPERIENCIAS', 'CDMX');
+insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES (101,'ACERCA DE NOSOTROS',0,0,'GutsNCode','2019-11-17',1,1,'2019-11-17',1,'ACERCA DE NOSOTROS','CDMX');
+insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES (102,'FUNDADORES',0,0,'GutsNCode','2019-11-17',1,1,'2019-11-17',3,'FUNDADORES','CDMX');
+insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION,) VALUES (103,'EXPERIENCIAS',0,0,'GutsNCode','2019-11-17',1,1,'2019-11-17',2,'EXPERIENCIAS','CDMX');
 
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1,1,101,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (2,0,101,'','¿Quienes somos?');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (3,2,101,'','Nos despendimos, y recuerden, Sebas es un flojo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1,1,101,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (2,0,101,'','¿Quienes somos?');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (3,2,101,'','Nos despendimos, y recuerden, Sebas es un flojo');
 
-insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1,1,1,'Este es un texto muy muy largo', '');
-insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (2,0,1,'','Este es un texto muy muy largo');
-insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (3,2,1,'Este es un texto muy muy largo', 'Este es un texto muy muy largo');
-insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (4,1,2,'Este es un texto muy muy largo', '');
-insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (5,0,2,'','Este es un texto muy muy largo');
-insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (6,2,2,'Este es un texto muy muy largo', 'Este es un texto muy muy largo');
+/*Text for Acerca de Nosotros*/
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (107,1,101,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (108,0,101,'','¿Quienes somos?');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (109,2,101,'','Nos despendimos, y recuerden, Sebas es un flojo');
+/*Text for Fundadores*/
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (110,1,102,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (111,0,102,'','¿Quienes somos?');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (112,2,102,'','Nos despendimos, y recuerden, Sebas es un flojo');
+/*Text for Experiencias*/
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (113,1,103,'','Antes trabajabamos 20 horas al día, ahora solo 19, pues descubrimos que si existe la vida despues del trabajo');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (114,0,103,'','De esclavos a Rockstars');
+insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (115,2,103,'','A rockear bebes');
+
 
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES('1', 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 1, 'java', 'top');
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES('2', 'Spring.png', 'Springs logo', FILE_READ('/opt/spring.png'), 2, 'spring', 'top');    

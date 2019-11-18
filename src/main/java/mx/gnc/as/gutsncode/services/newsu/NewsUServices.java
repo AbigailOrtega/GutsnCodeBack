@@ -25,7 +25,6 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 @RestController
 @RequestMapping("/newsU")
-@Api(value = "Post microservice", description = "This API has a CRUD for news")
 @CrossOrigin()
 public class NewsUServices {
 	
@@ -34,8 +33,7 @@ public class NewsUServices {
 	@Autowired
 	private NewsURepository newsURepository;
 	
-	@GetMapping("/recentPost")
-	@ApiOperation(value = "Find in 20 by 20 most recent post or news", notes = "Return a post o new by id" )
+	@PostMapping("/recentPost")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -43,24 +41,20 @@ public class NewsUServices {
 		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):1;
 		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
 		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
-		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
-		List<Post> listPost = newsURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), topic, PageRequest.of(pageNumber, maxPost));
+		List<Post> listPost = newsURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.NEW, topic, PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
 	
-	@GetMapping("/totalPages")
-	@ApiOperation(value = "Find the total numbers of the pages", notes = "An integer" )
+	@PostMapping("/totalPages")
 	public Integer totalPages(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
-		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
-		Integer listPost = newsURepository.numberTotalPost(Status.PUBLISHED, TypePost.getEnum(tipo), topic);
+		Integer listPost = newsURepository.numberTotalPost(Status.PUBLISHED, TypePost.NEW, topic);
 		return (listPost/this.defaultSizePage) + 1;
 	}
 	
-	@GetMapping("/getInfoPost")
-	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
+	@PostMapping("/getInfoPost")
 	public Post getInfoPost(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -86,8 +80,7 @@ public class NewsUServices {
 		return view;
 	}
 		
-	@GetMapping("/getText")
-	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
+	@PostMapping("/getText")
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
@@ -95,7 +88,7 @@ public class NewsUServices {
 		return text;
 	}
 	
-	@GetMapping("/getImage")
+	@PostMapping("/getImage")
 	public Image dmeImage(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);

@@ -25,7 +25,6 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 @RestController
 @RequestMapping("/gncU")
-@Api(value = "Post microservice", description = "This API has a CRUD for guts and code content")
 @CrossOrigin()
 public class GnCuServices {
 	
@@ -34,24 +33,21 @@ public class GnCuServices {
 	@Autowired
 	private GnCuRepository GnCRepository;
 	
-	@GetMapping("/getGNCData")
-	@ApiOperation(value = "Find in 20 by 20 most recent post or news", notes = "Return a post o new by id" )
+	@PostMapping("/getGNCData")
 	public List<Post> postBy20(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
 		Integer pageNumber = jsonObj.has("pagina")?Integer.valueOf(jsonObj.getInt("pagina")):1;
 		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
+//		String topic = jsonObj.has("topic")? jsonObj.getString("topic"):"";
 		String tipo = jsonObj.has("tipo")?jsonObj.getString("tipo"):"";
-		List<Post> listPost = GnCRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), topic, PageRequest.of(pageNumber, maxPost));
+		List<Post> listPost = GnCRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(tipo), "", PageRequest.of(pageNumber, maxPost));
 		return listPost;
 	}
 	
-	@GetMapping("/getInfoGNC")
-	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
+	@PostMapping("/getInfoGNC")
 	public Post getInfoPost(@RequestBody String jsonRequest) {
-	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
 		Post post = GnCRepository.getPostContent(postId);
@@ -75,7 +71,7 @@ public class GnCuServices {
 		return view;
 	}
 		
-	@GetMapping("/getTextGNC")
+	@PostMapping("/getTextGNC")
 	@ApiOperation(value = "bring al text related of a post", notes = "Return texts" )
 	public List<Text> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
