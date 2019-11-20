@@ -32,7 +32,7 @@ public interface GnCuRepository extends   CrudRepository<Post, Long>{
 	@Query(value = "SELECT p FROM Post p where postId=:postId")
 	Post getPostContent(Long postId);
 	
-	@Query(value= "SELECT i FROM Image i where i.imageId=:postId")
-	Image getImage(Long postId);
+	@Query(value= "SELECT i FROM Image i where i.textId.textId=:textId")
+	List<Image> getImage(Long textId);
 	
 }

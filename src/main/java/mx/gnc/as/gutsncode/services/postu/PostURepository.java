@@ -32,9 +32,7 @@ public interface PostURepository extends   CrudRepository<Post, Long>{
 	@Query(value = "SELECT p FROM Post p where postId=:postId")
 	Post getPostContent(Long postId);
 	
-	@Query(value= "SELECT i FROM Image i where imageId=:postId")
-	Blob getImage(Long postId);
-//	@Query(value = "SELECT p FROM Post  order by lastUpDate desc")
-//	List<Post> findTop2LastTwenty( Status status, TypePost type, Pageable  pageRequest);
+	@Query(value= "SELECT i FROM Image i where i.textId.textId=:textId")
+	List<Image> getImage(Long textId);
 	
 }

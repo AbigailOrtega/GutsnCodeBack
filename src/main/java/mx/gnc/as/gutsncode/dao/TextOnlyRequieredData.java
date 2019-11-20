@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class TextOnlyRequieredData {
 	
-	private String textId;
+	private Long textId;
 	private String typeTextId;
 	private String textBeta;
 	private String textRealize;
@@ -15,7 +15,7 @@ public class TextOnlyRequieredData {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TextOnlyRequieredData(String textId, String typeTextId, String textBeta, String textRealize,
+	public TextOnlyRequieredData(Long textId, String typeTextId, String textBeta, String textRealize,
 			Byte[] imageBlob) {
 		super();
 		this.textId = textId;

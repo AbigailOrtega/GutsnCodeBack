@@ -21,6 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
+import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
@@ -103,13 +104,16 @@ public class NewsUServices {
 	}
 	
 	@PostMapping("/getImage")
-	public Image dmeImage(@RequestBody String jsonRequest) {
+	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-//		List<Text> text = postRepository.getTextContent(post);
-		Image text = newsURepository.getImage(image);
-		return text;
+		List<Image> images = newsURepository.getImage(image);
+		List<ImageReduced> imagesReduced = new ArrayList<>();
+		for (Image reduced : images) {
+			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), reduced.getImage(), reduced.getFooter(), reduced.getCardinality()));
+		}
+		return imagesReduced;
 	}
 	
 	@PostMapping("/createNew")

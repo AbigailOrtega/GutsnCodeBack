@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
@@ -67,14 +68,14 @@ public class Post {
 	@Column(name = "LOCATION")
 	private String location;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "PARENT_ID")
 	private Post parentId;
 	
 	@Column(name = "IMAGE")
 	private Byte[] image;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "CHILD_ID")
 	private Post childId;
 	

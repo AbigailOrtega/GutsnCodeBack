@@ -21,7 +21,7 @@ public class Text {
 	
 	@Id
 	@Column(name = "TEXT_ID")
-	private String textId;
+	private Long textId;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private TypeText typeTextId;
@@ -35,7 +35,7 @@ public class Text {
 	@Column(name = "TEXT_REALIZE")
 	private String textRealize;
 	
-	public Text(String textId, TypeText typeTextId, Post postId, String textBeta, String textRealize) {
+	public Text(Long textId, TypeText typeTextId, Post postId, String textBeta, String textRealize) {
 		super();
 		this.textId = textId;
 		this.typeTextId = typeTextId;

@@ -33,8 +33,8 @@ public interface NewsURepository extends   CrudRepository<Post, Long>{
 	@Query(value = "SELECT p FROM Post p where p.postId=:postId")
 	Post getPostContent(Long postId);
 	
-	@Query(value= "SELECT i FROM Image i where i.imageId=:postId")
-	Image getImage(Long postId);
+	@Query(value= "SELECT i FROM Image i where i.textId.textId=:textId")
+	List<Image> getImage(Long textId);
 	
 //	@Modifying
 //	@Query(value= "INSERT INTO Post (name, topic, lastUpdate, writter, reviewerId, dateReviewer, title, location) values (:name, :topic, :lastUpdate, :writter, :reviewerId, :dateReviewer, :title, :location)")

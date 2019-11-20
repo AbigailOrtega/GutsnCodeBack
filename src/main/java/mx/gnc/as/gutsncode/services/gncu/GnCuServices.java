@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import mx.gnc.as.gutsncode.dao.Image;
+import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
@@ -91,13 +92,17 @@ public class GnCuServices {
 		return textReduced;
 	}
 	
-	@GetMapping("/getImage")
-	public Image dmeImage(@RequestBody String jsonRequest) {
+	@PostMapping("/getImage")
+	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-		Image text = gncRepository.getImage(image);
-		return text;
+		List<Image> images = gncRepository.getImage(image);
+		List<ImageReduced> imagesReduced = new ArrayList<>();
+		for (Image reduced : images) {
+			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), reduced.getImage(), reduced.getFooter(), reduced.getCardinality()));
+		}
+		return imagesReduced;
 	}
 	
 }
