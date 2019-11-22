@@ -23,6 +23,7 @@ import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
+import mx.gnc.as.gutsncode.dao.PostWithChildNFather;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TextOnlyRequieredData;
@@ -64,13 +65,20 @@ public class NewsUServices {
 		return (listPost/(maxPost + 1)) + 1;
 	}
 	
-	@PostMapping("/getInfoPost")
-	public Post getInfoPost(@RequestBody String jsonRequest) {
+	@PostMapping("/getInfoNews")
+//	public Post getInfoPost(@RequestBody String jsonRequest) {
+	public PostWithChildNFather getInfoPost(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
 		Post post = newsURepository.getPostContent(postId);
-		return post;
+		
+		PostWithChildNFather withChildNFather = new PostWithChildNFather(post);
+		withChildNFather.setParentId(newsURepository.getPostContent(post.getParentId()));
+		withChildNFather.setChildId(newsURepository.getPostContent(post.getChildId()));
+		
+//		return post;
+		return withChildNFather;
 	}
 	
 	@PostMapping("/addNewView")

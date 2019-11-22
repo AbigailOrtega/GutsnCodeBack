@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
+import mx.gnc.as.gutsncode.dao.PostWithChildNFather;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TextOnlyRequieredData;
@@ -54,11 +55,19 @@ public class GnCuServices {
 	}
 	
 	@PostMapping("/getInfoGNC")
-	public Post getInfoPost(@RequestBody String jsonRequest) {
+//	public Post getInfoPost(@RequestBody String jsonRequest) {
+	public PostWithChildNFather getInfoPost(@RequestBody String jsonRequest) {
+	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
 		Post post = gncRepository.getPostContent(postId);
-		return post;
+		
+		PostWithChildNFather withChildNFather = new PostWithChildNFather(post);
+		withChildNFather.setParentId(gncRepository.getPostContent(post.getParentId()));
+		withChildNFather.setChildId(gncRepository.getPostContent(post.getChildId()));
+		
+//		return post;
+		return withChildNFather;
 	}
 	
 	@PostMapping("/addNewViewGNC")
