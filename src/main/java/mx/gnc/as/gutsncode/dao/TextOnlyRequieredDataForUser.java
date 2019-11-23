@@ -7,7 +7,6 @@ public class TextOnlyRequieredDataForUser {
 	
 	private Long textId;
 	private Long typeTextId;
-	private String textBeta;
 	private String textRealize;
 	private Byte[] imageBlob;
 	
