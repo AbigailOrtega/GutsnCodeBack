@@ -95,7 +95,7 @@ public class PostUServices {
 	}
 
 	@PostMapping("/getText")
-	public List<TextOnlyRequieredDataForUser> dmePostNew(@RequestBody String jsonRequest) {
+	public List<TextOnlyRequieredDataForUser> getTextContentUser(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
 		List<Text> text = postURepository.getTextContent(pageNumber);
