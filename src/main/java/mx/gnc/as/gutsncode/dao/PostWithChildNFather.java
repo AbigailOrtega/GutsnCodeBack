@@ -29,13 +29,14 @@ public class PostWithChildNFather {
 	
 	public PostWithChildNFather() {};
 	
-	public PostWithChildNFather(String name, BigInteger numberView, 
+	public PostWithChildNFather(Long postId, String name, BigInteger numberView, 
 			Status statusId, String topic, 
 			Date lastUpDate, Founder writerId, 
 			Founder reviewerId, Date dateReview, 
 			TypePost type, String title , 
 			String location, Post parentId, 
 			Post childId ) {
+		this.postId = postId;
 		this.name=name;
 		this.numberView=numberView;
 		this.statusId=statusId;
@@ -52,12 +53,13 @@ public class PostWithChildNFather {
 	}
 
 	
-	public PostWithChildNFather(String name, BigInteger numberView, 
+	public PostWithChildNFather(Long postId, String name, BigInteger numberView, 
 			Status statusId, String topic, 
 			Date lastUpDate, Founder writerId, 
 			Founder reviewerId, Date dateReview, 
 			TypePost typePostId, String title , 
 			String location) {
+		this.postId = postId;
 		this.name=name;
 		this.numberView=numberView;
 		this.statusId=statusId;
@@ -72,6 +74,7 @@ public class PostWithChildNFather {
 	}
 	
 	public PostWithChildNFather(Post post) {
+		this.postId			=post.getPostId();
 		this.name			=post.getName();
 		this.numberView		=post.getNumberView();
 		this.statusId		=post.getStatusId();
