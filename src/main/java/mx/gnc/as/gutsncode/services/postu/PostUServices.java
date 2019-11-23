@@ -24,7 +24,7 @@ import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.PostWithChildNFather;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
-import mx.gnc.as.gutsncode.dao.TextOnlyRequieredData;
+import mx.gnc.as.gutsncode.dao.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.repository.Repository;
 import mx.gnc.as.gutsncode.services.GeneralServices;
@@ -95,16 +95,13 @@ public class PostUServices {
 	}
 
 	@PostMapping("/getText")
-	public List<TextOnlyRequieredData> dmePostNew(@RequestBody String jsonRequest) {
+	public List<TextOnlyRequieredDataForUser> dmePostNew(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
 		List<Text> text = postURepository.getTextContent(pageNumber);
-		List<TextOnlyRequieredData> textReduced = new ArrayList<TextOnlyRequieredData>();
+		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
 		for (Text text2 : text) {
-			textReduced.add(new TextOnlyRequieredData(
-					text2.getTextId(), text2.getTypeTextId().getTypePostId().toString(),
-					text2.getTextRealize(), text2.getTextBeta(), new Byte[0])
-					);
+			textReduced.add(new TextOnlyRequieredDataForUser(text2, new Byte[0]));
 		}
 		return textReduced;
 	}

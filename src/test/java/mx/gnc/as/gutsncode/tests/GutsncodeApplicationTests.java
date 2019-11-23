@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode;
+package mx.gnc.as.gutsncode.tests;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
