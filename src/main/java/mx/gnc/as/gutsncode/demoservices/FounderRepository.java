@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.repository;
+package mx.gnc.as.gutsncode.demoservices;
 
 import java.util.List;
 

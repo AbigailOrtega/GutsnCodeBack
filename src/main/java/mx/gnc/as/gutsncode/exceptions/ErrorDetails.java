@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode;
+package mx.gnc.as.gutsncode.exceptions;
 
 import java.util.Date;
 

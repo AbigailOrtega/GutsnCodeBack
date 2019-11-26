@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode;
+package mx.gnc.as.gutsncode.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

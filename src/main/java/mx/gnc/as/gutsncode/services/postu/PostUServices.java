@@ -26,7 +26,6 @@ import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.dao.TypePost;
-import mx.gnc.as.gutsncode.repository.Repository;
 import mx.gnc.as.gutsncode.services.GeneralServices;
 
 @RestController

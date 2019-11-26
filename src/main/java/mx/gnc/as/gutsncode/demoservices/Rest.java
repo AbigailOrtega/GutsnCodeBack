@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode;
+package mx.gnc.as.gutsncode.demoservices;
 
 import java.math.BigInteger;
 import java.util.Date;
@@ -12,8 +12,7 @@ import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.TypePost;
-import mx.gnc.as.gutsncode.repository.FounderRepository;
-import mx.gnc.as.gutsncode.repository.Repository;
+import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 
 @RestController
 public class Rest {
