@@ -15,8 +15,6 @@ import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 
-
-
 public interface GeneralRepository extends   CrudRepository<Post, Long>{
 	
 	List<Post> findAll();

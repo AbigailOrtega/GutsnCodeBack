@@ -1,7 +1,5 @@
 package mx.gnc.as.gutsncode.services.gncu;
 
-import java.math.BigInteger;
-import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -16,7 +14,7 @@ import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 
-public interface GnCuRepository extends   CrudRepository<Post, Long>{
+public interface GnCuRepository extends CrudRepository<Post, Long>{
 	
 	List<Post> findAll();
 	

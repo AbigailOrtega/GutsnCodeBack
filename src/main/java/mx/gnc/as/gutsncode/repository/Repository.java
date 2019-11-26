@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,9 +16,9 @@ import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 
-
-
-public interface Repository extends   CrudRepository<Post, Long>{
+@org.springframework.stereotype.Repository
+public interface Repository extends CrudRepository<Post, Long>{
+//JpaRepository<Post, Long>{
 	
 	List<Post> findAll();
 	

@@ -19,30 +19,26 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
-    @Bean
+
+	@Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
             .apis(RequestHandlerSelectors
-                .basePackage("net.guides.springboot2.springboot2swagger2.controller"))
+                .basePackage("mx.gnc.as.gutsncode.controller"))
             .paths(PathSelectors.regex("/.*"))
             .build().apiInfo(apiEndPointsInfo());
     }
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Spring Boot REST API")
-            .description("Employee Management REST API")
-            .contact(new Contact("Ramesh Fadatare", "www.javaguides.net", "ramesh24fadatare@gmail.com"))
+            .description("Founder Management REST API")
+            .contact(new Contact("Sebastian Cuate", "localhost:4200/home", "sstsacm@gmail.com"))
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .version("1.0.0")
             .build();
     }
-    
-    private Predicate<String> postPaths() {
-		return or(regex("/algo/recentPost.*"), regex("/algo/getText.*"));
-	}
     
 }

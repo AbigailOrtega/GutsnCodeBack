@@ -23,9 +23,14 @@ public class Rest {
 	
 	@Autowired
 	private Repository postRepository;
-
+	
+	@GetMapping("/adios")
+	public String rost() throws ResourceNotFoundException{
+		throw new ResourceNotFoundException("No encontre nada :( ");
+//		return "adios";
+	}
 	@GetMapping("/hola")
-	public String rest() {
+	public String rest() throws ResourceNotFoundException{
 		Founder founder= null;
 		repositoryF.save(
 				new Founder("Abi", "Ortega", "Valdivia", "asdlfjasdlf", "abigailortega31@gmail.com", "jflasdjflsd"));
@@ -36,7 +41,6 @@ public class Rest {
 		for (Founder founderr : list) {
 			System.out.println(founderr.getName());
 			founder=founderr;
-		
 		}
 		
 		System.out.println(TypePost.EXPERIENCE.getTypePostId());
