@@ -74,7 +74,7 @@ public class Post {
 	private Long parentId;
 	
 	@Column(name = "IMAGE")	
-	private Byte[] image;
+	private byte[] image;
 	
 //	@OneToOne
 //	@JoinColumn(name = "PARENT_ID")

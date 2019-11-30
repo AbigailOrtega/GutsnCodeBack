@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.dao;
 
 import java.math.BigInteger;
+import java.util.Base64;
 import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
@@ -24,7 +25,7 @@ public class PostWithChildNFather {
 	private String title;
 	private String location;
 	private Post parentId;
-	private Byte[] image;
+	private String image;
 	private Post childId;
 	
 	public PostWithChildNFather() {};
@@ -86,6 +87,7 @@ public class PostWithChildNFather {
 		this.typePostId		=post.getTypePostId();
 		this.title			=post.getTitle();
 		this.location		=post.getLocation();
+		this.image			=Base64.getEncoder().encodeToString(post.getImage());
 	}
 
 	
