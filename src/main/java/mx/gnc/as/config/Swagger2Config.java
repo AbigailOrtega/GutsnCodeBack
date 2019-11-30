@@ -27,10 +27,11 @@ public class Swagger2Config {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
             .apis(RequestHandlerSelectors
-                .basePackage("mx.gnc.as.gutsncode.controller"))
-            .paths(PathSelectors.regex("/.*"))
+                .basePackage("mx.gnc.as.gutsncode"))  //Aim to the package where is the application 
+            .paths(PathSelectors.regex("/.*"))  //this line says that search in every package
             .build().apiInfo(apiEndPointsInfo());
     }
+	
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Spring Boot REST API")
             .description("Founder Management REST API")

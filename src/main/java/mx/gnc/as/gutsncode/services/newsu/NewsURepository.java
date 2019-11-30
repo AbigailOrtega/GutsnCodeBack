@@ -1,44 +1,22 @@
 package mx.gnc.as.gutsncode.services.newsu;
 
-import java.math.BigInteger;
-import java.sql.Blob;
-import java.util.Date;
-import java.util.List;
+public interface NewsURepository{ 
+// extends CrudRepository<Post, Long>{
+//	List<Post> findAll();
+//	
+//	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic% order by lastUpDate desc")
+//	List<Post> findTop2LastTwenty( Status status, TypePost type, String topic, Pageable  pageRequest);
+//	
+//	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic%")
+//	Integer numberTotalPost( Status status, TypePost type, String topic);
+//	
+//	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
+//	List<Text> getTextContent(Long postId);
+//	
+//	@Query(value = "SELECT p FROM Post p where p.postId=:postId")
+//	Post getPostContent(Long postId);
+//	
+//	@Query(value= "SELECT i FROM Image i where i.textId.textId=:textId")
+//	List<Image> getImage(Long textId);
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.transaction.annotation.Transactional;
-
-import mx.gnc.as.gutsncode.dao.Image;
-import mx.gnc.as.gutsncode.dao.Post;
-import mx.gnc.as.gutsncode.dao.Status;
-import mx.gnc.as.gutsncode.dao.Text;
-import mx.gnc.as.gutsncode.dao.TypePost;
-
-public interface NewsURepository extends   CrudRepository<Post, Long>{
-	
-	List<Post> findAll();
-	
-	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic% order by lastUpDate desc")
-	List<Post> findTop2LastTwenty( Status status, TypePost type, String topic, Pageable  pageRequest);
-	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic%")
-	Integer numberTotalPost( Status status, TypePost type, String topic);
-	
-	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
-	List<Text> getTextContent(Long postId);
-	
-	@Query(value = "SELECT p FROM Post p where p.postId=:postId")
-	Post getPostContent(Long postId);
-	
-	@Query(value= "SELECT i FROM Image i where i.textId.textId=:textId")
-	List<Image> getImage(Long textId);
-	
-//	@Modifying
-//	@Query(value= "INSERT INTO Post (name, topic, lastUpdate, writter, reviewerId, dateReviewer, title, location) values (:name, :topic, :lastUpdate, :writter, :reviewerId, :dateReviewer, :title, :location)")
-////	@Query(value= "INSERT INTO Post (name, statusId, topic, lastUpdate, writter, reviewerId, dateReviewer, typePostId, title, location) VALUES (:name, 3, :topic, :lastUpdate, :writter, :reviewerId, :dateReviewer, 0, :title, :location)")
-//	Post createNew(String name, String topic, Date lastUpdate, Long writter, Long reviewerId, Date dateReviewer, String title, String location);
-	
 }

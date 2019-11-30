@@ -31,119 +31,88 @@ import mx.gnc.as.gutsncode.dao.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.services.GeneralServices;
 
-@RestController
-@RequestMapping("/newsU")
-@CrossOrigin(origins = "http://localhost:4200")
+//@RestController
+//@RequestMapping("/newsU")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class NewsUServices {
 	
-	private final Integer defaultSizePage = 5;
-	
-	@Autowired
-	private NewsURepository newsURepository;
-
-	@Autowired
-	private GeneralServices generalServices;
-	
-	@PostMapping("/recentNews")
-	public List<Post> postBy20(@RequestBody String jsonRequest) {
-		
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		
-		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
-		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
-		List<Post> listPost = newsURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.NEW, topic, PageRequest.of(pageNumber, maxPost));
-		return listPost;
-	}
-	
-	@PostMapping("/totalPages")
-	public Integer totalPages(@RequestBody String jsonRequest) {
-	
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
-		Integer maxPost = jsonObj.has("maxPost")? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
-		Integer listPost = newsURepository.numberTotalPost(Status.PUBLISHED, TypePost.NEW, topic);
-		return (listPost/(maxPost + 1)) + 1;
-	}
-	
-	@PostMapping("/getInfoNews")
-//	public Post getInfoPost(@RequestBody String jsonRequest) {
-	public PostWithChildNFather getInfoPost(@RequestBody String jsonRequest) {
-	
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		Post post = newsURepository.getPostContent(postId);
-		
-		PostWithChildNFather withChildNFather = new PostWithChildNFather(post);
-		withChildNFather.setParentId(newsURepository.getPostContent(post.getParentId()));
-		withChildNFather.setChildId(newsURepository.getPostContent(post.getChildId()));
-		
-//		return post;
-		return withChildNFather;
-	}
-	
-	@PostMapping("/addNewView")
-	public Integer newVisit(@RequestBody String jsonRequest) {
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		return generalServices.addView(postId);
-	}
-	
-	@DeleteMapping("/deletePost")
-	public Integer deletePost(@RequestBody String jsonRequest) {
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long postId = Long.valueOf(jsonObj.getInt("postid"));
-		return generalServices.deletePost(postId);
-	}
-		
-	@PostMapping("/getText")
-	public List<TextOnlyRequieredDataForUser> dmePostNew(@RequestBody String jsonRequest) {
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
-		List<Text> text = newsURepository.getTextContent(pageNumber);
-		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
-		for (Text text2 : text) {
-			textReduced.add(new TextOnlyRequieredDataForUser(text2, new Byte[0]));
-		}
-		
-		return textReduced;
-	}
-	
-	@PostMapping("/getImage")
-	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
-	
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-		List<Image> images = newsURepository.getImage(image);
-		List<ImageReduced> imagesReduced = new ArrayList<>();
-		for (Image reduced : images) {
-			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
-		}
-		return imagesReduced;
-	}
-	
-	@PostMapping("/createNew")
-	public Boolean createNew(@RequestBody String jsonRequest){
-		
-		JSONObject jsonObj = new JSONObject(jsonRequest);
-		
-//		String name = String.valueOf(jsonObj.getInt("postid"));
-//		BigInteger numberView = BigInteger.valueOf(jsonObj.getInt("postid"));
-//		Status statusId = Status.EDITION;
-//		String topic = String.valueOf(jsonObj.getInt("postid"));
-//		Date lastUpDate = new Date();
-//		Long writerId = Long.valueOf(jsonObj.getInt("postid"));
-//		Long reviewerId = Long.valueOf(jsonObj.getInt("postid"));
-//		Date dateReview = new Date();
-//		TypePost type = TypePost.NEW;
-//		String title = String.valueOf(jsonObj.getInt("postid"));
-//		String location = String.valueOf(jsonObj.getInt("postid"));
-		
-//		newsURepository.createNew("Aqui empieza todo", "java".toLowerCase(), new Date(), Long.valueOf(1), Long.valueOf(1), new Date(), "Aqui empieza todo", "CDMX");
-//		newsURepository.createNew(String name, String topic, Date lastUpdate, Long writter, Long reviewerId, Date dateReviewer, String title, String location);
-		return Boolean.valueOf("true");
-	}
-	
-	
+//	private final Integer defaultSizePage = 5;
+//	
+//	@Autowired
+//	private NewsURepository newsURepository;
+//
+//	@Autowired
+//	private GeneralServices generalServices;
+//	
+//	@PostMapping("/recentNews")
+//	public List<Post> postBy20(@RequestBody String jsonRequest) {
+//		
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		
+//		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
+//		Integer maxPost = jsonObj.has("maxPost")?Integer.valueOf(jsonObj.getInt("maxPost")):this.defaultSizePage;
+//		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
+//		List<Post> listPost = newsURepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.NEW, topic, PageRequest.of(pageNumber, maxPost));
+//		return listPost;
+//	}
+//	
+//	@PostMapping("/totalPages")
+//	public Integer totalPages(@RequestBody String jsonRequest) {
+//	
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase():"";
+//		Integer maxPost = jsonObj.has("maxPost")? Integer.valueOf(jsonObj.getInt("maxPost")) : this.defaultSizePage;
+//		Integer listPost = newsURepository.numberTotalPost(Status.PUBLISHED, TypePost.NEW, topic);
+//		return (listPost/(maxPost + 1)) + 1;
+//	}
+//	
+//	@PostMapping("/getInfoNews")
+////	public Post getInfoPost(@RequestBody String jsonRequest) {
+//	public PostWithChildNFather getInfoPost(@RequestBody String jsonRequest) {
+//	
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		Long postId = Long.valueOf(jsonObj.getInt("postid"));
+//		Post post = newsURepository.getPostContent(postId);
+//		
+//		PostWithChildNFather withChildNFather = new PostWithChildNFather(post);
+//		withChildNFather.setParentId(newsURepository.getPostContent(post.getParentId()));
+//		withChildNFather.setChildId(newsURepository.getPostContent(post.getChildId()));
+//		
+////		return post;
+//		return withChildNFather;
+//	}
+//	
+//	@PostMapping("/addNewView")
+//	public Integer newVisit(@RequestBody String jsonRequest) {
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		Long postId = Long.valueOf(jsonObj.getInt("postid"));
+//		return generalServices.addView(postId);
+//	}
+//	
+//	@PostMapping("/getText")
+//	public List<TextOnlyRequieredDataForUser> dmePostNew(@RequestBody String jsonRequest) {
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		Long pageNumber = Long.valueOf(jsonObj.getInt("postid"));
+//		List<Text> text = newsURepository.getTextContent(pageNumber);
+//		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
+//		for (Text text2 : text) {
+//			textReduced.add(new TextOnlyRequieredDataForUser(text2, new Byte[0]));
+//		}
+//		
+//		return textReduced;
+//	}
+//	
+//	@PostMapping("/getImage")
+//	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
+//	
+//		JSONObject jsonObj = new JSONObject(jsonRequest);
+//		Long image = Long.valueOf(jsonObj.getInt("imageId"));
+//		List<Image> images = newsURepository.getImage(image);
+//		List<ImageReduced> imagesReduced = new ArrayList<>();
+//		for (Image reduced : images) {
+//			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
+//		}
+//		return imagesReduced;
+//	}
 	
 }

@@ -87,6 +87,7 @@ public class PostWithChildNFather {
 		this.typePostId		=post.getTypePostId();
 		this.title			=post.getTitle();
 		this.location		=post.getLocation();
+		if(post.getImage() != null)
 		this.image			=Base64.getEncoder().encodeToString(post.getImage());
 	}
 
