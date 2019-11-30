@@ -37,7 +37,7 @@ public class GNCuServices {
 
 	@PostMapping("/recentPost")
 	@ApiOperation(value = "Give you the numbers of post required", notes = "Return texts" )
-	public List<Post> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException {
+	public List<Post> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
@@ -48,6 +48,7 @@ public class GNCuServices {
 		String type;
 		if(jsonObj.has("type"))		type = jsonObj.getString("type");
 		else						throw new ResourceNotFoundException("It is mandatory send what kind of post is it");
+//		else						return null;
 			
 		List<Post> listPost = gncRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(type), topic, PageRequest.of(pageNumber, sizePage));
 		
@@ -55,7 +56,8 @@ public class GNCuServices {
 	}
 	
 	@PostMapping("/totalPages")
-	public Integer totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException {
+	@ApiOperation(value = "Give you the numbers of post required", notes = "Return texts" )
+	public Integer totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
@@ -65,6 +67,7 @@ public class GNCuServices {
 		String type;
 		if(jsonObj.has("type"))		type = jsonObj.getString("type");
 		else						throw new ResourceNotFoundException("It is mandatory send what kind of post is it");
+//		else						return null;
 		
 		Integer listPost = gncRepository.numberTotalPost(Status.PUBLISHED, TypePost.getEnum(type), topic);
 		return (listPost / (sizePage + 1)) + 1;
