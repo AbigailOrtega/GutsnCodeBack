@@ -2,6 +2,7 @@ package mx.gnc.as.gutsncode.services.gncu;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,7 +107,7 @@ public class GnCuServices {
 		List<Image> images = gncRepository.getImage(image);
 		List<ImageReduced> imagesReduced = new ArrayList<>();
 		for (Image reduced : images) {
-			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), reduced.getImage(), reduced.getFooter(), reduced.getCardinality()));
+			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
 		}
 		return imagesReduced;
 	}

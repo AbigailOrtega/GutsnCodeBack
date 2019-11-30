@@ -2,6 +2,7 @@ package mx.gnc.as.gutsncode.services.newsu;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -116,7 +117,7 @@ public class NewsUServices {
 		List<Image> images = newsURepository.getImage(image);
 		List<ImageReduced> imagesReduced = new ArrayList<>();
 		for (Image reduced : images) {
-			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), reduced.getImage(), reduced.getFooter(), reduced.getCardinality()));
+			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
 		}
 		return imagesReduced;
 	}

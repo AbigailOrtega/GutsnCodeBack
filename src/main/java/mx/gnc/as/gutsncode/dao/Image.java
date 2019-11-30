@@ -24,7 +24,7 @@ public class Image {
 	@Column(name="DESCRIPTION")
 	private String description;
 	@Column(name="IMAGE")
-	private Byte[] image;
+	private byte[] image;
 	
 	@ManyToOne
 	@JoinColumn(name="TEXT_ID")
@@ -35,7 +35,7 @@ public class Image {
 	@Column(name="CARDINALITY")
 	private String cardinality;
 	
-	public Image(Long imageId, String imageName, String description, Byte[] image, Text textId, String footer,
+	public Image(Long imageId, String imageName, String description, byte[] image, Text textId, String footer,
 			String cardinality) {
 		super();
 		this.imageId = imageId;
