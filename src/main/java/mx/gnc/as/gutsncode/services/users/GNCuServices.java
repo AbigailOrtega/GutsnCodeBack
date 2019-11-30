@@ -35,26 +35,39 @@ public class GNCuServices {
 	@Autowired
 	private GNCuRepository gncRepository;
 
-	@PostMapping("/getPost")
+	@PostMapping("/recentPost")
 	@ApiOperation(value = "Give you the numbers of post required", notes = "Return texts" )
 	public List<Post> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		
-		String type;
 		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
 		Integer sizePage = jsonObj.has("sizePage")?Integer.valueOf(jsonObj.getInt("sizePage")):this.defaultSizePage;
 		String topic = jsonObj.has("topic") ? jsonObj.getString("topic").toLowerCase() : "";
 		
-		if(jsonObj.has("type"))
-			type = jsonObj.getString("type");
-		else
-			throw new ResourceNotFoundException("It is mandatory send what kind of post is it");
+		String type;
+		if(jsonObj.has("type"))		type = jsonObj.getString("type");
+		else						throw new ResourceNotFoundException("It is mandatory send what kind of post is it");
 			
-		
 		List<Post> listPost = gncRepository.findTop2LastTwenty(Status.PUBLISHED, TypePost.getEnum(type), topic, PageRequest.of(pageNumber, sizePage));
 		
 		return listPost;
+	}
+	
+	@PostMapping("/totalPages")
+	public Integer totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException {
+		
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		
+		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase() : "";
+		Integer sizePage = jsonObj.has("sizePage")?Integer.valueOf(jsonObj.getInt("sizePage")):this.defaultSizePage;
+		
+		String type;
+		if(jsonObj.has("type"))		type = jsonObj.getString("type");
+		else						throw new ResourceNotFoundException("It is mandatory send what kind of post is it");
+		
+		Integer listPost = gncRepository.numberTotalPost(Status.PUBLISHED, TypePost.getEnum(type), topic);
+		return (listPost / (sizePage + 1)) + 1;
 	}
 
 	@PostMapping("/getInfo")
