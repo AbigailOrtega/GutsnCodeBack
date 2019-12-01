@@ -111,23 +111,24 @@ public class GNCuServices {
 		List<Text> text = gncRepository.getTextContent(postId);
 		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
 		for (Text text2 : text) {
-			textReduced.add(new TextOnlyRequieredDataForUser(text2, new Byte[0]));
+//			byte[] image = dmeImage(text2.getTextId());
+			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
 		}
 		
 		return textReduced;
 	}
 
-//	@PostMapping("/getImage")
-//	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
-//	
-//		JSONObject jsonObj = new JSONObject(jsonRequest);
-//		Long image = Long.valueOf(jsonObj.getInt("imageId"));
-//		List<Image> images = gncRepository.getImage(image);
-//		List<ImageReduced> imagesReduced = new ArrayList<>();
-//		for (Image reduced : images) {
-//			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
-//		}
-//		return imagesReduced;
-//	}
+	@PostMapping("/getImage")
+	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
+	
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		Long image = Long.valueOf(jsonObj.getInt("imageId"));
+		List<Image> images = gncRepository.getImage(image);
+		List<ImageReduced> imagesReduced = new ArrayList<>();
+		for (Image reduced : images) {
+			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
+		}
+		return imagesReduced;
+	}
 
 }

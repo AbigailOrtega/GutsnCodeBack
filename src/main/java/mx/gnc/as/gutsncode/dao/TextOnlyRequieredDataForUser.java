@@ -8,18 +8,18 @@ public class TextOnlyRequieredDataForUser {
 	private Long textId;
 	private Long typeTextId;
 	private String textRealize;
-	private Byte[] imageBlob;
+	private byte[] imageBlob;
 	
 	public TextOnlyRequieredDataForUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TextOnlyRequieredDataForUser(Text text, Byte[] image) {
+	public TextOnlyRequieredDataForUser(Text text, byte[] image) {
 		super();
 		this.textId 		= text.getTextId();
 		this.typeTextId 	= text.getTypeTextId().getTypePostId();
 		this.textRealize 	= text.getTextRealize();
-		this.imageBlob		= imageBlob;
+		this.imageBlob		= image;
 	}
 	
 }
