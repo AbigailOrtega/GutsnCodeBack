@@ -36,7 +36,7 @@ public class GNCuServices {
 	private GNCuRepository gncRepository;
 
 	@PostMapping("/recentPost")
-	@ApiOperation(value = "Give you the numbers of post required", notes = "Return texts" )
+	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default" )
 	public List<Post> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -56,7 +56,7 @@ public class GNCuServices {
 	}
 	
 	@PostMapping("/totalPages")
-	@ApiOperation(value = "Give you the numbers of post required", notes = "Return texts" )
+	@ApiOperation(value = "Return the numbers of pages", notes = "That pages are related according to Type Post and Topic, pageNumber are 0 by default and pageSize are 20 by default" )
 	public Integer totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -74,6 +74,7 @@ public class GNCuServices {
 	}
 
 	@PostMapping("/getInfo")
+	@ApiOperation(value = "Return the main informartion of a Post or New", notes = "" )
 	public PostWithChildNFather getInfoPost(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -96,7 +97,7 @@ public class GNCuServices {
 	}
 
 	@PostMapping("/addNewView")
-	@ApiOperation(value = "Add a new visit to a Post", notes = "Return texts" )
+	@ApiOperation(value = "Add a new visit to a Post", notes = "" )
 	public Integer newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId = Long.valueOf(jsonObj.getInt("postid"));
@@ -119,10 +120,11 @@ public class GNCuServices {
 	}
 
 	@PostMapping("/getImage")
+	@ApiOperation(value = "bring all texts and images related with a post", notes = "Return a image" )
 	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long image = Long.valueOf(jsonObj.getInt("imageId"));
+		Long image = Long.valueOf(jsonObj.getInt("textId"));
 		List<Image> images = gncRepository.getImage(image);
 		List<ImageReduced> imagesReduced = new ArrayList<>();
 		for (Image reduced : images) {
