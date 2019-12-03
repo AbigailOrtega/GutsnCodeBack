@@ -135,13 +135,15 @@ insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (1
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (113,1,103,'','Antes trabajabamos 20 horas al día, ahora solo 19, pues descubrimos que si existe la vida despues del trabajo');
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (114,0,103,'','De esclavos a Rockstars');
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES (115,2,103,'','A rockear bebes');
-
+/*
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(1, 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 1, 'java', 'top');
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(2, 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 4, 'java', 'top');
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(3, 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 7, 'java', 'top');
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(4, 'Spring.png', 'Springs logo', FILE_READ('/opt/spring.png'), 2, 'spring', 'top');
-
-/*
-INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES('1', 'Java.png', 'Javas logo', FILE_READ('C:/opt/java.png'), 1, 'java', 'top');
-INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES('2', 'Spring.png', 'Springs logo', FILE_READ('C:/opt/spring.png'), 2, 'spring', 'top');
 */
+/**/
+INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(1, 'Java.png', 'Javas logo', FILE_READ('C:/opt/java.png'), 1, 'java', 'top');
+INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(2, 'Java.png', 'Javas logo', FILE_READ('C:/opt/java.png'), 4, 'java', 'top');
+INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(3, 'Java.png', 'Javas logo', FILE_READ('C:/opt/java.png'), 7, 'java', 'top');
+INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES(4, 'Spring.png', 'Springs logo', FILE_READ('C:/opt/spring.png'), 2, 'spring', 'top');
+/**/

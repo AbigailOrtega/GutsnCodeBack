@@ -25,7 +25,7 @@ public class Founder {
 	@Column(name = "SECOND_LAST_NAME")
 	private String secondLastName;
 	@Column(name = "PHOTO")
-	private Byte[] photo;
+	private byte[] photo;
 	@Column(name = "SUMMARY")
 	private String summary;
 	@Column(name = "EMAIL")
@@ -40,10 +40,16 @@ public class Founder {
 		this.summary = summary;
 		this.email = email;
 		this.password = password;
-
 	}
 
 	public Founder() {
+	}
+
+	public boolean isNull() {
+		if(this.name != null || this.lastName != null || this.secondLastName != null)
+			return true;
+		else
+			return false;
 	};
 
 }

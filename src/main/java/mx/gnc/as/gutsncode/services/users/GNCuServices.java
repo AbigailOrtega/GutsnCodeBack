@@ -8,13 +8,20 @@ import java.util.List;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
@@ -28,6 +35,7 @@ import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 @RestController
 @RequestMapping("/gncu")
 @CrossOrigin(origins = "http://localhost:4200")
+@Api(value = "User GNC Services", description = "All web services for users")
 public class GNCuServices {
 	
 	private final Integer defaultSizePage = 20;
@@ -36,7 +44,12 @@ public class GNCuServices {
 	private GNCuRepository gncRepository;
 
 	@PostMapping("/recentPost")
-	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default" )
+	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Successfully retrieved list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	public List<Post> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -120,7 +133,7 @@ public class GNCuServices {
 	}
 
 	@PostMapping("/getImage")
-	@ApiOperation(value = "bring all texts and images related with a post", notes = "Return a image" )
+	@ApiOperation(value = "bring all texts and images related with a post", notes = "Return a list of @ImageReduced" )
 	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
@@ -132,5 +145,22 @@ public class GNCuServices {
 		}
 		return imagesReduced;
 	}
-
+	
+	@PostMapping("/getFoundersInfo")
+	@ApiOperation(value = "Especial service that brings the info of a founder", notes = "Return a @Founder object" )
+	public ResponseEntity<Founder> foundersInfo(@RequestBody String jsonRequest) {
+	
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		String name =jsonObj.getString("name");
+		HttpHeaders headers = new HttpHeaders();
+	    
+		Founder founder = gncRepository.getFounderInfo(name);
+		
+		if(founder.isNull()) {
+			headers.add("Response", "404 - no founder founded");	
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(founder, HttpStatus.OK);
+	}
+	
 }

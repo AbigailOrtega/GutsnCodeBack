@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
@@ -41,5 +42,8 @@ public interface GNCuRepository extends CrudRepository<Post, Long>{
 
 	@Query(value = "SELECT numberView FROM Post where postId=:postId")
 	Integer getViewCounter(Long postId);
+	
+	@Query(value = "SELECT f FROM Founder f where f.name like %:name% or f.lastName like %:name% or f.secondLastname like %:name% ")
+	Founder getFounderInfo(String name);
 	
 }
