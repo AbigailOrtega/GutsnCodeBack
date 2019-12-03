@@ -21,7 +21,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 public interface GNCuRepository extends CrudRepository<Post, Long>{
 
 	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic% order by lastUpDate desc")
-	List<Post> findTop2LastTwenty( Status status, TypePost type, String topic, Pageable  pageRequest);
+	List<Post> getPostOrdered( Status status, TypePost type, String topic, Pageable  pageRequest);
 	
 	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic%")
 	Integer numberTotalPost( Status status, TypePost type, String topic);
@@ -39,11 +39,11 @@ public interface GNCuRepository extends CrudRepository<Post, Long>{
 	@Transactional
 	@Query(value = "UPDATE Post p SET p.numberView = p.numberView + :newVisits where postId=:postId")
 	Integer incrementViewCounter(Long postId, BigInteger newVisits);
-
+	
 	@Query(value = "SELECT numberView FROM Post where postId=:postId")
 	Integer getViewCounter(Long postId);
 	
-	@Query(value = "SELECT f FROM Founder f where f.name like %:name% or f.lastName like %:name% or f.secondLastname like %:name% ")
+	@Query(value = "SELECT f FROM Founder f where f.name like %:name% or f.lastName like %:name% or f.secondLastName like %:name% ")
 	Founder getFounderInfo(String name);
 	
 }

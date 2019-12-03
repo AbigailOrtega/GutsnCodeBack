@@ -47,9 +47,9 @@ public class Founder {
 
 	public boolean isNull() {
 		if(this.name != null || this.lastName != null || this.secondLastName != null)
-			return true;
-		else
 			return false;
+		else
+			return true;
 	};
 
 }
