@@ -35,5 +35,4 @@ public class GutsncodeApplication {
 				.anyRequest().authenticated();
 		}
 	}
-	
 }

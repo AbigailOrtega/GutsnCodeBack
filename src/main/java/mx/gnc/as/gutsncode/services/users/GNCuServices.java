@@ -109,14 +109,28 @@ public class GNCuServices {
 
 	@PostMapping("/getInfo")
 	@ApiOperation(value = "Return the main informartion of a Post or New", notes = "" )
-	public PostWithChildNFather getInfoPost(@RequestBody String jsonRequest) {
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
+	public ResponseEntity<PostWithChildNFather> getInfoPost(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long postId = Long.valueOf(jsonObj.getInt("postId"));
+		Long postId;
+		try {
+			postId = Long.valueOf(jsonObj.getInt("postId"));
+		} catch (JSONException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 		Post post = gncRepository.getPostContent(postId);
 		
 		PostWithChildNFather withChildNFather = new PostWithChildNFather(post);
-
+		
+		if(withChildNFather.isNull())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
 		if(post.getParentId() != null) {
 			withChildNFather.setParentId(gncRepository.getPostContent(post.getParentId()));
 			withChildNFather.getParentId().setImage(new byte[0]);
@@ -127,16 +141,31 @@ public class GNCuServices {
 			withChildNFather.getChildId().setImage(new byte[0]);
 		}
 
-		return withChildNFather;
+		return new ResponseEntity<>(withChildNFather, HttpStatus.OK);
 	}
 
 	// could change to admin services
 	@PostMapping("/addNewView")
 	@ApiOperation(value = "Add a new visit to a Post", notes = "" )
-	public Integer newVisit(@RequestBody String jsonRequest) {
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
+	public ResponseEntity<Integer> newVisit(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long postId = Long.valueOf(jsonObj.getInt("postId"));
-		return gncRepository.incrementViewCounter(postId, BigInteger.ONE);
+		Long postId;
+		try {
+			postId = Long.valueOf(jsonObj.getInt("postId"));
+		} catch (JSONException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		Integer response = gncRepository.incrementViewCounter(postId, BigInteger.ONE);
+		if(response.compareTo(0) == 0)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getViews")
@@ -164,17 +193,26 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public List<TextOnlyRequieredDataForUser> getText(@RequestBody String jsonRequest) {
+	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getText(@RequestBody String jsonRequest) {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long postId = Long.valueOf(jsonObj.getInt("postId"));
+		Long postId;
+		try {
+			postId = Long.valueOf(jsonObj.getInt("postId"));
+		} catch (JSONException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 		List<Text> text = gncRepository.getTextContent(postId);
+		if(text == null || text.size() == 0)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
 		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
 		for (Text text2 : text) {
 //			byte[] image = dmeImage(text2.getTextId());
 			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
 		}
 		
-		return textReduced;
+		return new ResponseEntity<>(textReduced, HttpStatus.OK);
 	}
 
 	@PostMapping("/getImage")

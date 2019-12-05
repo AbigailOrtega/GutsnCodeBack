@@ -1,14 +1,7 @@
 package mx.gnc.as.config;
 
-import static springfox.documentation.builders.PathSelectors.regex;
-
-import java.util.Collections;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.google.common.base.Predicate;
-import static com.google.common.base.Predicates.or;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;

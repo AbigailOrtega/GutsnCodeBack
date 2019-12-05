@@ -91,6 +91,13 @@ public class PostWithChildNFather {
 		this.image			=Base64.getEncoder().encodeToString(post.getImage());
 	}
 
+	public boolean isNull() {
+		if(this.name != null || this.postId != null || this.title != null)
+			return false;
+		else
+			return true;
+	}
+
 	
 
 }
