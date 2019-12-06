@@ -95,6 +95,13 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 		</dependency>
+		
+		<!-- TO ENCRYPT -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 
 		<!-- Spring Security -->
 
