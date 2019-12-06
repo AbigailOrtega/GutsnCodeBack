@@ -1,5 +1,7 @@
 package mx.gnc.as.gutsncode.dao;
 
+import java.util.Base64;
+
 import lombok.Data;
 
 @Data
@@ -9,7 +11,7 @@ public class FounderReduced {
 	private String name;
 	private String lastName;
 	private String secondLastName;
-	private byte[] photo;
+	private String photo;
 	private String summary;
 	private String email;
 	private String password;
@@ -21,7 +23,7 @@ public class FounderReduced {
 		this.secondLastName = founder.getSecondLastName();
 		this.summary = founder.getSummary();
 		this.email = founder.getEmail();
-		this.photo = founder.getPhoto();
+		this.photo = Base64.getEncoder().encodeToString(founder.getPhoto());
 	}
 
 	public FounderReduced() {

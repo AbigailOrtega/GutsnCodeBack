@@ -1,5 +1,7 @@
 package mx.gnc.as.gutsncode.dao;
 
+import java.util.Base64;
+
 import lombok.Data;
 
 @Data
@@ -8,18 +10,16 @@ public class ImageReduced {
 	private String imageName;
 	private String description;
 	private String image;
-//	private Byte[] image;
 	private String footer;
 	private String cardinality;
 	
-	public ImageReduced(String imageName, String description, String image, String footer,
-			String cardinality) {
+	public ImageReduced(Image image) {
 		super();
-		this.imageName = imageName;
-		this.description = description;
-		this.image = image;
-		this.footer = footer;
-		this.cardinality = cardinality;
+		this.imageName = image.getImageName();
+		this.description = image.getDescription();
+		this.image = Base64.getEncoder().encodeToString(image.getImage());
+		this.footer = image.getFooter();
+		this.cardinality = image.getCardinality();
 	}
 
 	public ImageReduced() {

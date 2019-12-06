@@ -8,7 +8,7 @@ public enum TypePost {
 	NEW(0L, "NEW", "TECNOLOGY NEW"), 
 	POST(1L, "POST", "TECNOLOGY POST"),
 	EXPERIENCE(2L, "EXPERIENCE", "FOUNDER EXPERIENCE"), 
-	FOUNDER(3L, "FOUNDER", "FOUNDER BIOGRAPHY"),
+//	FOUNDER(3L, "FOUNDER", "FOUNDER BIOGRAPHY"),
 	PHILOSOPHY(4L, "PHILOSOPHY", "GUTS & CODE PHILOSOPHY"), 
 	FUTURE(5L, "FUTURE", "GUTS & CODE FUTURE");
 
@@ -37,7 +37,7 @@ public enum TypePost {
 		case "new": 		return TypePost.NEW;
 		case "post": 		return TypePost.POST;
 		case "experience": 	return TypePost.EXPERIENCE;
-		case "founder":		return TypePost.FOUNDER;
+//		case "founder":		return TypePost.FOUNDER;
 		case "philosophy":	return TypePost.PHILOSOPHY;
 		case "future":		return TypePost.FUTURE;
 		default: 			return null;

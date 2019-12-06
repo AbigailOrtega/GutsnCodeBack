@@ -209,7 +209,6 @@ public class GNCuServices {
 		
 		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
 		for (Text text2 : text) {
-//			byte[] image = dmeImage(text2.getTextId());
 			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
 		}
 		
@@ -230,7 +229,7 @@ public class GNCuServices {
 		List<Image> images = gncRepository.getImage(image);
 		List<ImageReduced> imagesReduced = new ArrayList<>();
 		for (Image reduced : images) {
-			imagesReduced.add(new ImageReduced(reduced.getImageName(), reduced.getDescription(), Base64.getEncoder().encodeToString(reduced.getImage()), reduced.getFooter(), reduced.getCardinality()));
+			imagesReduced.add(new ImageReduced(reduced));
 		}
 		return imagesReduced;
 	}

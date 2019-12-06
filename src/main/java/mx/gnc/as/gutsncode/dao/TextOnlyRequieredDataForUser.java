@@ -1,5 +1,7 @@
 package mx.gnc.as.gutsncode.dao;
 
+import java.util.Base64;
+
 import lombok.Data;
 
 @Data
@@ -8,7 +10,7 @@ public class TextOnlyRequieredDataForUser {
 	private Long textId;
 	private Long typeTextId;
 	private String textRealize;
-	private byte[] imageBlob;
+//	private String imageBlob;
 	
 	public TextOnlyRequieredDataForUser() {
 		super();
@@ -19,7 +21,7 @@ public class TextOnlyRequieredDataForUser {
 		this.textId 		= text.getTextId();
 		this.typeTextId 	= text.getTypeTextId().getTypePostId();
 		this.textRealize 	= text.getTextRealize();
-		this.imageBlob		= image;
+//		this.imageBlob		= Base64.getEncoder().encodeToString(image);
 	}
 	
 }
