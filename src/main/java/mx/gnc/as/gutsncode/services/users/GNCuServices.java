@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ExampleProperty;
 import mx.gnc.as.gutsncode.dao.Founder;
+import mx.gnc.as.gutsncode.dao.FounderReduced;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
@@ -241,7 +242,7 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<Founder> foundersInfo(
+	public ResponseEntity<FounderReduced> foundersInfo(
 			@ApiParam(
 				value = "part of the name that match with name's founders",
 				required = true, 
@@ -263,7 +264,7 @@ public class GNCuServices {
 		Founder founder = gncRepository.getFounderInfo(name);
 		if(founder == null || founder.isNull()) 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-		return new ResponseEntity<>(founder, HttpStatus.OK);
+		return new ResponseEntity<>(new FounderReduced(founder), HttpStatus.OK);
 	}
 	
 }

@@ -4,12 +4,9 @@ import java.math.BigInteger;
 import java.util.Base64;
 import java.util.Date;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-//@ApiModel("POST MODEL")
 public class PostWithChildNFather {
 	
 	private Long postId ;
