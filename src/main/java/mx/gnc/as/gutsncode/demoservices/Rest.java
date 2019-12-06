@@ -56,22 +56,6 @@ public class Rest {
 		}		
 		repositoryF.findByName("Abi").forEach(x -> System.out.println("by name" + x));
 		
-		
-		/*
-		 * repository.save(new Book("Java")); 
-		 * repository.save(new Book("Node"));
-		 * repository.save(new Book("Python"));
-		 * 
-		 * System.out.println("\nfindAll()"); repository.findAll().forEach( x ->
-		 * System.out.println(x));
-		 * 
-		 * System.out.println("\nfindById(1L)"); repository.findById(1l).ifPresent(x ->
-		 * System.out.println(x));
-		 * 
-		 * System.out.println("\nfindByName('Node')");
-		 * repository.findByName("Node").forEach(x -> System.out.println(x));
-		 */
-		
 		return "holi";
 	}
 

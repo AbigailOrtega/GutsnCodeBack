@@ -14,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-//@EnableWebSecurity
 public class GutsncodeApplication {
 	
 	public static void main(String[] args) {
@@ -36,9 +35,9 @@ public class GutsncodeApplication {
                         "/configuration/security",
                         "/swagger-ui.html",
                         "/webjars/**"
-                        ).permitAll()
-				.antMatchers("/gncu/*").permitAll()
-				.antMatchers(HttpMethod.POST,"/login").permitAll()
+                        ).permitAll() //Swagger
+				.antMatchers("/gncu/*").permitAll() //User services
+				.antMatchers(HttpMethod.POST,"/login").permitAll() //getToken
 				.anyRequest().authenticated();
 		}
 	}
