@@ -17,14 +17,12 @@ public class ImageReduced {
 		super();
 		this.imageName = image.getImageName();
 		this.description = image.getDescription();
+		if(image.getImage() != null)
 		this.image = Base64.getEncoder().encodeToString(image.getImage());
 		this.footer = image.getFooter();
 		this.cardinality = image.getCardinality();
 	}
 
-	public ImageReduced() {
-		super();
-	}
-	
+	public ImageReduced() {super();}
 	
 }

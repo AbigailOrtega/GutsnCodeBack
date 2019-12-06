@@ -27,50 +27,6 @@ public class PostWithChildNFather {
 	
 	public PostWithChildNFather() {};
 	
-	public PostWithChildNFather(Long postId, String name, BigInteger numberView, 
-			Status statusId, String topic, 
-			Date lastUpDate, Founder writerId, 
-			Founder reviewerId, Date dateReview, 
-			TypePost type, String title , 
-			String location, Post parentId, 
-			Post childId ) {
-		this.postId = postId;
-		this.name=name;
-		this.numberView=numberView;
-		this.statusId=statusId;
-		this.topic=topic;
-		this.lastUpDate=lastUpDate;
-		this.writerId=writerId;
-		this.reviewerId=reviewerId;
-		this.dateReview=dateReview;
-		this.typePostId=type;
-		this.title=title;
-		this.location=location;
-		this.parentId=parentId;
-		this.childId=childId;
-	}
-
-	
-	public PostWithChildNFather(Long postId, String name, BigInteger numberView, 
-			Status statusId, String topic, 
-			Date lastUpDate, Founder writerId, 
-			Founder reviewerId, Date dateReview, 
-			TypePost typePostId, String title , 
-			String location) {
-		this.postId = postId;
-		this.name=name;
-		this.numberView=numberView;
-		this.statusId=statusId;
-		this.topic=topic;
-		this.lastUpDate=lastUpDate;
-		this.writerId=writerId;
-		this.reviewerId=reviewerId;
-		this.dateReview=dateReview;
-		this.typePostId=typePostId;
-		this.title=title;
-		this.location=location;
-	}
-	
 	public PostWithChildNFather(Post post) {
 		this.postId			=post.getPostId();
 		this.name			=post.getName();

@@ -23,6 +23,7 @@ public class FounderReduced {
 		this.secondLastName = founder.getSecondLastName();
 		this.summary = founder.getSummary();
 		this.email = founder.getEmail();
+		if(founder.getPhoto() != null)
 		this.photo = Base64.getEncoder().encodeToString(founder.getPhoto());
 	}
 

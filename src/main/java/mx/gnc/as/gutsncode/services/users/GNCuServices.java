@@ -134,12 +134,12 @@ public class GNCuServices {
 		
 		if(post.getParentId() != null) {
 			withChildNFather.setParentId(gncRepository.getPostContent(post.getParentId()));
-			withChildNFather.getParentId().setImage(new byte[0]);
+//			withChildNFather.getParentId().setImage(new byte[0]);
 		}
 		
 		if(post.getChildId() != null) {
 			withChildNFather.setChildId(gncRepository.getPostContent(post.getChildId()));
-			withChildNFather.getChildId().setImage(new byte[0]);
+//			withChildNFather.getChildId().setImage(new byte[0]);
 		}
 
 		return new ResponseEntity<>(withChildNFather, HttpStatus.OK);
@@ -182,7 +182,8 @@ public class GNCuServices {
 		
 		Integer views = gncRepository.getViewCounter(Long.valueOf(postId));
 		
-		if(views == 0)	return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
+		if(views == 0)	
+			return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
 		
 		return new ResponseEntity<>(views, HttpStatus.OK);
 	}
@@ -222,16 +223,25 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public List<ImageReduced> dmeImage(@RequestBody String jsonRequest) {
+	public ResponseEntity<List<ImageReduced>> dmeImage(@RequestBody String jsonRequest) {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		Long image = Long.valueOf(jsonObj.getInt("textId"));
-		List<Image> images = gncRepository.getImage(image);
+		Long textId;
+		try {
+			textId = Long.valueOf(jsonObj.getInt("textId"));
+		} catch (JSONException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		List<Image> images = gncRepository.getImage(textId);
+		if(images == null || images.size() == 0)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
 		List<ImageReduced> imagesReduced = new ArrayList<>();
 		for (Image reduced : images) {
 			imagesReduced.add(new ImageReduced(reduced));
 		}
-		return imagesReduced;
+		return new ResponseEntity<>(imagesReduced, HttpStatus.OK);
 	}
 	
 	@PostMapping("/getFoundersInfo")
@@ -251,9 +261,10 @@ public class GNCuServices {
 		                    @ExampleProperty(value = "’snapshot‘：{'name': 'paco'}", mediaType = "application/json")
 		                }))
 			@RequestBody String jsonRequest) {
-	
-		String name;
+		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
+
+		String name;
 		try {
 			name =jsonObj.getString("name").toUpperCase(); //names in database will always been on UpperCase
 		}catch(JSONException e) {
@@ -261,7 +272,8 @@ public class GNCuServices {
 		}
 	    
 		Founder founder = gncRepository.getFounderInfo(name);
-		if(founder == null || founder.isNull()) 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		if(founder == null || founder.isNull())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 		return new ResponseEntity<>(new FounderReduced(founder), HttpStatus.OK);
 	}

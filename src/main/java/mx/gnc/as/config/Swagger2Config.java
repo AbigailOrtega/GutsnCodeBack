@@ -22,7 +22,9 @@ public class Swagger2Config {
             .apis(RequestHandlerSelectors
                 .basePackage("mx.gnc.as.gutsncode"))  //Aim to the package where is the application 
             .paths(PathSelectors.regex("/.*"))  //this line says that search in every package
-            .build().apiInfo(apiEndPointsInfo());
+            .build()
+            .apiInfo(apiEndPointsInfo())
+            ;
     }
 	
     private ApiInfo apiEndPointsInfo() {

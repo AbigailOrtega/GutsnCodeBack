@@ -30,10 +30,13 @@ public class GutsncodeApplication {
 			http.csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers("/swa**").permitAll()
-				.antMatchers("/webjars/**").permitAll()
-				.antMatchers("/v2/**").permitAll()
-//				.antMatchers("/webjars/*/*/*").permitAll()
+				.antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**"
+                        ).permitAll()
 				.antMatchers("/gncu/*").permitAll()
 				.antMatchers(HttpMethod.POST,"/login").permitAll()
 				.anyRequest().authenticated();
