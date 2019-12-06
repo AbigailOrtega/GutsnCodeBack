@@ -5,8 +5,10 @@ import java.util.Base64;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class PostWithChildNFather {
 	
 	private Long postId ;
@@ -24,8 +26,6 @@ public class PostWithChildNFather {
 	private Post parentId;
 	private String image;
 	private Post childId;
-	
-	public PostWithChildNFather() {};
 	
 	public PostWithChildNFather(Post post) {
 		this.postId			=post.getPostId();
@@ -50,7 +50,5 @@ public class PostWithChildNFather {
 		else
 			return true;
 	}
-
-	
 
 }

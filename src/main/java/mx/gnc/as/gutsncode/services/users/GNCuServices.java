@@ -2,7 +2,6 @@ package mx.gnc.as.gutsncode.services.users;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.json.JSONException;
@@ -16,15 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ExampleProperty;
 import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.FounderReduced;
 import mx.gnc.as.gutsncode.dao.Image;
@@ -40,7 +36,7 @@ import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 @RestController
 @RequestMapping("/gncu")
 @CrossOrigin(origins = "http://localhost:4200")
-@Api(value = "User GNC Services", description = "All web services for users")
+@Api(value = "User GNC Services")
 public class GNCuServices {
 	
 	private final Integer defaultSizePage = 20;
@@ -48,22 +44,20 @@ public class GNCuServices {
 	@Autowired
 	private GNCuRepository gncRepository;
 
-	@PostMapping("/recentPost")
+	@PostMapping(value = "/recentPost")
 	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<List<Post>> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException{
-	
-		JSONObject jsonObj = new JSONObject(jsonRequest);
+	public ResponseEntity<List<Post>> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 
+		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Integer pageNumber = jsonObj.has("page")?Integer.valueOf(jsonObj.getInt("page")):0;
 		Integer sizePage = jsonObj.has("sizePage")?Integer.valueOf(jsonObj.getInt("sizePage")):this.defaultSizePage;
 		String topic = jsonObj.has("topic") ? jsonObj.getString("topic").toLowerCase() : "";
 		String type;
-		
 		try {
 			type = jsonObj.getString("type");
 		}catch(JSONException e){
@@ -84,13 +78,11 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<Integer> totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException{
+	public ResponseEntity<Integer> totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-		
 		String topic = jsonObj.has("topic")? jsonObj.getString("topic").toLowerCase() : "";
 		Integer sizePage = jsonObj.has("sizePage")?Integer.valueOf(jsonObj.getInt("sizePage")):this.defaultSizePage;
-		
 		String type;
 		try {
 			type = jsonObj.getString("type");
@@ -115,8 +107,7 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<PostWithChildNFather> getInfoPost(@RequestBody String jsonRequest) {
-	
+	public ResponseEntity<PostWithChildNFather> getInfoPost(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId;
 		try {
@@ -124,22 +115,19 @@ public class GNCuServices {
 		} catch (JSONException e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Post post = gncRepository.getPostContent(postId);
+		if(post.isNull())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
 		PostWithChildNFather withChildNFather = new PostWithChildNFather(post);
 		
-		if(withChildNFather.isNull())
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		
 		if(post.getParentId() != null) {
 			withChildNFather.setParentId(gncRepository.getPostContent(post.getParentId()));
-//			withChildNFather.getParentId().setImage(new byte[0]);
 		}
 		
 		if(post.getChildId() != null) {
 			withChildNFather.setChildId(gncRepository.getPostContent(post.getChildId()));
-//			withChildNFather.getChildId().setImage(new byte[0]);
 		}
 
 		return new ResponseEntity<>(withChildNFather, HttpStatus.OK);
@@ -153,7 +141,7 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<Integer> newVisit(@RequestBody String jsonRequest) {
+	public ResponseEntity<Integer> newVisit(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId;
 		try {
@@ -161,7 +149,9 @@ public class GNCuServices {
 		} catch (JSONException e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-
+		if(postId == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
 		Integer response = gncRepository.incrementViewCounter(postId, BigInteger.ONE);
 		if(response.compareTo(0) == 0)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -170,32 +160,35 @@ public class GNCuServices {
 	}
 	
 	@GetMapping("/getViews")
-	@ApiOperation(value = "get number of visits in a post", notes = "requires the postId as parameter (?postId=X)" )
+	@ApiOperation(value = "get number of visits in a post")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<Integer> getVisits(@RequestParam String postId) {
-		if(postId == null)
+	public ResponseEntity<Integer> getVisits(@RequestBody String jsonRequest) throws ResourceNotFoundException{
+		JSONObject jsonObj = new JSONObject(jsonRequest);
+		Long postId;
+		try {
+			postId = Long.valueOf(jsonObj.getInt("postId"));
+		} catch (JSONException e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Integer views = gncRepository.getViewCounter(postId);
 		
-		Integer views = gncRepository.getViewCounter(Long.valueOf(postId));
-		
-		if(views == 0)	
-			return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
+		if(views == 0) return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
 		
 		return new ResponseEntity<>(views, HttpStatus.OK);
 	}
 	
 	@PostMapping("/getText")
-	@ApiOperation(value = "bring all texts and images related with a post", notes = "Return texts with images" )
+	@ApiOperation(value = "Bring all texts and images related with a post", notes = "Return texts with images" )
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getText(@RequestBody String jsonRequest) {
+	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getText(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long postId;
 		try {
@@ -223,7 +216,7 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<List<ImageReduced>> dmeImage(@RequestBody String jsonRequest) {
+	public ResponseEntity<List<ImageReduced>> dmeImage(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	
 		JSONObject jsonObj = new JSONObject(jsonRequest);
 		Long textId;
@@ -251,19 +244,9 @@ public class GNCuServices {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<FounderReduced> foundersInfo(
-			@ApiParam(
-				value = "part of the name that match with name's founders",
-				required = true, 
-				name = "jsonRequest",
-			examples = @io.swagger.annotations.Example(
-	                value = {
-		                    @ExampleProperty(value = "’snapshot‘：{'name': 'paco'}", mediaType = "application/json")
-		                }))
-			@RequestBody String jsonRequest) {
+	public ResponseEntity<FounderReduced> foundersInfo(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 		
 		JSONObject jsonObj = new JSONObject(jsonRequest);
-
 		String name;
 		try {
 			name =jsonObj.getString("name").toUpperCase(); //names in database will always been on UpperCase
@@ -271,7 +254,7 @@ public class GNCuServices {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	    
-		Founder founder = gncRepository.getFounderInfo(name);
+		Founder founder = gncRepository.getFounderInfo(name.toUpperCase());
 		if(founder == null || founder.isNull())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

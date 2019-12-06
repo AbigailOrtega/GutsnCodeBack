@@ -1,8 +1,5 @@
 package mx.gnc.as.gutsncode.dao;
 
-import java.math.BigInteger;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,9 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TEXT")
 public class Text {
@@ -34,18 +35,5 @@ public class Text {
 	private String textBeta;
 	@Column(name = "TEXT_REALIZE")
 	private String textRealize;
-	
-	public Text(Long textId, TypeText typeTextId, Post postId, String textBeta, String textRealize) {
-		super();
-		this.textId = textId;
-		this.typeTextId = typeTextId;
-		this.postId = postId;
-		this.textBeta = textBeta;
-		this.textRealize = textRealize;
-	}
-	public Text() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
 }

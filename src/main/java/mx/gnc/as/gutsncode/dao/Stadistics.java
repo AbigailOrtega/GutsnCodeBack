@@ -1,6 +1,5 @@
 package mx.gnc.as.gutsncode.dao;
 
-import java.sql.Blob;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -8,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "STADISTICS")
 public class Stadistics {
@@ -24,17 +27,5 @@ public class Stadistics {
 	private String statValue;
 	@Column(name = "STAT_DATE")
 	private Date statDate;
-	
-	public Stadistics(Long statId, String statName, String statValue, Date statDate) {
-		super();
-		this.statId = statId;
-		this.statName = statName;
-		this.statValue = statValue;
-		this.statDate = statDate;
-	}
-
-	public Stadistics() {
-		super();
-	}
 	
 }

@@ -1,8 +1,10 @@
 package mx.gnc.as.gutsncode.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum TypePost {
 
 	NEW(0L, "NEW", "TECNOLOGY NEW"), 
@@ -12,24 +14,9 @@ public enum TypePost {
 	PHILOSOPHY(4L, "PHILOSOPHY", "GUTS & CODE PHILOSOPHY"), 
 	FUTURE(5L, "FUTURE", "GUTS & CODE FUTURE");
 
-	private TypePost(Long typePostId, String name, String descripcion) {
-		this.typePostId = typePostId;
-		this.name = name;
-		this.descripcion = descripcion;
-	}
-
 	private Long typePostId;
 	private String name;
 	private String descripcion;
-	// private byte[] image;
-
-	public Long getTypePostId() {
-		return typePostId;
-	}
-
-	public void setTypePostId(Long typePostId) {
-		this.typePostId = typePostId;
-	}
 
 	public static TypePost getEnum(String enumOption) {
 
@@ -42,7 +29,6 @@ public enum TypePost {
 		case "future":		return TypePost.FUTURE;
 		default: 			return null;
 		}
-
 	}
 
 }

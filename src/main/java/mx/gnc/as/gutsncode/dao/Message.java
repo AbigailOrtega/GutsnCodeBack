@@ -1,7 +1,5 @@
 package mx.gnc.as.gutsncode.dao;
 
-import lombok.Data;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="MESSAGE")
 public class Message{
@@ -40,20 +44,4 @@ public class Message{
     @Column(name="STATUS")
     private Boolean status;
 	
-	public Message() {
-		super();
-	}
-
-	public Message(Long messageId, String message_text, Founder sender_id, Founder receiver_id, String classification,
-			Date date_receive, Boolean status) {
-		super();
-		this.messageId = messageId;
-		this.message_text = message_text;
-		this.sender_id = sender_id;
-		this.receiver_id = receiver_id;
-		this.classification = classification;
-		this.date_receive = date_receive;
-		this.status = status;
-	}
-
 }

@@ -1,10 +1,12 @@
 package mx.gnc.as.gutsncode.dao;
 
-import java.util.Base64;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TextOnlyRequieredDataForUser {
 	
 	private Long textId;
@@ -12,14 +14,10 @@ public class TextOnlyRequieredDataForUser {
 	private String textRealize;
 //	private String imageBlob;
 	
-	public TextOnlyRequieredDataForUser() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	public TextOnlyRequieredDataForUser(Text text, byte[] image) {
 		super();
 		this.textId 		= text.getTextId();
-		this.typeTextId 	= text.getTypeTextId().getTypePostId();
+		this.typeTextId 	= text.getTypeTextId().getTypeTextId();
 		this.textRealize 	= text.getTextRealize();
 //		this.imageBlob		= Base64.getEncoder().encodeToString(image);
 	}

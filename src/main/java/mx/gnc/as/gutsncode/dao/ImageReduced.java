@@ -3,8 +3,10 @@ package mx.gnc.as.gutsncode.dao;
 import java.util.Base64;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ImageReduced {
 	
 	private String imageName;
@@ -23,6 +25,4 @@ public class ImageReduced {
 		this.cardinality = image.getCardinality();
 	}
 
-	public ImageReduced() {super();}
-	
 }

@@ -3,7 +3,6 @@ package mx.gnc.as.gutsncode.dao;
 import java.math.BigInteger;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,14 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "POST")
 //@ApiModel("POST MODEL")
@@ -81,51 +81,28 @@ public class Post {
 	@Column(name = "CHILD_ID")
 	private Long childId;
 	
-	public Post() {};
 	
-	public Post(String name, BigInteger numberView, 
-			Status statusId, String topic, 
-			Date lastUpDate, Founder writerId, 
-			Founder reviewerId, Date dateReview, 
-			TypePost type, String title , 
-			String location, Long parentId, 
-			Long childId ) {
-		this.name=name;
-		this.numberView=numberView;
-		this.statusId=statusId;
-		this.topic=topic;
-		this.lastUpDate=lastUpDate;
-		this.writerId=writerId;
-		this.reviewerId=reviewerId;
-		this.dateReview=dateReview;
-		this.typePostId=type;
-		this.title=title;
-		this.location=location;
-		this.parentId=parentId;
-		this.childId=childId;
+	public boolean isNull() {
+		if(this.name != null || this.postId != null || this.title != null)
+			return false;
+		else
+			return true;
 	}
 
-	
-	public Post(String name, BigInteger numberView, 
-			Status statusId, String topic, 
-			Date lastUpDate, Founder writerId, 
-			Founder reviewerId, Date dateReview, 
-			TypePost typePostId, String title , 
-			String location) {
-		this.name=name;
-		this.numberView=numberView;
-		this.statusId=statusId;
-		this.topic=topic;
-		this.lastUpDate=lastUpDate;
-		this.writerId=writerId;
-		this.reviewerId=reviewerId;
-		this.dateReview=dateReview;
-		this.typePostId=typePostId;
-		this.title=title;
-		this.location=location;
-		
+	public Post(String name, BigInteger numberView, TypePost typePostId, Status statusId,
+			String topic, Date lastUpDate, Founder writerId, Founder reviewerId, 
+			Date dateReview, String title, String location) {
+		this.name = name;
+		this.numberView = numberView;
+		this.typePostId = typePostId;
+		this.statusId = statusId;
+		this.topic = topic;
+		this.lastUpDate = lastUpDate;
+		this.writerId = writerId;
+		this.reviewerId = reviewerId;
+		this.dateReview = dateReview;
+		this.title = title;
+		this.location = location;
 	}
-
-	
 
 }
