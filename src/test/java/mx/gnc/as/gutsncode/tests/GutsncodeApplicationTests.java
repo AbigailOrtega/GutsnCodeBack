@@ -13,7 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import mx.gnc.as.gutsncode.dao.Founder;
@@ -21,8 +20,6 @@ import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
-import mx.gnc.as.gutsncode.services.postu.PostURepository;
-import mx.gnc.as.gutsncode.services.postu.PostUServices;
 import mx.gnc.as.gutsncode.services.users.GNCuRepository;
 
 @ExtendWith(SpringExtension.class)
