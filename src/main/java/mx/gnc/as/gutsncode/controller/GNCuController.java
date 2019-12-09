@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.services.users;
+package mx.gnc.as.gutsncode.controller;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -22,22 +22,23 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import mx.gnc.as.gutsncode.dao.Founder;
-import mx.gnc.as.gutsncode.dao.FounderReduced;
 import mx.gnc.as.gutsncode.dao.Image;
-import mx.gnc.as.gutsncode.dao.ImageReduced;
 import mx.gnc.as.gutsncode.dao.Post;
-import mx.gnc.as.gutsncode.dao.PostWithChildNFather;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
-import mx.gnc.as.gutsncode.dao.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
+import mx.gnc.as.gutsncode.model.FounderReduced;
+import mx.gnc.as.gutsncode.model.ImageReduced;
+import mx.gnc.as.gutsncode.model.PostWithChildNFather;
+import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
+import mx.gnc.as.gutsncode.repository.GNCuRepository;
 
 @RestController
 @RequestMapping("/gncu")
 @CrossOrigin(origins = "http://localhost:4200")
 @Api(value = "User GNC Services")
-public class GNCuServices {
+public class GNCuController {
 	
 	private final Integer defaultSizePage = 20;
 	

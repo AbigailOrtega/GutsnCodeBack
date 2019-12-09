@@ -1,8 +1,9 @@
-package mx.gnc.as.gutsncode.dao;
+package mx.gnc.as.gutsncode.model;
 
 import java.util.Base64;
 
 import lombok.Data;
+import mx.gnc.as.gutsncode.dao.Founder;
 
 @Data
 public class FounderReduced {

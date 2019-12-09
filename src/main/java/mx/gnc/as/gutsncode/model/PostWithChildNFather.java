@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.dao;
+package mx.gnc.as.gutsncode.model;
 
 import java.math.BigInteger;
 import java.util.Base64;
@@ -6,6 +6,10 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.gnc.as.gutsncode.dao.Founder;
+import mx.gnc.as.gutsncode.dao.Post;
+import mx.gnc.as.gutsncode.dao.Status;
+import mx.gnc.as.gutsncode.dao.TypePost;
 
 @Data
 @NoArgsConstructor

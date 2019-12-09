@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.model;
+package mx.gnc.as.gutsncode.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import mx.gnc.as.gutsncode.model.User;
 
 @RestController
 //@RequestMapping("/u")

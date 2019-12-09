@@ -20,7 +20,7 @@ import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
-import mx.gnc.as.gutsncode.services.users.GNCuRepository;
+import mx.gnc.as.gutsncode.repository.GNCuRepository;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

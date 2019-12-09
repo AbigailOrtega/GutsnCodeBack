@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.services.users;
+package mx.gnc.as.gutsncode.repository;
 
 import java.math.BigInteger;
 import java.util.List;

@@ -1,4 +1,4 @@
-package mx.gnc.as.gutsncode.services;
+package mx.gnc.as.gutsncode.repository;
 
 public interface GeneralRepository{
 //	extends   CrudRepository<Post, Long>{

@@ -1,4 +1,4 @@
-package mx.gnc.as.config;
+package mx.gnc.as.gutsncode.config.documentation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

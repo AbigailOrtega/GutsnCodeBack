@@ -1,8 +1,9 @@
-package mx.gnc.as.gutsncode.dao;
+package mx.gnc.as.gutsncode.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.gnc.as.gutsncode.dao.Text;
 
 @Data
 @AllArgsConstructor

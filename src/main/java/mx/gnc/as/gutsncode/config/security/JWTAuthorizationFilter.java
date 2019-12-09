@@ -1,4 +1,4 @@
-package mx.gnc.as.config;
+package mx.gnc.as.gutsncode.config.security;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,9 +1,10 @@
-package mx.gnc.as.gutsncode.dao;
+package mx.gnc.as.gutsncode.model;
 
 import java.util.Base64;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.gnc.as.gutsncode.dao.Image;
 
 @Data
 @NoArgsConstructor

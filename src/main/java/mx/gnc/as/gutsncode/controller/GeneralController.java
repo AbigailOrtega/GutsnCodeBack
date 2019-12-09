@@ -1,7 +1,7 @@
-package mx.gnc.as.gutsncode.services;
+package mx.gnc.as.gutsncode.controller;
 
 //@Component		
-public class GeneralServices {
+public class GeneralController {
 	
 //	@Autowired
 //	private GeneralRepository generalRepository;
