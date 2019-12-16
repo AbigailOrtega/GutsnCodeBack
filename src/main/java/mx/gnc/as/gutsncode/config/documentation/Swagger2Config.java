@@ -24,7 +24,6 @@ public class Swagger2Config {
             .paths(PathSelectors.regex("/.*"))  //this line says that search in every package
             .build()
             .apiInfo(apiEndPointsInfo())
-//            .additionalModels(typeResolver.resolve(DesktopSnapshot.class)) 
             ;
     }
 	

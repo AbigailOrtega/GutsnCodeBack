@@ -58,7 +58,6 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-//	public ResponseEntity<List<Post>> postBy20(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
 
 		Integer pageNumber = (receiver.getPage()!=null)? receiver.getPage():0;
@@ -92,7 +91,6 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-//	public ResponseEntity<Integer> totalPages(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	public ResponseEntity<Integer> totalPages(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
 			
 		Integer sizePage = (receiver.getSizePage()!=null)? receiver.getSizePage():this.defaultSizePage;
@@ -122,7 +120,6 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-//	public ResponseEntity<PostWithChildNFather> getInfoPost(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	public ResponseEntity<PostWithChildNFather> getInfoPost(@RequestBody PostId receiver) throws ResourceNotFoundException {
 
 		Long postId;
@@ -157,7 +154,6 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-//	public ResponseEntity<Integer> newVisit(@RequestBody String jsonRequest) throws ResourceNotFoundException{
 	public ResponseEntity<Integer> newVisit(@RequestBody PostId receiver) throws ResourceNotFoundException {	
 		
 		Long postId;
@@ -205,7 +201,6 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-//	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getText(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getText(@RequestBody PostId receiver) throws ResourceNotFoundException {	
 
 		Long postId;
@@ -234,7 +229,6 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-//	public ResponseEntity<List<ImageReduced>> dmeImage(@RequestBody String jsonRequest) throws ResourceNotFoundException {
 	public ResponseEntity<List<ImageReduced>> dmeImage(@RequestBody TextId receiver) throws ResourceNotFoundException {
 	
 		Long textId;
