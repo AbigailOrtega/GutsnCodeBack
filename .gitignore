@@ -5,6 +5,7 @@ target/
 !**/src/test/**
 */src/main/resources/data.sql
 */src/main/resources/application.properties
+*/logs/app.log
 
 ### STS ###
 .apt_generated

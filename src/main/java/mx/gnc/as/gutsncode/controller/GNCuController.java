@@ -48,7 +48,7 @@ public class GNCuController {
 	
 	private final Integer defaultSizePage = 20;
 	
-	private static final Logger LOG = LogManager.getLogger(Log4j2.class);
+	private static final Logger LOG = LogManager.getLogger(GNCuController.class);
 	
 	@Autowired
 	private GNCuRepository gncRepository;
