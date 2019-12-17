@@ -48,6 +48,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -95,7 +101,7 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 		</dependency>
-		
+
 		<!-- TO ENCRYPT -->
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
@@ -112,19 +118,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- Lombok -->
-
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20190722</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
 
 		<!-- SWAGGER -->
 		<dependency>
@@ -163,6 +156,26 @@
 		</dependency>
 		<!-- JUnit and Jupiter -->
 
+		<!-- Log4j2 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<!-- Log4j2 -->
+
+		<!-- spring-boot-starter-web -> spring-boot-starter-json -> jackson-databind -->
+		<!-- included by spring boot 
+		<dependency> 
+			<groupId>com.fasterxml.jackson.core</groupId> 
+			<artifactId>jackson-databind</artifactId> 
+		</dependency> -->
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.dataformat</groupId> -->
+<!-- 			<artifactId>jackson-dataformat-yaml</artifactId> -->
+<!-- 		</dependency> -->
+		<!-- spring-boot-starter-web -> spring-boot-starter-json -> jackson-databind -->
+		
 	</dependencies>
 
 	<build>

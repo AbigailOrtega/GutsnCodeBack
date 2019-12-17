@@ -1,0 +1,146 @@
+2019-12-17 12:42:04,228 INFO m.g.a.g.GutsncodeApplication [main] Starting GutsncodeApplication on XME4999 with PID 88740 (C:\Users\XME4999\Documents\Workspaces\GustNCode\GutsnCodeBack\target\classes started by XME4999 in C:\Users\XME4999\Documents\Workspaces\GustNCode\GutsnCodeBack)
+2019-12-17 12:42:04,242 DEBUG m.g.a.g.GutsncodeApplication [main] Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2019-12-17 12:42:04,243 INFO m.g.a.g.GutsncodeApplication [main] No active profile set, falling back to default profiles: default
+2019-12-17 12:42:09,096 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-17 12:42:09,416 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 305ms. Found 3 repository interfaces.
+2019-12-17 12:42:10,658 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$137b4418] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-17 12:42:14,429 INFO o.s.w.c.ContextLoader [main] Root WebApplicationContext: initialization completed in 10092 ms
+2019-12-17 12:42:14,684 DEBUG c.z.h.HikariConfig [main] Driver class org.h2.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd
+2019-12-17 12:42:14,780 DEBUG c.z.h.HikariConfig [main] HikariPoolZZZ - configuration:
+2019-12-17 12:42:14,782 DEBUG c.z.h.HikariConfig [main] allowPoolSuspension.............false
+2019-12-17 12:42:14,790 DEBUG c.z.h.HikariConfig [main] autoCommit......................true
+2019-12-17 12:42:14,790 DEBUG c.z.h.HikariConfig [main] catalog.........................none
+2019-12-17 12:42:14,790 DEBUG c.z.h.HikariConfig [main] connectionInitSql...............none
+2019-12-17 12:42:14,790 DEBUG c.z.h.HikariConfig [main] connectionTestQuery.............none
+2019-12-17 12:42:14,790 DEBUG c.z.h.HikariConfig [main] connectionTimeout...............20000
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] dataSource......................none
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] dataSourceClassName.............none
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] dataSourceJNDI..................none
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] dataSourceProperties............{password=<masked>}
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] driverClassName................."org.h2.Driver"
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] healthCheckProperties...........{}
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] healthCheckRegistry.............none
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] idleTimeout.....................600000
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] initializationFailTimeout.......1
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] isolateInternalQueries..........false
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] jdbcUrl.........................jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+2019-12-17 12:42:14,792 DEBUG c.z.h.HikariConfig [main] leakDetectionThreshold..........0
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] maxLifetime.....................1800000
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] maximumPoolSize.................5
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] metricRegistry..................none
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] metricsTrackerFactory...........none
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] minimumIdle.....................5
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] password........................<masked>
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] poolName........................"HikariPoolZZZ"
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] readOnly........................false
+2019-12-17 12:42:14,796 DEBUG c.z.h.HikariConfig [main] registerMbeans..................false
+2019-12-17 12:42:14,800 DEBUG c.z.h.HikariConfig [main] scheduledExecutor...............none
+2019-12-17 12:42:14,800 DEBUG c.z.h.HikariConfig [main] schema..........................none
+2019-12-17 12:42:14,800 DEBUG c.z.h.HikariConfig [main] threadFactory...................internal
+2019-12-17 12:42:14,800 DEBUG c.z.h.HikariConfig [main] transactionIsolation............default
+2019-12-17 12:42:14,800 DEBUG c.z.h.HikariConfig [main] username........................"sa"
+2019-12-17 12:42:14,800 DEBUG c.z.h.HikariConfig [main] validationTimeout...............5000
+2019-12-17 12:42:14,800 INFO c.z.h.HikariDataSource [main] HikariPoolZZZ - Starting...
+2019-12-17 12:42:15,197 DEBUG c.z.h.p.HikariPool [main] HikariPoolZZZ - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:42:15,200 INFO c.z.h.HikariDataSource [main] HikariPoolZZZ - Start completed.
+2019-12-17 12:42:15,326 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=1, active=1, idle=0, waiting=0)
+2019-12-17 12:42:15,351 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn1: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:42:15,351 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn2: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:42:15,361 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn3: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:42:15,361 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn4: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:42:15,361 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - After adding stats (total=5, active=1, idle=4, waiting=0)
+2019-12-17 12:42:19,061 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-12-17 12:42:23,077 INFO o.s.s.w.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a47a011, org.springframework.security.web.context.SecurityContextPersistenceFilter@484dde7d, org.springframework.security.web.header.HeaderWriterFilter@c725dfa, org.springframework.security.web.authentication.logout.LogoutFilter@52b2713a, mx.gnc.as.gutsncode.config.security.JWTAuthorizationFilter@6441da2c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2052c49f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@242a3997, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61b11d35, org.springframework.security.web.session.SessionManagementFilter@6df605f, org.springframework.security.web.access.ExceptionTranslationFilter@55d35f7a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@f6b128b]
+2019-12-17 12:42:23,434 INFO o.s.s.c.ThreadPoolTaskExecutor [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-17 12:42:24,812 INFO m.g.a.g.GutsncodeApplication [main] Started GutsncodeApplication in 21.586 seconds (JVM running for 24.795)
+2019-12-17 12:42:24,825 DEBUG m.g.a.g.c.l.Log4j2 [main] Debugging log
+2019-12-17 12:42:24,825 INFO m.g.a.g.c.l.Log4j2 [main] Info log
+2019-12-17 12:42:24,825 WARN m.g.a.g.c.l.Log4j2 [main] Hey, This is a warning!
+2019-12-17 12:42:24,826 ERROR m.g.a.g.c.l.Log4j2 [main] Oops! We have an Error. OK
+2019-12-17 12:42:24,826 FATAL m.g.a.g.c.l.Log4j2 [main] Damn! Fatal error. Please fix me.
+2019-12-17 12:42:45,346 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:43:12,710 INFO o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2019-12-17 12:43:12,734 INFO o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] Completed initialization in 24 ms
+2019-12-17 12:43:15,347 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:43:45,357 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:44:05,083 INFO m.g.a.g.GutsncodeApplication [main] Starting GutsncodeApplication on XME4999 with PID 87436 (C:\Users\XME4999\Documents\Workspaces\GustNCode\GutsnCodeBack\target\classes started by XME4999 in C:\Users\XME4999\Documents\Workspaces\GustNCode\GutsnCodeBack)
+2019-12-17 12:44:05,135 DEBUG m.g.a.g.GutsncodeApplication [main] Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2019-12-17 12:44:05,138 INFO m.g.a.g.GutsncodeApplication [main] No active profile set, falling back to default profiles: default
+2019-12-17 12:44:08,090 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-17 12:44:08,316 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 207ms. Found 3 repository interfaces.
+2019-12-17 12:44:09,620 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a98c665e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-17 12:44:12,127 INFO o.s.w.c.ContextLoader [main] Root WebApplicationContext: initialization completed in 6834 ms
+2019-12-17 12:44:12,336 DEBUG c.z.h.HikariConfig [main] Driver class org.h2.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd
+2019-12-17 12:44:12,391 DEBUG c.z.h.HikariConfig [main] HikariPoolZZZ - configuration:
+2019-12-17 12:44:12,394 DEBUG c.z.h.HikariConfig [main] allowPoolSuspension.............false
+2019-12-17 12:44:12,394 DEBUG c.z.h.HikariConfig [main] autoCommit......................true
+2019-12-17 12:44:12,394 DEBUG c.z.h.HikariConfig [main] catalog.........................none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] connectionInitSql...............none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] connectionTestQuery.............none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] connectionTimeout...............20000
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] dataSource......................none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] dataSourceClassName.............none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] dataSourceJNDI..................none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] dataSourceProperties............{password=<masked>}
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] driverClassName................."org.h2.Driver"
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] healthCheckProperties...........{}
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] healthCheckRegistry.............none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] idleTimeout.....................600000
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] initializationFailTimeout.......1
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] isolateInternalQueries..........false
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] jdbcUrl.........................jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] leakDetectionThreshold..........0
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] maxLifetime.....................1800000
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] maximumPoolSize.................5
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] metricRegistry..................none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] metricsTrackerFactory...........none
+2019-12-17 12:44:12,396 DEBUG c.z.h.HikariConfig [main] minimumIdle.....................5
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] password........................<masked>
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] poolName........................"HikariPoolZZZ"
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] readOnly........................false
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] registerMbeans..................false
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] scheduledExecutor...............none
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] schema..........................none
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] threadFactory...................internal
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] transactionIsolation............default
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] username........................"sa"
+2019-12-17 12:44:12,401 DEBUG c.z.h.HikariConfig [main] validationTimeout...............5000
+2019-12-17 12:44:12,401 INFO c.z.h.HikariDataSource [main] HikariPoolZZZ - Starting...
+2019-12-17 12:44:12,855 DEBUG c.z.h.p.HikariPool [main] HikariPoolZZZ - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:44:12,858 INFO c.z.h.HikariDataSource [main] HikariPoolZZZ - Start completed.
+2019-12-17 12:44:12,960 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=1, active=1, idle=0, waiting=0)
+2019-12-17 12:44:12,970 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn1: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:44:12,971 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn2: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:44:12,972 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn3: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:44:12,974 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - Added connection conn4: url=jdbc:h2:mem:testdb user=SA
+2019-12-17 12:44:12,974 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ connection adder] HikariPoolZZZ - After adding stats (total=5, active=1, idle=4, waiting=0)
+2019-12-17 12:44:15,931 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-12-17 12:44:18,969 INFO o.s.s.w.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64455184, org.springframework.security.web.context.SecurityContextPersistenceFilter@490dfe25, org.springframework.security.web.header.HeaderWriterFilter@2db0dd19, org.springframework.security.web.authentication.logout.LogoutFilter@65cb50dc, mx.gnc.as.gutsncode.config.security.JWTAuthorizationFilter@6f749a1f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46374b8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@311eb725, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@48900d4a, org.springframework.security.web.session.SessionManagementFilter@7ec01440, org.springframework.security.web.access.ExceptionTranslationFilter@b91e024, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@70199db0]
+2019-12-17 12:44:19,416 INFO o.s.s.c.ThreadPoolTaskExecutor [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-17 12:44:21,843 INFO m.g.a.g.GutsncodeApplication [main] Started GutsncodeApplication in 17.637 seconds (JVM running for 22.58)
+2019-12-17 12:44:21,848 DEBUG m.g.a.g.c.l.Log4j2 [main] Debugging log
+2019-12-17 12:44:21,849 INFO m.g.a.g.c.l.Log4j2 [main] Info log
+2019-12-17 12:44:21,849 WARN m.g.a.g.c.l.Log4j2 [main] Hey, This is a warning!
+2019-12-17 12:44:21,850 ERROR m.g.a.g.c.l.Log4j2 [main] Oops! We have an Error. OK
+2019-12-17 12:44:21,851 FATAL m.g.a.g.c.l.Log4j2 [main] Damn! Fatal error. Please fix me.
+2019-12-17 12:44:42,969 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:45:12,971 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:45:42,986 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:46:12,987 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:46:42,989 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:47:12,990 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:47:43,006 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:48:13,026 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:48:43,036 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:49:13,056 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:49:43,058 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:50:13,079 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:50:43,082 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:51:13,084 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:51:43,087 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:52:13,089 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:52:43,092 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:53:13,095 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:53:43,096 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:54:13,097 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)
+2019-12-17 12:54:43,100 DEBUG c.z.h.p.HikariPool [HikariPoolZZZ housekeeper] HikariPoolZZZ - Pool stats (total=5, active=0, idle=5, waiting=0)

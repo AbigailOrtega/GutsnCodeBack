@@ -3,16 +3,16 @@ package mx.gnc.as.gutsncode.controller;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import mx.gnc.as.gutsncode.config.log4j2.Log4j2;
 import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
@@ -38,7 +39,6 @@ import mx.gnc.as.gutsncode.model.ReceiveObject;
 import mx.gnc.as.gutsncode.model.TextId;
 import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.repository.GNCuRepository;
-import net.bytebuddy.dynamic.DynamicType.Builder.MethodDefinition.ReceiverTypeDefinition;
 
 @RestController
 @RequestMapping("/gncu")
@@ -48,9 +48,11 @@ public class GNCuController {
 	
 	private final Integer defaultSizePage = 20;
 	
+	private static final Logger LOG = LogManager.getLogger(Log4j2.class);
+	
 	@Autowired
 	private GNCuRepository gncRepository;
-
+	
 	@PostMapping(value = "/recentPost")
 	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
 	@ApiResponses(value = { 
@@ -59,27 +61,31 @@ public class GNCuController {
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
 	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
-
+//		public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
+		
+		LOG.info("recentPost service");
+		
 		Integer pageNumber = (receiver.getPage()!=null)? receiver.getPage():0;
 		Integer sizePage = (receiver.getSizePage()!=null)? receiver.getSizePage():this.defaultSizePage;
 		String topic = (receiver.getTopic()!=null)? receiver.getTopic().toLowerCase():"";
 		String type;
 
 		List<Post> listPost;
-//		listPost = gncRepository.getPostOrdered(Status.PUBLISHED
-//		,TypePost.getEnum(receiver.getType().orElseThrow())
-//		,receiver.getTopic().orElse("")
-//		,PageRequest.of(receiver.getPage().orElse(0),
-//						receiver.getSizePage().orElse(defaultSizePage))
-//		);
-		try {
+		
+
+		if(receiver.getType() != null) {
+//			LOG.info("REQUIRED DATA VALID");
 			type = receiver.getType();
-		}catch(NullPointerException r) {
+		}else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		
 		listPost = gncRepository.getPostOrdered(Status.PUBLISHED, TypePost.getEnum(type), topic, PageRequest.of(pageNumber, sizePage));
-		if(listPost == null || listPost.size() == 0)
+		if(listPost == null || listPost.size() == 0) {
+			LOG.warn("NO CONTENT for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 		
 		return new ResponseEntity<>(listPost, HttpStatus.OK);
 	}
@@ -92,19 +98,18 @@ public class GNCuController {
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
 	public ResponseEntity<Integer> totalPages(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
-			
+		
+		LOG.info("totalPages Services");
 		Integer sizePage = (receiver.getSizePage()!=null)? receiver.getSizePage():this.defaultSizePage;
 		String topic = (receiver.getTopic()!=null)? receiver.getTopic().toLowerCase():"";
 		String type;
 
-		try {
+		if(receiver.getType() != null) {
 			type = receiver.getType();
-		}catch(JSONException e){
+		}
+		else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-//		if(jsonObj.has("type"))		type = jsonObj.getString("type");
-//		else						throw new ResourceNotFoundException("It is mandatory send what kind of post is it");
-//		else						return null;
 		
 		Integer totalPost = gncRepository.numberTotalPost(Status.PUBLISHED, TypePost.getEnum(type), topic);
 		if(totalPost.compareTo(0) == 0)
