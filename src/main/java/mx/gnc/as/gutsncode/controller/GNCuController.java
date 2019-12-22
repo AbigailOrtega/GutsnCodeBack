@@ -22,7 +22,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import mx.gnc.as.gutsncode.config.log4j2.Log4j2;
 import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Image;
 import mx.gnc.as.gutsncode.dao.Post;
