@@ -3,11 +3,9 @@ package mx.gnc.as.gutsncode.controller;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -60,7 +58,6 @@ public class GNCuController {
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
 	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
-//		public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
 		
 		LOG.info("recentPost service");
 		
@@ -71,9 +68,8 @@ public class GNCuController {
 
 		List<Post> listPost;
 		
-
 		if(receiver.getType() != null) {
-//			LOG.info("REQUIRED DATA VALID");
+			LOG.info("REQUIRED DATA VALID");
 			type = receiver.getType();
 		}else {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
@@ -86,6 +82,7 @@ public class GNCuController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(listPost, HttpStatus.OK);
 	}
 	
@@ -98,7 +95,7 @@ public class GNCuController {
 			})
 	public ResponseEntity<Integer> totalPages(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
 		
-		LOG.info("totalPages Services");
+		LOG.info("totalPages Service");
 		Integer sizePage = (receiver.getSizePage()!=null)? receiver.getSizePage():this.defaultSizePage;
 		String topic = (receiver.getTopic()!=null)? receiver.getTopic().toLowerCase():"";
 		String type;
@@ -107,6 +104,7 @@ public class GNCuController {
 			type = receiver.getType();
 		}
 		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -114,6 +112,7 @@ public class GNCuController {
 		if(totalPost.compareTo(0) == 0)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<Integer>((totalPost / (sizePage + 1)) + 1, HttpStatus.OK);
 	}
 
@@ -127,9 +126,12 @@ public class GNCuController {
 	public ResponseEntity<PostWithChildNFather> getInfoPost(@RequestBody PostId receiver) throws ResourceNotFoundException {
 
 		Long postId;
-		try {
+		
+		if(receiver.getPostId() != null) {
 			postId = receiver.getPostId();
-		} catch (NullPointerException e) {
+		}
+		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
@@ -147,6 +149,7 @@ public class GNCuController {
 			withChildNFather.setChildId(gncRepository.getPostContent(post.getChildId()));
 		}
 
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(withChildNFather, HttpStatus.OK);
 	}
 
@@ -161,18 +164,20 @@ public class GNCuController {
 	public ResponseEntity<Integer> newVisit(@RequestBody PostId receiver) throws ResourceNotFoundException {	
 		
 		Long postId;
-		try {
+
+		if(receiver.getPostId() != null) {
 			postId = receiver.getPostId();
-		} catch (NullPointerException e) {
+		}
+		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		if(postId == null)
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 		Integer response = gncRepository.incrementViewCounter(postId, BigInteger.ONE);
 		if(response.compareTo(0) == 0)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
@@ -186,15 +191,18 @@ public class GNCuController {
 	public ResponseEntity<Integer> getVisits(@RequestBody PostId receiver) throws ResourceNotFoundException {
 		
 		Long postId;
-		try {
+		if(receiver.getPostId() != null) {
 			postId = receiver.getPostId();
-		} catch (NullPointerException e) {
+		}
+		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Integer views = gncRepository.getViewCounter(postId);
 		
 		if(views == 0) return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
 		
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(views, HttpStatus.OK);
 	}
 	
@@ -208,9 +216,11 @@ public class GNCuController {
 	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getText(@RequestBody PostId receiver) throws ResourceNotFoundException {	
 
 		Long postId;
-		try {
+		if(receiver.getPostId() != null) {
 			postId = receiver.getPostId();
-		} catch (NullPointerException e) {
+		}
+		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -223,6 +233,7 @@ public class GNCuController {
 			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
 		}
 		
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(textReduced, HttpStatus.OK);
 	}
 
@@ -236,9 +247,11 @@ public class GNCuController {
 	public ResponseEntity<List<ImageReduced>> dmeImage(@RequestBody TextId receiver) throws ResourceNotFoundException {
 	
 		Long textId;
-		try {
+		if(receiver.getTextId() != null) {
 			textId = receiver.getTextId();
-		} catch (JSONException e) {
+		}
+		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -250,6 +263,7 @@ public class GNCuController {
 		for (Image reduced : images) {
 			imagesReduced.add(new ImageReduced(reduced));
 		}
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(imagesReduced, HttpStatus.OK);
 	}
 	
@@ -263,9 +277,11 @@ public class GNCuController {
 	public ResponseEntity<FounderReduced> foundersInfo(@RequestBody Name receiver) throws ResourceNotFoundException {
 		
 		String name;
-		try {
-			name = receiver.getName().toUpperCase(); //names in database will always been on UpperCase
-		}catch(JSONException e) {
+		if(receiver.getName() != null) {
+			name = receiver.getName().toUpperCase();
+		}
+		else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	    
@@ -273,6 +289,7 @@ public class GNCuController {
 		if(founder == null || founder.isNull())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(new FounderReduced(founder), HttpStatus.OK);
 	}
 	
