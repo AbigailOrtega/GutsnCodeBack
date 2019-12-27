@@ -16,4 +16,14 @@ public enum Status {
 	private String name;
 	private String descripcion;
 	
+	public static Status getEnum(String enumOption) {
+
+		switch (enumOption.toLowerCase()) {
+		case "published": 		return Status.PUBLISHED;
+		case "approved": 		return Status.APPROVED;
+		case "revision": 	return Status.REVISION;
+		case "edition":	return Status.EDITION;
+		default: 			return null;
+		}
+	}
 }

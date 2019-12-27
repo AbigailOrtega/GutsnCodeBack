@@ -45,7 +45,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/swagger-ui.html",
                 "/webjars/**"
                 ).permitAll() //Swagger
-		.antMatchers("/gncu/*").permitAll() //User services don't need authorization 
+		.antMatchers("/gncu/*","/managment/*","/h2-console/*").permitAll() //User services don't need authorization 
 		.antMatchers(HttpMethod.POST,"/login").permitAll() //Login doesn't need authorization 
 		.anyRequest().authenticated(); //All other pages are securized
 	}

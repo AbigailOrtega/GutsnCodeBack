@@ -17,14 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Name {
 	
-//	private Optional<String> postId;
-//	private Optional<String> textId;
-//	private Optional<Integer> page;
-//	private Optional<Integer> sizePage;
-//	private Optional<String> topic;
-//	private Optional<String> type;
-//	private Optional<String> name;
-	
 	private String name;
 	
 }
