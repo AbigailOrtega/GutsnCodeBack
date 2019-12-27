@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
+import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 
 @Repository
@@ -17,4 +18,6 @@ public interface ManagmentRepository extends CrudRepository<Post, Long>{
 	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type and p.writerId.name=:name order by lastUpDate desc")
 	List<Post> getPostRelated( Status status, TypePost type,  Pageable  pageRequest, String name);
 
+	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
+	List<Text> getTextContent(Long postId);
 }

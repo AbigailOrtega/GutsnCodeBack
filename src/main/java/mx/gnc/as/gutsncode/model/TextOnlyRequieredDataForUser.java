@@ -23,4 +23,12 @@ public class TextOnlyRequieredDataForUser {
 //		this.imageBlob		= Base64.getEncoder().encodeToString(image);
 	}
 	
+	
+	public TextOnlyRequieredDataForUser(Text text) {
+		super();
+		this.textId 		= text.getTextId();
+		this.typeTextId 	= text.getTypeTextId().getTypeTextId();
+		this.textRealize 	= text.getTextBeta();
+	}
+	
 }

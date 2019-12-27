@@ -1,5 +1,6 @@
 package mx.gnc.as.gutsncode.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,8 +20,11 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
+import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
+import mx.gnc.as.gutsncode.model.PostId;
+import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.model.management.ReceiveObject;
 import mx.gnc.as.gutsncode.repository.ManagmentRepository;
 
@@ -71,4 +75,32 @@ public class ManagementController {
 		return new ResponseEntity<>(listPost, HttpStatus.OK);
 	}
 
+	
+	@PostMapping("/getText")
+	@ApiOperation(value = "Bring all texts and images related with a post", notes = "Return texts with images" )
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
+	public ResponseEntity<List<TextOnlyRequieredDataForUser>> getTextEdition(@RequestBody PostId receiver) throws ResourceNotFoundException {	
+
+		Long postId;
+		try {
+			postId = receiver.getPostId();
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		List<Text> text = managmentRepository.getTextContent(postId);
+		if(text == null || text.size() == 0)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
+		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
+		for (Text text2 : text) {
+			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
+		}
+		
+		return new ResponseEntity<>(textReduced, HttpStatus.OK);
+	}
 }
