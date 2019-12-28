@@ -13,6 +13,7 @@ public class TextOnlyRequieredDataForUser {
 	private Long textId;
 	private Long typeTextId;
 	private String textRealize;
+//	private String textBeta;
 //	private String imageBlob;
 	
 	public TextOnlyRequieredDataForUser(Text text, byte[] image) {
@@ -20,6 +21,7 @@ public class TextOnlyRequieredDataForUser {
 		this.textId 		= text.getTextId();
 		this.typeTextId 	= text.getTypeTextId().getTypeTextId();
 		this.textRealize 	= text.getTextRealize();
+//		this.textBeta		= text.getTextBeta();
 //		this.imageBlob		= Base64.getEncoder().encodeToString(image);
 	}
 	
