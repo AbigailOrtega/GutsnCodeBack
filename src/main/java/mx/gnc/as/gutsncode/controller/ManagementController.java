@@ -25,7 +25,9 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 import mx.gnc.as.gutsncode.model.PostId;
 import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
+import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObject;
+import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
 import mx.gnc.as.gutsncode.repository.ManagmentRepository;
 
 
@@ -102,5 +104,55 @@ public class ManagementController {
 		}
 		
 		return new ResponseEntity<>(textReduced, HttpStatus.OK);
+	}
+	
+	@PostMapping("/updateTextBeta")
+	@ApiOperation(value = "Update textBeta", notes = "change textBeta" )
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
+	public ResponseEntity<Boolean> updateText(@RequestBody List<ReceiveTextToEdit> receiver) throws ResourceNotFoundException {	
+
+		try {
+			for (ReceiveTextToEdit item:receiver) {
+				if(item.getTextBeta()!=null && item.getTextId()!=null) {
+					managmentRepository.updateTextBeta(item.getTextBeta(), Long.parseLong(item.getTextId()));
+				}else {
+					throw new NullPointerException("Request Item null");
+				}	
+			}
+		} catch(NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}catch(Exception e){
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+	
+	@PostMapping("/switchTextRealizeAndTextBeta")
+	@ApiOperation(value = "Update textRealize to textBeta", notes = "change textRealize by textBeta" )
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
+	public ResponseEntity<Boolean> switchTextRealizeAndTextBeta(@RequestBody List<ReceiveIdTextToEdit> receiver) throws ResourceNotFoundException {	
+
+		try {
+			for (ReceiveIdTextToEdit item:receiver) {
+				if(item.getTextId()!=null) {
+					managmentRepository.switchBetaRealize(Long.parseLong(item.getTextId()));
+				}else {
+					throw new NullPointerException("Request Item null");
+				}	
+			}
+		} catch(NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}catch(Exception e){
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }
