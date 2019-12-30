@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -24,10 +24,11 @@ import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 import mx.gnc.as.gutsncode.model.PostId;
-import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
+
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObject;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
+import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.repository.ManagmentRepository;
 
 
@@ -100,7 +101,7 @@ public class ManagementController {
 		
 		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
 		for (Text text2 : text) {
-			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
+			textReduced.add(new TextOnlyRequieredDataForUser(text2));
 		}
 		
 		return new ResponseEntity<>(textReduced, HttpStatus.OK);
