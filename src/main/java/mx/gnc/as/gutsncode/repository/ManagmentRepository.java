@@ -19,7 +19,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 public interface ManagmentRepository extends CrudRepository<Post, Long>{
 	
 	@Query(value = "SELECT p FROM Post p where p.writerId.name=:name order by lastUpDate desc")
-	List<Post> getPostRelated( Pageable  pageRequest, String name);
+	List<Post> getPostRelated(  String name, Pageable  pageRequest);
 
 	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
 	List<Text> getTextContent(Long postId);

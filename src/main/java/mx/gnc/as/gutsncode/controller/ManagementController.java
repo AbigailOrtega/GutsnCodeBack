@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ import mx.gnc.as.gutsncode.repository.ManagmentRepository;
 
 @RestController
 @RequestMapping("/managment")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ManagementController {
 	
 	private final Integer defaultSizePage = 20;
@@ -57,12 +59,12 @@ public class ManagementController {
 		String nameFounder;
 		List<Post> listPost;
 		if( receiver.getFounderName()!=null) {
-			nameFounder= receiver.getFounderName();
+			nameFounder= receiver.getFounderName().toUpperCase();
 		}else {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		listPost = managmentRepository.getPostRelated(PageRequest.of(pageNumber, sizePage), nameFounder);
+		listPost = managmentRepository.getPostRelated( nameFounder, PageRequest.of(pageNumber, sizePage));
 		if(listPost == null || listPost.size() == 0) {
 			LOG.warn("NO CONTENT for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
