@@ -16,7 +16,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import mx.gnc.as.gutsncode.model.User;
 
 @RestController
-//@RequestMapping("/u")
 public class UserController {
 	
 	@Autowired

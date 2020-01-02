@@ -55,21 +55,14 @@ public class ManagementController {
 		Integer pageNumber = (receiver.getPage()!=null)? receiver.getPage():0;
 		Integer sizePage = (receiver.getSizePage()!=null)? receiver.getSizePage():this.defaultSizePage;
 		String nameFounder;
-		String type;
-		String status;
-
 		List<Post> listPost;
-
-		if(receiver.getType() != null || receiver.getStatus()!=null || receiver.getFounderName()!=null) {
-			status=receiver.getStatus();
+		if( receiver.getFounderName()!=null) {
 			nameFounder= receiver.getFounderName();
-			type = receiver.getType();
 		}else {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
-		listPost = managmentRepository.getPostRelated(Status.getEnum(status), TypePost.getEnum(type), PageRequest.of(pageNumber, sizePage), nameFounder);
+		listPost = managmentRepository.getPostRelated(PageRequest.of(pageNumber, sizePage), nameFounder);
 		if(listPost == null || listPost.size() == 0) {
 			LOG.warn("NO CONTENT for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

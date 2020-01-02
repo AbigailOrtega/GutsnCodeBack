@@ -11,7 +11,5 @@ public class ReceiveObject {
 	private Integer page;
 	private Integer sizePage;
 	private String founderName;
-	private String type;
-	private String status;
 	
 }

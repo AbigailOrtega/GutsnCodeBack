@@ -18,17 +18,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-//	private UserDetailsService userDetailsService;
-
-//	public WebSecurityConfig (UserDetailsService userDetailsService) {
-//		this.userDetailsService = userDetailsService;
-//	}
-
-//	@Bean
-//	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -49,17 +38,4 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST,"/login").permitAll() //Login doesn't need authorization 
 		.anyRequest().authenticated(); //All other pages are securized
 	}
-	
-//	@Override
-//	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		// Se define la clase que recupera los usuarios y el algoritmo para procesar las passwords
-//		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-//	}
-//	
-//	@Bean
-//	CorsConfigurationSource corsConfigurationSource() {
-//		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-//		return source;
-//	}
 }
