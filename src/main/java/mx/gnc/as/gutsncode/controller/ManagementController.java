@@ -64,13 +64,20 @@ public class ManagementController {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		listPost = managmentRepository.getPostRelated( nameFounder, PageRequest.of(pageNumber, sizePage));
-		if(listPost == null || listPost.size() == 0) {
-			LOG.warn("NO CONTENT for: " + receiver.toString());
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		try {
+
+			listPost = managmentRepository.getPostRelated( nameFounder, PageRequest.of(pageNumber, sizePage));
+			if(listPost == null || listPost.size() == 0) {
+				LOG.warn("NO CONTENT for: " + receiver.toString());
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			
+			return new ResponseEntity<>(listPost, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<>(listPost, HttpStatus.OK);
 	}
 
 	
