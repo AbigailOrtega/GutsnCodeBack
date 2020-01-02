@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiveObject {	
+public class ReceiveObjectRecent {	
 	private Integer page;
 	private Integer sizePage;
 	private String founderName;

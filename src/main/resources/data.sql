@@ -1,6 +1,6 @@
 insert into Founder(NAME, LAST_NAME, SECOND_LAST_NAME, SUMMARY, EMAIL, PASSWORD, PHOTO) VALUES 
-  ('SEBAS','CUATEPOTZO','MARTINEZ','Hola, soy Sebas, me gusta flojear','SSTSACM@GMAIL.COM','123456789', FILE_READ('/opt/java.png'))
-, ('ABIGAIL','ORTEGA','VALDIVIA','Hola, soy Aby, me gusta estudiar','ABIGAILORTEGA31@GMAIL.COM','987654321', FILE_READ('/opt/spring.png'))
+  ('SEBAS','CUATEPOTZO','MARTINEZ','Hola, soy Sebas, me gusta flojear','SSTSACM@GMAIL.COM','123456789', null)
+, ('ABIGAIL','ORTEGA','VALDIVIA','Hola, soy Aby, me gusta estudiar','ABIGAILORTEGA31@GMAIL.COM','987654321',null)
 ;
 insert into STATUS(STATUS_ID, NAME , DESCRIPTION) VALUES
   (0 ,'PUBLISHED','PUBLISHED POST')
@@ -24,9 +24,9 @@ insert into TYPE_TEXT (TYPE_TEXT_ID, NAME, DESCRIPTION) VALUES
 ; 
 /*Entries for Post*/
 insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-  (1, 'JAVA POST 01',0,0,'java','3000-01-01',1,1,'3000-12-31', 1, 'JAVA POST 01', 'CDMX', FILE_READ('/opt/java.png'))
-, (2, 'JAVA POST 02',0,0,'java','3000-01-01',1,1,'3000-12-31', 1, 'JAVA POST 02', 'CDMX', FILE_READ('/opt/java.png'))
-, (3, 'JAVA POST 03',0,0,'java','3000-01-01',1,1,'3000-12-31', 1, 'JAVA POST 03', 'CDMX', FILE_READ('/opt/java.png'))
+  (1, 'JAVA POST 01',0,0,'java','3000-01-01',1,1,'3000-12-31', 1, 'JAVA POST 01', 'CDMX', null)
+, (2, 'JAVA POST 02',0,0,'java','3000-01-01',1,1,'3000-12-31', 1, 'JAVA POST 02', 'CDMX', null)
+, (3, 'JAVA POST 03',0,0,'java','3000-01-01',1,1,'3000-12-31', 1, 'JAVA POST 03', 'CDMX', null)
 ;
 /**/
 update POST set CHILD_ID = 2 where POST_ID = 1;
@@ -34,40 +34,40 @@ update POST set PARENT_ID = 1, CHILD_ID = 3 where POST_ID = 2;
 update POST set PARENT_ID = 2 where POST_ID = 3;
 /**/
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-  ('POST13',0,0,'spring','2019-11-03',1,1,'2019-11-03', 1, 'POST 13', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST14',0,0,'spring','2019-11-04',1,1,'2019-11-04', 1, 'POST 14', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST15',0,0,'java'  ,'2019-11-05',1,1,'2019-11-05', 1, 'POST 15', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST16',0,0,'spring','2019-11-06',1,1,'2019-11-06', 1, 'POST 16', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST17',0,0,'spring','2019-11-07',1,1,'2019-11-07', 1, 'POST 17', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST18',0,0,'spring','2019-11-08',1,1,'2019-11-08', 1, 'POST 18', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST19',0,0,'spring','2019-11-09',1,1,'2019-11-09', 1, 'POST 19', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST20',0,0,'spring','2019-11-10',1,1,'2019-11-10', 1, 'POST 20', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST21',0,0,'spring','2019-11-11',1,1,'2019-11-11', 1, 'POST 21', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST22',0,0,'spring','2019-11-12',1,1,'2019-11-12', 1, 'POST 22', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST23',0,0,'spring','2019-11-13',1,1,'2019-11-13', 1, 'POST 23', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST24',0,0,'spring','2019-11-14',1,1,'2019-11-14', 1, 'POST 24', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST25',0,0,'spring','2019-11-15',1,1,'2019-11-15', 1, 'POST 25', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST26',0,0,'spring','2019-11-16',1,1,'2019-11-16', 1, 'POST 26', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST27',0,0,'spring','2019-11-17',1,1,'2019-11-17', 1, 'POST 27', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST28',0,0,'spring','2019-11-18',1,1,'2019-11-18', 1, 'POST 28', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST29',0,0,'spring','2019-11-19',1,1,'2019-11-19', 1, 'POST 29', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST30',0,0,'spring','2019-11-20',1,1,'2019-11-20', 1, 'POST 30', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST31',0,0,'java'  ,'2019-11-21',1,1,'2019-11-21', 1, 'POST 31', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST32',0,0,'java'  ,'2019-11-22',1,1,'2019-11-22', 1, 'POST 32', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST33',0,0,'java'  ,'2019-11-23',1,1,'2019-11-23', 1, 'POST 33', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST34',0,0,'java'  ,'2019-11-24',1,1,'2019-11-24', 1, 'POST 34', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST35',0,0,'devops','2019-11-25',1,1,'2019-11-25', 1, 'POST 35', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST36',0,0,'devops','2019-11-26',1,1,'2019-11-26', 1, 'POST 36', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST37',0,0,'devops','2019-11-27',1,1,'2019-11-27', 1, 'POST 37', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST38',0,0,'devops','2019-11-28',1,1,'2019-11-28', 1, 'POST 38', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST39',0,0,'devops','2019-11-29',1,1,'2019-11-29', 1, 'POST 39', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('POST40',0,0,'devops','2019-11-30',1,1,'2019-11-30', 1, 'POST 40', 'CDMX', FILE_READ('/opt/spring.png'))
+  ('POST13',0,0,'spring','2019-11-03',1,1,'2019-11-03', 1, 'POST 13', 'CDMX',null)
+, ('POST14',0,0,'spring','2019-11-04',1,1,'2019-11-04', 1, 'POST 14', 'CDMX',null)
+, ('POST15',0,0,'java'  ,'2019-11-05',1,1,'2019-11-05', 1, 'POST 15', 'CDMX',null)
+, ('POST16',0,0,'spring','2019-11-06',1,1,'2019-11-06', 1, 'POST 16', 'CDMX',null)
+, ('POST17',0,0,'spring','2019-11-07',1,1,'2019-11-07', 1, 'POST 17', 'CDMX',null)
+, ('POST18',0,0,'spring','2019-11-08',1,1,'2019-11-08', 1, 'POST 18', 'CDMX',null)
+, ('POST19',0,0,'spring','2019-11-09',1,1,'2019-11-09', 1, 'POST 19', 'CDMX',null)
+, ('POST20',0,0,'spring','2019-11-10',1,1,'2019-11-10', 1, 'POST 20', 'CDMX',null)
+, ('POST21',0,0,'spring','2019-11-11',1,1,'2019-11-11', 1, 'POST 21', 'CDMX',null)
+, ('POST22',0,0,'spring','2019-11-12',1,1,'2019-11-12', 1, 'POST 22', 'CDMX',null)
+, ('POST23',0,0,'spring','2019-11-13',1,1,'2019-11-13', 1, 'POST 23', 'CDMX',null)
+, ('POST24',0,0,'spring','2019-11-14',1,1,'2019-11-14', 1, 'POST 24', 'CDMX',null)
+, ('POST25',0,0,'spring','2019-11-15',1,1,'2019-11-15', 1, 'POST 25', 'CDMX',null)
+, ('POST26',0,0,'spring','2019-11-16',1,1,'2019-11-16', 1, 'POST 26', 'CDMX',null)
+, ('POST27',0,0,'spring','2019-11-17',1,1,'2019-11-17', 1, 'POST 27', 'CDMX',null)
+, ('POST28',0,0,'spring','2019-11-18',1,1,'2019-11-18', 1, 'POST 28', 'CDMX',null)
+, ('POST29',0,0,'spring','2019-11-19',1,1,'2019-11-19', 1, 'POST 29', 'CDMX',null)
+, ('POST30',0,0,'spring','2019-11-20',1,1,'2019-11-20', 1, 'POST 30', 'CDMX',null)
+, ('POST31',0,0,'java'  ,'2019-11-21',1,1,'2019-11-21', 1, 'POST 31', 'CDMX',null)
+, ('POST32',0,0,'java'  ,'2019-11-22',1,1,'2019-11-22', 1, 'POST 32', 'CDMX',null)
+, ('POST33',0,0,'java'  ,'2019-11-23',1,1,'2019-11-23', 1, 'POST 33', 'CDMX',null)
+, ('POST34',0,0,'java'  ,'2019-11-24',1,1,'2019-11-24', 1, 'POST 34', 'CDMX',null)
+, ('POST35',0,0,'devops','2019-11-25',1,1,'2019-11-25', 1, 'POST 35', 'CDMX',null)
+, ('POST36',0,0,'devops','2019-11-26',1,1,'2019-11-26', 1, 'POST 36', 'CDMX',null)
+, ('POST37',0,0,'devops','2019-11-27',1,1,'2019-11-27', 1, 'POST 37', 'CDMX',null)
+, ('POST38',0,0,'devops','2019-11-28',1,1,'2019-11-28', 1, 'POST 38', 'CDMX',null)
+, ('POST39',0,0,'devops','2019-11-29',1,1,'2019-11-29', 1, 'POST 39', 'CDMX',null)
+, ('POST40',0,0,'devops','2019-11-30',1,1,'2019-11-30', 1, 'POST 40', 'CDMX',null)
 ;
 /*Entries for News*/
 insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-  (45,'Spring 01',0,0,'spring','3000-01-01',1,1,'3000-01-01', 0, 'Spring 01', 'CDMX', FILE_READ('/opt/spring.png'))
-, (46,'Spring 02',0,0,'spring','3000-01-01',1,1,'3000-01-01', 0, 'Spring 02', 'CDMX', FILE_READ('/opt/spring.png'))
-, (47,'Spring 03',0,0,'spring','3000-01-01',1,1,'3000-01-01', 0, 'Spring 03', 'CDMX', FILE_READ('/opt/spring.png'))
+  (45,'Spring 01',0,0,'spring','3000-01-01',1,1,'3000-01-01', 0, 'Spring 01', 'CDMX',null)
+, (46,'Spring 02',0,0,'spring','3000-01-01',1,1,'3000-01-01', 0, 'Spring 02', 'CDMX',null)
+, (47,'Spring 03',0,0,'spring','3000-01-01',1,1,'3000-01-01', 0, 'Spring 03', 'CDMX',null)
 ;
 /**/
 update POST set CHILD_ID = 46 where POST_ID = 45;
@@ -75,34 +75,34 @@ update POST set PARENT_ID = 45, CHILD_ID = 47 where POST_ID = 46;
 update POST set PARENT_ID = 46 where POST_ID = 47;
 /**/
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-  ('NEWS02',0,0,'kotlin','2019-11-03',1,1,'2019-11-03', 0, 'NEWS 02', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS03',0,0,'graalvm','2019-11-04',1,1,'2019-11-04', 0, 'NEWS 03', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS04',0,0,'apache','2019-11-05',1,1,'2019-11-05', 0, 'NEWS 04', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS05',0,0,'java','2019-11-06',1,1,'2019-11-06', 0, 'NEWS 05', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS06',0,0,'spring','2019-11-07',1,1,'2019-11-07', 0, 'NEWS 06', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS07',0,0,'kotlin','2019-11-08',1,1,'2019-11-08', 0, 'NEWS 07', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS08',0,0,'graalvm','2019-11-09',1,1,'2019-11-09', 0, 'NEWS 08', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS09',0,0,'apache','2019-11-10',1,1,'2019-11-10', 0, 'NEWS 09', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS10',0,0,'java','2019-11-11',1,1,'2019-11-11', 0, 'NEWS 10', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS11',0,0,'spring','2019-11-12',1,1,'2019-11-12', 0, 'NEWS 11', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS12',0,0,'kotlin','2019-11-13',1,1,'2019-11-13', 0, 'NEWS 12', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS13',0,0,'graalvm','2019-11-14',1,1,'2019-11-14', 0, 'NEWS 13', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS14',0,0,'apache','2019-11-15',1,1,'2019-11-15', 0, 'NEWS 14', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS15',0,0,'java','2019-11-16',1,1,'2019-11-16', 0, 'NEWS 15', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS16',0,0,'spring','2019-11-17',1,1,'2019-11-17', 0, 'NEWS 16', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS17',0,0,'kotlin','2019-11-18',1,1,'2019-11-18', 0, 'NEWS 17', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS18',0,0,'graalvm','2019-11-19',1,1,'2019-11-19', 0, 'NEWS 18', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS19',0,0,'apache','2019-11-20',1,1,'2019-11-20', 0, 'NEWS 19', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS20',0,0,'java','2019-11-21',1,1,'2019-11-21', 0, 'NEWS 20', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS21',0,0,'spring','2019-11-22',1,1,'2019-11-22', 0, 'NEWS 21', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS22',0,0,'kotlin','2019-11-23',1,1,'2019-11-23', 0, 'NEWS 22', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS23',0,0,'graalvm','2019-11-24',1,1,'2019-11-24', 0, 'NEWS 23', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS24',0,0,'apache','2019-11-25',1,1,'2019-11-25', 0, 'NEWS 24', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS25',0,0,'java','2019-11-26',1,1,'2019-11-26', 0, 'NEWS 25', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS26',0,0,'spring','2019-11-27',1,1,'2019-11-27', 0, 'NEWS 26', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS27',0,0,'kotlin','2019-11-28',1,1,'2019-11-28', 0, 'NEWS 27', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS28',0,0,'graalvm','2019-11-29',1,1,'2019-11-29', 0, 'NEWS 28', 'CDMX', FILE_READ('/opt/spring.png'))
-, ('NEWS29',0,0,'apache','2019-11-30',1,1,'2019-11-30', 0, 'NEWS 29', 'CDMX', FILE_READ('/opt/spring.png'))
+  ('NEWS02',0,0,'kotlin','2019-11-03',1,1,'2019-11-03', 0, 'NEWS 02', 'CDMX',null)
+, ('NEWS03',0,0,'graalvm','2019-11-04',1,1,'2019-11-04', 0, 'NEWS 03', 'CDMX',null)
+, ('NEWS04',0,0,'apache','2019-11-05',1,1,'2019-11-05', 0, 'NEWS 04', 'CDMX',null)
+, ('NEWS05',0,0,'java','2019-11-06',1,1,'2019-11-06', 0, 'NEWS 05', 'CDMX',null)
+, ('NEWS06',0,0,'spring','2019-11-07',1,1,'2019-11-07', 0, 'NEWS 06', 'CDMX',null)
+, ('NEWS07',0,0,'kotlin','2019-11-08',1,1,'2019-11-08', 0, 'NEWS 07', 'CDMX',null)
+, ('NEWS08',0,0,'graalvm','2019-11-09',1,1,'2019-11-09', 0, 'NEWS 08', 'CDMX',null)
+, ('NEWS09',0,0,'apache','2019-11-10',1,1,'2019-11-10', 0, 'NEWS 09', 'CDMX',null)
+, ('NEWS10',0,0,'java','2019-11-11',1,1,'2019-11-11', 0, 'NEWS 10', 'CDMX',null)
+, ('NEWS11',0,0,'spring','2019-11-12',1,1,'2019-11-12', 0, 'NEWS 11', 'CDMX',null)
+, ('NEWS12',0,0,'kotlin','2019-11-13',1,1,'2019-11-13', 0, 'NEWS 12', 'CDMX',null)
+, ('NEWS13',0,0,'graalvm','2019-11-14',1,1,'2019-11-14', 0, 'NEWS 13', 'CDMX',null)
+, ('NEWS14',0,0,'apache','2019-11-15',1,1,'2019-11-15', 0, 'NEWS 14', 'CDMX',null)
+, ('NEWS15',0,0,'java','2019-11-16',1,1,'2019-11-16', 0, 'NEWS 15', 'CDMX',null)
+, ('NEWS16',0,0,'spring','2019-11-17',1,1,'2019-11-17', 0, 'NEWS 16', 'CDMX',null)
+, ('NEWS17',0,0,'kotlin','2019-11-18',1,1,'2019-11-18', 0, 'NEWS 17', 'CDMX',null)
+, ('NEWS18',0,0,'graalvm','2019-11-19',1,1,'2019-11-19', 0, 'NEWS 18', 'CDMX',null)
+, ('NEWS19',0,0,'apache','2019-11-20',1,1,'2019-11-20', 0, 'NEWS 19', 'CDMX',null)
+, ('NEWS20',0,0,'java','2019-11-21',1,1,'2019-11-21', 0, 'NEWS 20', 'CDMX',null)
+, ('NEWS21',0,0,'spring','2019-11-22',1,1,'2019-11-22', 0, 'NEWS 21', 'CDMX',null)
+, ('NEWS22',0,0,'kotlin','2019-11-23',1,1,'2019-11-23', 0, 'NEWS 22', 'CDMX',null)
+, ('NEWS23',0,0,'graalvm','2019-11-24',1,1,'2019-11-24', 0, 'NEWS 23', 'CDMX',null)
+, ('NEWS24',0,0,'apache','2019-11-25',1,1,'2019-11-25', 0, 'NEWS 24', 'CDMX',null)
+, ('NEWS25',0,0,'java','2019-11-26',1,1,'2019-11-26', 0, 'NEWS 25', 'CDMX',null)
+, ('NEWS26',0,0,'spring','2019-11-27',1,1,'2019-11-27', 0, 'NEWS 26', 'CDMX',null)
+, ('NEWS27',0,0,'kotlin','2019-11-28',1,1,'2019-11-28', 0, 'NEWS 27', 'CDMX',null)
+, ('NEWS28',0,0,'graalvm','2019-11-29',1,1,'2019-11-29', 0, 'NEWS 28', 'CDMX',null)
+, ('NEWS29',0,0,'apache','2019-11-30',1,1,'2019-11-30', 0, 'NEWS 29', 'CDMX',null)
 ;
 /*Text for Post*/
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES 
@@ -146,9 +146,9 @@ insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
 ;
 /*Entries for Guts N Code*/
 insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-  (101,'ACERCA DE NOSOTROS',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',4,'ACERCA DE NOSOTROS','CDMX', FILE_READ('/opt/spring.png'))
-, (102,'FUNDADORES',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',3,'FUNDADORES','CDMX', FILE_READ('/opt/spring.png'))
-, (103,'EXPERIENCIAS',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',2,'EXPERIENCIAS','CDMX', FILE_READ('/opt/spring.png'))
+  (101,'ACERCA DE NOSOTROS',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',4,'ACERCA DE NOSOTROS','CDMX',null)
+, (102,'FUNDADORES',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',3,'FUNDADORES','CDMX',null)
+, (103,'EXPERIENCIAS',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',2,'EXPERIENCIAS','CDMX',null)
 ;
 
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
@@ -174,8 +174,8 @@ insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
 
 /*Entries for Guts N Code*/
 insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-  (104,'FUTURO',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',5,'FUTURO','CDMX', FILE_READ('/opt/spring.png'))
-, (105,'FILOSOFIA',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',4,'FILOSOFIA','CDMX', FILE_READ('/opt/spring.png'))
+  (104,'FUTURO',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',5,'FUTURO','CDMX',null)
+, (105,'FILOSOFIA',0,0,'gutsncode','2019-12-31',1,1,'2019-12-31',4,'FILOSOFIA','CDMX',null)
 ;
 
 /*Text for Fundadores*/
@@ -205,10 +205,10 @@ Esperamos que podamos llegar a muchas personas deseosas como nosotros de apreder
 
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES
 /**/
-  (1, 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 1, 'java', 'top')
-, (2, 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 4, 'java', 'top')
-, (3, 'Java.png', 'Javas logo', FILE_READ('/opt/java.png'), 7, 'java', 'top')
-, (4, 'Spring.png', 'Springs logo', FILE_READ('/opt/spring.png'), 2, 'spring', 'top')
+  (1, 'Java.png', 'Javas logo', null, 1, 'java', 'top')
+, (2, 'Java.png', 'Javas logo', null, 4, 'java', 'top')
+, (3, 'Java.png', 'Javas logo', null, 7, 'java', 'top')
+, (4, 'Spring.png', 'Springs logo',null, 2, 'spring', 'top')
 /*
   (1, 'Java.png', 'Javas logo', FILE_READ('C:/opt/java.png'), 1, 'java', 'top')
 , (2, 'Java.png', 'Javas logo', FILE_READ('C:/opt/java.png'), 4, 'java', 'top')

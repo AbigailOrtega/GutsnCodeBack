@@ -27,7 +27,7 @@ import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 import mx.gnc.as.gutsncode.model.PostId;
 
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
-import mx.gnc.as.gutsncode.model.management.ReceiveObject;
+import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
 import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.repository.ManagmentRepository;
@@ -51,7 +51,7 @@ public class ManagementController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {		
+	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObjectRecent receiver) throws ResourceNotFoundException {		
 		LOG.info("recentPost service");
 		
 		Integer pageNumber = (receiver.getPage()!=null)? receiver.getPage():0;

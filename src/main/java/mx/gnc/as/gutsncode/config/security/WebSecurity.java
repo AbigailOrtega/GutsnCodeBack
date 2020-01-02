@@ -22,6 +22,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		.headers().frameOptions().disable().and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() //Disable cookies
 //		.cors().and() //Put the Cross-Origin Resource Sharing at default values
 		.csrf().disable() //Disable the Cross-site request forgery filter - could cause that any page could get the token
@@ -37,5 +38,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/gncu/*","/managment/*","/h2-console/*").permitAll() //User services don't need authorization 
 		.antMatchers(HttpMethod.POST,"/login").permitAll() //Login doesn't need authorization 
 		.anyRequest().authenticated(); //All other pages are securized
+		
 	}
 }
