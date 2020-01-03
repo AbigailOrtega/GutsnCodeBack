@@ -139,7 +139,11 @@
 			<version>2.1</version>
 		</dependency>
 		<!-- SWAGGER -->
-
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+		</dependency>
 		<!-- JUnit and Jupiter -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -159,18 +163,15 @@
 		<!-- Log4j2 -->
 
 		<!-- spring-boot-starter-web -> spring-boot-starter-json -> jackson-databind -->
-		<!-- included by spring boot 
-		<dependency> 
-			<groupId>com.fasterxml.jackson.core</groupId> 
-			<artifactId>jackson-databind</artifactId> 
-		</dependency> -->
+		<!-- included by spring boot <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
+			<artifactId>jackson-databind</artifactId> </dependency> -->
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.fasterxml.jackson.dataformat</groupId> -->
-<!-- 			<artifactId>jackson-dataformat-yaml</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.fasterxml.jackson.dataformat</groupId> -->
+		<!-- <artifactId>jackson-dataformat-yaml</artifactId> -->
+		<!-- </dependency> -->
 		<!-- spring-boot-starter-web -> spring-boot-starter-json -> jackson-databind -->
-		
+
 	</dependencies>
 
 	<build>

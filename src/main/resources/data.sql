@@ -216,3 +216,7 @@ INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINAL
 , (4, 'Spring.png', 'Springs logo', FILE_READ('C:/opt/spring.png'), 2, 'spring', 'top')
 */
 ;
+insert into users(username,password,enabled)
+	values('admin','$2a$10$hbxecwitQQ.dDT4JOFzQAulNySFwEpaFLw38jda6Td.Y/cOiRzDFu',true);
+insert into authorities(username,authority) 
+	values('admin','ROLE_ADMIN');
