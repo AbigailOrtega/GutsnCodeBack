@@ -60,14 +60,19 @@ public class ManagementController {
 		String nameFounder;
 		Set<TypePost> typePostList=new HashSet<TypePost>();
 		String[] types=(receiver.getTypes()!= null) ? receiver.getTypes() : null;
-		for(String item :types) {
-			typePostList.add(TypePost.getEnum(item));
+		if(types!=null) {
+			for(String item :types) {
+				typePostList.add(TypePost.getEnum(item));
+			}
 		}
 		Set<Status> statusList=new HashSet<Status>();
 		String[] status=(receiver.getStatus()!= null) ? receiver.getStatus() : null;
-		for(String item :status) {
-			statusList.add(Status.getEnum(item));
+		if(status!=null) {
+			for(String item :status) {
+				statusList.add(Status.getEnum(item));
+			}
 		}
+		
 		String[] topics=(receiver.getTopics()!= null) ? receiver.getTopics() : null;
 	
 
