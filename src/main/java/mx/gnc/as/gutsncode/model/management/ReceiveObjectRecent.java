@@ -11,5 +11,7 @@ public class ReceiveObjectRecent {
 	private Integer page;
 	private Integer sizePage;
 	private String founderName;
-	
+	private String[] topics;
+	private String[] types;
+	private String[] status;
 }

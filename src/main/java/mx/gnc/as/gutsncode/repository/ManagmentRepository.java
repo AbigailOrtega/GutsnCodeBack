@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.repository;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -19,9 +20,30 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 @Repository
 public interface ManagmentRepository extends CrudRepository<Post, Long>{
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	List<Post> getPostRelatedCompleteParams(String nameFounder, Set<Status> status, Set<TypePost> type, List<String> topic, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where p.writerId.name=:name order by lastUpDate desc")
-	List<Post> getPostRelated(  String name, Pageable  pageRequest);
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder order by lastUpDate desc")
+	List<Post> getPostRelatedStatusAndType(String nameFounder, Set<Status> status, Set<TypePost>  type,  Pageable  pageRequest);
+	
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	List<Post> getPostRelatedStatusAndTopic(String nameFounder, Set<Status> status,  List<String> topic, Pageable  pageRequest);
+	
+	@Query(value = "SELECT p FROM Post p where p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	List<Post> getPostRelatedTypeAndTopic(String nameFounder, Set<TypePost>  type, List<String> topic, Pageable  pageRequest);
+	
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status  and p.writerId.name=:nameFounder  order by lastUpDate desc")
+	List<Post> getPostRelatedStatus(String nameFounder, Set<Status> status, Pageable  pageRequest);
+	
+	@Query(value = "SELECT p FROM Post p where  p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	List<Post> getPostRelatedTopic(String nameFounder, List<String> topic, Pageable  pageRequest);
+	
+	@Query(value = "SELECT p FROM Post p where  p.typePostId IN :type and p.writerId.name=:nameFounder  order by lastUpDate desc")
+	List<Post> getPostRelatedType(String nameFounder,  Set<TypePost> type,  Pageable  pageRequest);
+	
+
+	@Query(value = "SELECT p FROM Post p where p.writerId.name=:nameFounder order by lastUpDate desc")
+	List<Post> getPostRelated(  String nameFounder, Pageable  pageRequest);
 
 	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
 	List<Text> getTextContent(Long postId);
