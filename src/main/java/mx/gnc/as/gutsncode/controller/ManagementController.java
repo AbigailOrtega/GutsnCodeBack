@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -196,5 +198,25 @@ public class ManagementController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 	
+	
+	@GetMapping("/getTopic/{founderName}")
+	@ApiOperation(value = "Get topics ", notes = "get topics")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+	public ResponseEntity<Set<String>> getTopics(@PathVariable String founderName)
+			throws ResourceNotFoundException {
+		try {
+			Set<String> listTopic=managmentRepository.getTopics(founderName.toUpperCase());
+			return new ResponseEntity<Set<String>>(listTopic, HttpStatus.OK);
+				
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
+	}
 
 }

@@ -58,4 +58,8 @@ public interface ManagmentRepository extends CrudRepository<Post, Long>{
 	@Transactional
 	@Query(value = "UPDATE Text p SET p.textRealize =p.textBeta where textId=:textId")
 	Integer switchBetaRealize(Long textId);
+	
+	
+	@Query(value = "SELECT distinct p.topic FROM Post p where p.writerId.name=:nameFounder")
+	Set<String> getTopics(String nameFounder);
 }
