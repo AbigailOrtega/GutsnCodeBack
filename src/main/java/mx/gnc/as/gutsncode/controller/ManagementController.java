@@ -105,8 +105,7 @@ public class ManagementController {
 					listPost = managmentRepository.getPostRelatedType(nameFounder, typePostList,  PageRequest.of(pageNumber, sizePage));
 				}
 				else if(types==null && topics==null && status==null) {
-				 listPost = managmentRepository.getPostRelated(nameFounder,
-							PageRequest.of(pageNumber, sizePage));
+				 listPost = managmentRepository.getPostRelated(nameFounder,PageRequest.of(pageNumber, sizePage));
 				}
 				if (listPost == null || listPost.size() == 0) {
 					LOG.warn("NO CONTENT for: " + receiver.toString());
@@ -136,7 +135,6 @@ public class ManagementController {
 			throws ResourceNotFoundException {
 		LOG.info("recentPost service");
 		Integer listPost = 0;
-		Integer pageNumber = (receiver.getPage() != null) ? receiver.getPage() : 0;
 		Integer sizePage = (receiver.getSizePage() != null) ? receiver.getSizePage() : this.defaultSizePage;
 		String nameFounder;
 		Set<TypePost> typePostList=new HashSet<TypePost>();
