@@ -40,10 +40,35 @@ public interface ManagmentRepository extends CrudRepository<Post, Long>{
 	
 	@Query(value = "SELECT p FROM Post p where  p.typePostId IN :type and p.writerId.name=:nameFounder  order by lastUpDate desc")
 	List<Post> getPostRelatedType(String nameFounder,  Set<TypePost> type,  Pageable  pageRequest);
-	
 
 	@Query(value = "SELECT p FROM Post p where p.writerId.name=:nameFounder order by lastUpDate desc")
 	List<Post> getPostRelated(  String nameFounder, Pageable  pageRequest);
+	
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic")
+	Integer getCountPostRelatedCompleteParams(String nameFounder, Set<Status> status, Set<TypePost> type, List<String> topic);
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder")
+	Integer getCountPostRelatedStatusAndType(String nameFounder, Set<Status> status, Set<TypePost>  type);
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.writerId.name=:nameFounder and p.topic IN :topic")
+	Integer getCountPostRelatedStatusAndTopic(String nameFounder, Set<Status> status,  List<String> topic);
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic")
+	Integer getCountPostRelatedTypeAndTopic(String nameFounder, Set<TypePost>  type, List<String> topic);
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status  and p.writerId.name=:nameFounder ")
+	Integer getCountPostRelatedStatus(String nameFounder, Set<Status> status);
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where  p.writerId.name=:nameFounder and p.topic IN :topic")
+	Integer getCountPostRelatedTopic(String nameFounder, List<String> topic);
+	
+	@Query(value = "SELECT COUNT(p) FROM Post p where  p.typePostId IN :type and p.writerId.name=:nameFounder ")
+	Integer getCountPostRelatedType(String nameFounder,  Set<TypePost> type);
+//	
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.writerId.name=:nameFounder")
+	Integer getCountPostRelated(String nameFounder);
+	
 
 	@Query(value = "SELECT t FROM Text t where t.postId.postId=:postId")
 	List<Text> getTextContent(Long postId);

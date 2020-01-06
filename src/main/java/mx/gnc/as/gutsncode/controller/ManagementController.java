@@ -50,9 +50,11 @@ public class ManagementController {
 	
 	@PostMapping(value = "/recentPost")
 	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
-			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
 	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObjectRecent receiver)
 			throws ResourceNotFoundException {
 		LOG.info("recentPost service");
@@ -112,6 +114,82 @@ public class ManagementController {
 				}
 
 				return new ResponseEntity<>(listPost, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, HttpStatus.OK);
+			}
+		} else {
+			LOG.error("BAD REQUEST for: " + receiver.toString());
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
+	
+	@PostMapping(value = "/totalPages")
+	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") 
+			})
+	public ResponseEntity<Integer> totalPages(@RequestBody ReceiveObjectRecent receiver)
+			throws ResourceNotFoundException {
+		LOG.info("recentPost service");
+		Integer listPost = 0;
+		Integer pageNumber = (receiver.getPage() != null) ? receiver.getPage() : 0;
+		Integer sizePage = (receiver.getSizePage() != null) ? receiver.getSizePage() : this.defaultSizePage;
+		String nameFounder;
+		Set<TypePost> typePostList=new HashSet<TypePost>();
+		String[] types=(receiver.getTypes()!= null) ? receiver.getTypes() : null;
+		if(types!=null) {
+			for(String item :types) {
+				typePostList.add(TypePost.getEnum(item));
+			}
+		}
+		Set<Status> statusList=new HashSet<Status>();
+		String[] status=(receiver.getStatus()!= null) ? receiver.getStatus() : null;
+		if(status!=null) {
+			for(String item :status) {
+				statusList.add(Status.getEnum(item));
+			}
+		}
+		
+		String[] topics=(receiver.getTopics()!= null) ? receiver.getTopics() : null;
+	
+
+		if (receiver.getFounderName() != null) {
+			nameFounder = receiver.getFounderName().toUpperCase();
+			try {
+				if (types!=null && topics!=null && status!=null) {
+					listPost = managmentRepository.getCountPostRelatedCompleteParams(nameFounder, statusList, typePostList, Arrays.asList(topics));
+				}
+				else if(types!=null && topics==null && status!=null) {
+					listPost = managmentRepository.getCountPostRelatedStatusAndType(nameFounder, statusList, typePostList);
+				}
+				else if(types==null && topics!=null && status!=null) {
+					listPost = managmentRepository.getCountPostRelatedStatusAndTopic(nameFounder, statusList,  Arrays.asList(topics));
+				}
+				else if(types!=null && topics!=null && status==null) {
+					listPost = managmentRepository.getCountPostRelatedTypeAndTopic(nameFounder, typePostList, Arrays.asList(topics));
+				}
+				else if(types==null && topics==null && status!=null) {
+					listPost = managmentRepository.getCountPostRelatedStatus(nameFounder, statusList);
+				}
+				else if(types==null && topics!=null && status==null) {
+					listPost = managmentRepository.getCountPostRelatedTopic(nameFounder, Arrays.asList(topics));
+				}
+				else if(types!=null && topics==null && status==null) {
+					listPost = managmentRepository.getCountPostRelatedType(nameFounder, typePostList);
+				}
+				else if(types==null && topics==null && status==null) {
+				 listPost = managmentRepository.getCountPostRelated(nameFounder);
+				}
+				if (listPost == 0) {
+					LOG.warn("NO CONTENT for: " + receiver.toString());
+					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				}
+
+				return new ResponseEntity<>((listPost / sizePage) + 1, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return new ResponseEntity<>(null, HttpStatus.OK);
