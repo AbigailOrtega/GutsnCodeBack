@@ -34,7 +34,7 @@ update POST set PARENT_ID = 1, CHILD_ID = 3 where POST_ID = 2;
 update POST set PARENT_ID = 2 where POST_ID = 3;
 /**/
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-, ('POST01',0,0,'spring','2019-11-01',1,1,'2019-11-01', 1, 'POST 01', 'CDMX',null)
+  ('POST01',0,0,'spring','2019-11-01',1,1,'2019-11-01', 1, 'POST 01', 'CDMX',null)
 , ('POST02',0,0,'spring','2019-11-02',1,1,'2019-11-02', 1, 'POST 02', 'CDMX',null)
 , ('POST03',0,0,'spring','2019-11-03',1,1,'2019-11-03', 1, 'POST 03', 'CDMX',null)
 , ('POST04',0,0,'spring','2019-11-04',1,1,'2019-11-04', 1, 'POST 04', 'CDMX',null)
@@ -87,7 +87,7 @@ update POST set PARENT_ID = 45, CHILD_ID = 47 where POST_ID = 46;
 update POST set PARENT_ID = 46 where POST_ID = 47;
 /**/
 insert into POST (NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
-, ('NEWS01',0,0,'kotlin' ,'2019-11-01',1,1,'2019-11-01', 1, 'NEWS 01', 'CDMX',null)
+  ('NEWS01',0,0,'kotlin' ,'2019-11-01',1,1,'2019-11-01', 1, 'NEWS 01', 'CDMX',null)
 , ('NEWS02',0,0,'kotlin' ,'2019-11-02',1,1,'2019-11-02', 1, 'NEWS 02', 'CDMX',null)
 , ('NEWS03',0,0,'kotlin' ,'2019-11-03',1,1,'2019-11-03', 1, 'NEWS 03', 'CDMX',null)
 , ('NEWS04',0,0,'kotlin' ,'2019-11-04',1,1,'2019-11-04', 1, 'NEWS 04', 'CDMX',null)
