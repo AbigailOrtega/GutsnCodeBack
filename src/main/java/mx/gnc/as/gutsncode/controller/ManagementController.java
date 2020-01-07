@@ -294,7 +294,7 @@ public class ManagementController {
 		}
 	}
 
-	@PostMapping("/updateStatusPos")
+	@PostMapping("/updateStatusPost")
 	@ApiOperation(value = "Update post status", notes = "change current status")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
