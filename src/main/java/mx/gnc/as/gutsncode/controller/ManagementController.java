@@ -34,10 +34,12 @@ import mx.gnc.as.gutsncode.model.PostId;
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectToReview;
+import mx.gnc.as.gutsncode.model.management.ReceivePostAndText;
 import mx.gnc.as.gutsncode.model.management.ReceiveStatusPost;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
 import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
-import mx.gnc.as.gutsncode.repository.ManagmentRepository;
+import mx.gnc.as.gutsncode.repository.ManagmentRepositoryText;
+import mx.gnc.as.gutsncode.repository.ManagmentRepositoryPost;
 
 @RestController
 @RequestMapping("/managment")
@@ -48,7 +50,9 @@ public class ManagementController {
 	private static final Logger LOG = LogManager.getLogger(ManagementController.class);
 
 	@Autowired
-	private ManagmentRepository managmentRepository;
+	private ManagmentRepositoryPost managmentRepository;
+	@Autowired
+	private ManagmentRepositoryText managmentRepositoryText;
 
 	@PostMapping(value = "/recentPost")
 	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
@@ -318,7 +322,7 @@ public class ManagementController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<List<Post>> getTopicsToReview(@RequestBody ReceiveObjectToReview receiveObjectToReview)
+	public ResponseEntity<List<Post>> getPostToReview(@RequestBody ReceiveObjectToReview receiveObjectToReview)
 			throws ResourceNotFoundException {
 
 		try {
@@ -341,4 +345,37 @@ public class ManagementController {
 		}
 	}
 
+	
+	@PostMapping("/savePostAndText")
+	@ApiOperation(value = "Save Post and text ", notes = "Save 3 type ot text by post")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+	public ResponseEntity<Boolean> savePostAndText(@RequestBody ReceivePostAndText receivePostAndText)
+			throws ResourceNotFoundException {
+		try {
+			if (receivePostAndText.getPost()==null /*&& receivePostAndText.getTextHeader()!=null && receivePostAndText.getTextBody()!=null && receivePostAndText.getTextFooter()!=null*/) {
+				throw new NullPointerException();
+			} else {
+				managmentRepository.save(receivePostAndText.getPost());
+				Text textHeader=receivePostAndText.getTextHeader();
+				textHeader.setPostId(receivePostAndText.getPost());
+				Text textBody=receivePostAndText.getTextBody();
+				textBody.setPostId(receivePostAndText.getPost());
+				Text textFooter=receivePostAndText.getTextFooter();
+				textFooter.setPostId(receivePostAndText.getPost());
+				managmentRepositoryText.save(textHeader);
+				managmentRepositoryText.save(textBody);
+				managmentRepositoryText.save(textFooter);
+				System.out.println(receivePostAndText.getPost().getPostId());
+				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

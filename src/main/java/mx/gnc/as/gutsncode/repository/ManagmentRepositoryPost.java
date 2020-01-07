@@ -19,7 +19,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 
 @Repository
-public interface ManagmentRepository extends CrudRepository<Post, Long>{
+public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
 	List<Post> getPostRelatedCompleteParams(String nameFounder, Set<Status> status, Set<TypePost> type, List<String> topic, Pageable  pageRequest);
 	
