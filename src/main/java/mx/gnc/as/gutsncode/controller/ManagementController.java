@@ -33,6 +33,7 @@ import mx.gnc.as.gutsncode.model.PostId;
 
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
+import mx.gnc.as.gutsncode.model.management.ReceiveStatusPost;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
 import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.repository.ManagmentRepository;
@@ -291,8 +292,33 @@ public class ManagementController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		
 	}
 
+	@PostMapping("/updateStatusPos")
+	@ApiOperation(value = "Update post status", notes = "change current status")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+	public ResponseEntity<Boolean> updateStatusPost(@RequestBody ReceiveStatusPost receiver)
+			throws ResourceNotFoundException {
+
+		try {
+				if (receiver.getId() != null && receiver.getStatus()!=null) {
+					if(managmentRepository.updateStatusPost(Status.getEnum(receiver.getStatus()),Long.parseLong(receiver.getId())).equals(1)) {
+						return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+					}
+					else {
+						throw new NullPointerException("Request Item null");
+					}
+				} else {
+					throw new NullPointerException("Request Item null");
+				}
+			
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
