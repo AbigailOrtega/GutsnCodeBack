@@ -93,4 +93,7 @@ public interface ManagmentRepository extends CrudRepository<Post, Long>{
 	@Transactional
 	@Query(value = "UPDATE Post p SET p.statusId=:status where postId=:postId")
 	Integer updateStatusPost(Status status, Long postId);
+	
+	@Query(value = "SELECT p FROM Post p where p.reviewerId.name=:nameReviewer and p.statusId=:status order by lastUpDate asc")
+	List<Post> getPostToReview(Status status, String nameReviewer, Pageable  pageRequest);
 }
