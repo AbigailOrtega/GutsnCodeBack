@@ -133,40 +133,46 @@ insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
   (1,1,1,
   	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Slip inside the eye of your mind <br> Dont you know you might find <br> A better place to play <br> You said that youd never been <br> But all the things that youve seen <br> Will slowly fade away <br> So I start a revolution from my bed <br> Cause you said the brains I had went to my head. <br> Step outside, summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> You aint ever gonna burn my heart out <br> And so Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> Take me to the place where you go <br> Where nobody knows if its night or day <br> But please dont put your life in the hands <br> Of a Rock n Roll band <br> Wholl throw it all away <br> Im gonna start a revolution from my bed <br> Cause you said the brains I had went to my head <br> Step outside cause summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> Cause you aint ever gonna burn my heart out <br> So Sally can wait, she knows its too late as shes walking on by <br> My soul slides away, but dont look back in anger I heard you say <br> So Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> So Sally can wait <br> She knows its too late as shes walking on by <br> My soul slides away <br> But dont look back in anger <br> Dont look back in anger <br> I heard you say <br> At least not today',
   	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Slip inside the eye of your mind <br> Dont you know you might find <br> A better place to play <br> You said that youd never been <br> But all the things that youve seen <br> Will slowly fade away <br> So I start a revolution from my bed <br> Cause you said the brains I had went to my head. <br> Step outside, summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> You aint ever gonna burn my heart out <br> And so Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> Take me to the place where you go <br> Where nobody knows if its night or day <br> But please dont put your life in the hands <br> Of a Rock n Roll band <br> Wholl throw it all away <br> Im gonna start a revolution from my bed <br> Cause you said the brains I had went to my head <br> Step outside cause summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> Cause you aint ever gonna burn my heart out <br> So Sally can wait, she knows its too late as shes walking on by <br> My soul slides away, but dont look back in anger I heard you say <br> So Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> So Sally can wait <br> She knows its too late as shes walking on by <br> My soul slides away <br> But dont look back in anger <br> Dont look back in anger <br> I heard you say <br> At least not today')
-, (2,0,1,'','¿Quienes somos?')
-, (3,2,1,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (2,0,1,'¿Quienes somos?','¿Quienes somos?')
+, (3,2,1,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (4,3,1,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 
-, (4,1,2,
+, (5,1,2,
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Because of saving myself the hairdresser, <br>They cut wrong my hair today. <br>What am I going to do now? <br>This aint getting any better <br>My friends will make fun of me <br>I cant go back to school again <br>Not even with a different hairdo <br>This has not any improvement <br>Because of saving myself the hairdresser <br>Now I must wear a hat forever <br>My friens will make fun of me <br>I cant go to school anymore <br>His friends, we will make fun of him <br>He cant go back to school again <br>Theres just one comfort left for me <br>Wait for my hair to grow long again',
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Because of saving myself the hairdresser, <br>They cut wrong my hair today. <br>What am I going to do now? <br>This aint getting any better <br>My friends will make fun of me <br>I cant go back to school again <br>Not even with a different hairdo <br>This has not any improvement <br>Because of saving myself the hairdresser <br>Now I must wear a hat forever <br>My friens will make fun of me <br>I cant go to school anymore <br>His friends, we will make fun of him <br>He cant go back to school again <br>Theres just one comfort left for me <br>Wait for my hair to grow long again')
-, (5,0,2,'','¿Quienes somos?')
-, (6,2,2,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (6,0,2,'¿Quienes somos?','¿Quienes somos?')
+, (7,2,2,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (8,3,2,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 
-, (7,1,3,
+, (9,1,3,
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Hay perros que no ladran<br>Pero te lamen los huesos<br>Hay gatos que mahullan<br>Hasta exprimir su vientre<br>Hay gente que no ladra<br>Pero te exprime el alma<br>Hay gente que te odia<br>Pero te lame las manos así<br>Hay gente que no arriesga<br>Le tiene miedo a la muerte<br>Hay gatos que no mueren<br>Le dan la vuelta al cielo así<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Hay perros que defienden<br>Hasta clavar colmillos<br>Perro que ladra<br>Perro que ladra no muerde<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todoso los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño',
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Hay perros que no ladran<br>Pero te lamen los huesos<br>Hay gatos que mahullan<br>Hasta exprimir su vientre<br>Hay gente que no ladra<br>Pero te exprime el alma<br>Hay gente que te odia<br>Pero te lame las manos así<br>Hay gente que no arriesga<br>Le tiene miedo a la muerte<br>Hay gatos que no mueren<br>Le dan la vuelta al cielo así<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Hay perros que defienden<br>Hasta clavar colmillos<br>Perro que ladra<br>Perro que ladra no muerde<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todoso los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño')
-, (8,0,3,'','¿Quienes somos?')
-, (9,2,3,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (10,0,3,'¿Quienes somos?','¿Quienes somos?')
+, (11,2,3,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (12,3,3,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 ;
 /*Text for News*/
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
-  (10,1,45,
+  (13,1,45,
   	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Slip inside the eye of your mind <br> Dont you know you might find <br> A better place to play <br> You said that youd never been <br> But all the things that youve seen <br> Will slowly fade away <br> So I start a revolution from my bed <br> Cause you said the brains I had went to my head. <br> Step outside, summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> You aint ever gonna burn my heart out <br> And so Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> Take me to the place where you go <br> Where nobody knows if its night or day <br> But please dont put your life in the hands <br> Of a Rock n Roll band <br> Wholl throw it all away <br> Im gonna start a revolution from my bed <br> Cause you said the brains I had went to my head <br> Step outside cause summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> Cause you aint ever gonna burn my heart out <br> So Sally can wait, she knows its too late as shes walking on by <br> My soul slides away, but dont look back in anger I heard you say <br> So Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> So Sally can wait <br> She knows its too late as shes walking on by <br> My soul slides away <br> But dont look back in anger <br> Dont look back in anger <br> I heard you say <br> At least not today',
   	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Slip inside the eye of your mind <br> Dont you know you might find <br> A better place to play <br> You said that youd never been <br> But all the things that youve seen <br> Will slowly fade away <br> So I start a revolution from my bed <br> Cause you said the brains I had went to my head. <br> Step outside, summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> You aint ever gonna burn my heart out <br> And so Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> Take me to the place where you go <br> Where nobody knows if its night or day <br> But please dont put your life in the hands <br> Of a Rock n Roll band <br> Wholl throw it all away <br> Im gonna start a revolution from my bed <br> Cause you said the brains I had went to my head <br> Step outside cause summertimes in bloom <br> Stand up beside the fireplace <br> Take that look from off your face <br> Cause you aint ever gonna burn my heart out <br> So Sally can wait, she knows its too late as shes walking on by <br> My soul slides away, but dont look back in anger I heard you say <br> So Sally can wait, she knows its too late as were walking on by <br> Her soul slides away, but dont look back in anger I heard you say <br> So Sally can wait <br> She knows its too late as shes walking on by <br> My soul slides away <br> But dont look back in anger <br> Dont look back in anger <br> I heard you say <br> At least not today')
-, (11,0,45,'','¿Quienes somos?')
-, (12,2,45,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (14,0,45,'¿Quienes somos?','¿Quienes somos?')
+, (15,2,45,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (16,3,45,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 
-, (13,1,46,
+, (17,1,46,
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Because of saving myself the hairdresser, <br>They cut wrong my hair today. <br>What am I going to do now? <br>This aint getting any better <br>My friends will make fun of me <br>I cant go back to school again <br>Not even with a different hairdo <br>This has not any improvement <br>Because of saving myself the hairdresser <br>Now I must wear a hat forever <br>My friens will make fun of me <br>I cant go to school anymore <br>His friends, we will make fun of him <br>He cant go back to school again <br>Theres just one comfort left for me <br>Wait for my hair to grow long again',
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Because of saving myself the hairdresser, <br>They cut wrong my hair today. <br>What am I going to do now? <br>This aint getting any better <br>My friends will make fun of me <br>I cant go back to school again <br>Not even with a different hairdo <br>This has not any improvement <br>Because of saving myself the hairdresser <br>Now I must wear a hat forever <br>My friens will make fun of me <br>I cant go to school anymore <br>His friends, we will make fun of him <br>He cant go back to school again <br>Theres just one comfort left for me <br>Wait for my hair to grow long again')
-, (14,0,46,'','¿Quienes somos?')
-, (15,2,46,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (18,0,46,'¿Quienes somos?','¿Quienes somos?')
+, (19,2,46,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (20,3,46,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 
-, (16,1,47,
+, (21,1,47,
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Hay perros que no ladran<br>Pero te lamen los huesos<br>Hay gatos que mahullan<br>Hasta exprimir su vientre<br>Hay gente que no ladra<br>Pero te exprime el alma<br>Hay gente que te odia<br>Pero te lame las manos así<br>Hay gente que no arriesga<br>Le tiene miedo a la muerte<br>Hay gatos que no mueren<br>Le dan la vuelta al cielo así<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Hay perros que defienden<br>Hasta clavar colmillos<br>Perro que ladra<br>Perro que ladra no muerde<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todoso los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño',
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo, ahora una cancion <br><br>Hay perros que no ladran<br>Pero te lamen los huesos<br>Hay gatos que mahullan<br>Hasta exprimir su vientre<br>Hay gente que no ladra<br>Pero te exprime el alma<br>Hay gente que te odia<br>Pero te lame las manos así<br>Hay gente que no arriesga<br>Le tiene miedo a la muerte<br>Hay gatos que no mueren<br>Le dan la vuelta al cielo así<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Hay perros que defienden<br>Hasta clavar colmillos<br>Perro que ladra<br>Perro que ladra no muerde<br>De noche todos los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>De noche todoso los gatos son pardos<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño<br>Pardo me duermo, pardo te sueño')
-, (17,0,47,'','¿Quienes somos?')
-, (18,2,47,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (22,0,47,'¿Quienes somos?','¿Quienes somos?')
+, (23,2,47,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (24,3,47,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 ;
 /*Entries for Guts N Code*/
 insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, TITLE, LOCATION, IMAGE) VALUES
@@ -177,23 +183,26 @@ insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRI
 
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
 /*Text for Acerca de Nosotros*/
-  (107,1,101,
+  (101,1,101,
   'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo',
   'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo')
-, (108,0,101,'','¿Quienes somos?')
-, (109,2,101,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (102,0,101,'¿Quienes somos?','¿Quienes somos?')
+, (103,2,101,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (104,3,101,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 /*Text for Fundadores*/
-, (110,1,102,
+, (105,1,102,
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo',
 	'Hola, somos Aby y Sebas y somos los fundadores de Guts & Code, y creamos esta pagina para regañar a Sebas por flojo')
-, (111,0,102,'','¿Quienes somos?')
-, (112,2,102,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (106,0,102,'¿Quienes somos?','¿Quienes somos?')
+, (107,2,102,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
+, (108,3,102,'Nos despendimos, y recuerden, Sebas es un flojo','Nos despendimos, y recuerden, Sebas es un flojo')
 /*Text for Experiencias*/
-, (113,1,103,
+, (109,1,103,
 	'Antes trabajabamos 20 horas al día, ahora solo 19, pues descubrimos que si existe la vida despues del trabajo',
 	'Antes trabajabamos 20 horas al día, ahora solo 19, pues descubrimos que si existe la vida despues del trabajo')
-, (114,0,103,'','De esclavos a Rockstars')
-, (115,2,103,'','A rockear bebes')
+, (110,0,103,'De esclavos a Rockstars','De esclavos a Rockstars')
+, (111,2,103,'A rockear bebes','A rockear bebes')
+, (112,3,103,'A rockear bebes','A rockear bebes')
 ;
 
 /*Entries for Guts N Code*/
@@ -204,11 +213,12 @@ insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRI
 
 /*Text for Fundadores*/
 insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
-  (116,1,104,'','Esperamos que nuestra pagina se llene de contenido de todo tipo, a modo que podamos ser un referente de conocimientos')
-, (117,0,104,'','¿Quienes somos?')
-, (118,2,104,'','Nos despendimos, y recuerden, Sebas es un flojo')
+  (113,1,104,'','Esperamos que nuestra pagina se llene de contenido de todo tipo, a modo que podamos ser un referente de conocimientos')
+, (114,0,104,'','¿Quienes somos?')
+, (115,2,104,'','Nos despendimos, y recuerden, Sebas es un flojo')
+, (116,3,104,'','Nos despendimos, y recuerden, Sebas es un flojo')
 /*Text for Experiencias*/
-, (119,1,105,
+, (117,1,105,
 'Guts & Code nade del deseo de poder tener contenido de calidad de diferentes tecnologías en nuestra lengua materna, el Español. Creemos que las barreras del idioma no deben ser limitante para poder seguir desarrollandose dentro del mundo de la programación, en nuestro caso, más cercano a Java y las tecnologías que girán en torno a ella, aunque no nos limitamos solo a ella.
 G&C se representa por un gato (que sobra decir que nos gustan los gatos) del cual compartimos estas cualidades y similitudes:
 Agilidad
@@ -223,8 +233,9 @@ Curiosidad
 Grandes cazadores.
 Esperamos que podamos llegar a muchas personas deseosas como nosotros de apreder sobre el mundo de la programación con Java
 ')
-, (120,0,105,'','Filosofia')
-, (121,2,105,'','Conocenos')
+, (118,0,105,'','Filosofia')
+, (119,2,105,'','Conocenos')
+, (120,3,105,'','Conocenos')
 ;
 
 INSERT INTO IMAGE (IMAGE_ID,IMAGE_NAME,DESCRIPTION,IMAGE,TEXT_ID,FOOTER,CARDINALITY) VALUES
