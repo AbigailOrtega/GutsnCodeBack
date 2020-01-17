@@ -10,7 +10,8 @@ public enum Status {
 	PUBLISHED(0L,"PUBLISHED","PUBLISHED POST"),
 	APPROVED(1L,"APPROVED", "APPROVED POST TO BE PUBLISHED "),
 	REVISION(2L,"REVISION","REVISION POST"),
-	EDITION(3L,"EDITION","EDITION COURSE");
+	EDITION(3L,"EDITION","EDITION COURSE"),
+	PUBLIEDIT(4L,"PUBLIEDITH","PUBLISHED AND EDIT VERSION");
 	
 	private Long statusId;
 	private String name;
@@ -23,6 +24,7 @@ public enum Status {
 		case "approved": 		return Status.APPROVED;
 		case "revision": 	return Status.REVISION;
 		case "edition":	return Status.EDITION;
+		case "publiedit":	return Status.PUBLIEDIT;
 		default: 			return null;
 		}
 	}
