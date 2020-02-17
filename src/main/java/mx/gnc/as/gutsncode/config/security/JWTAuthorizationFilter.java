@@ -40,6 +40,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 			chain.doFilter(request, response);
 		} catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 			((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
 			return;
 		}
