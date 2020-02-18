@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -16,11 +18,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import mx.gnc.as.gutsncode.model.User;
 
 @RestController
@@ -37,7 +42,10 @@ public class UserController {
 //	private UserDetailsService userDetailsService;
 
 	@PostMapping("login")
-	public User login(@RequestParam("user") String username, @RequestParam("password") String pwd) throws Exception {
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+	public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 		try {
 			System.out.println("entre login");
 			Authentication userAuth=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, pwd));
@@ -45,11 +53,13 @@ public class UserController {
 			User user = new User();
 			user.setUser(userAuth.getName());
 			user.setToken(getJWTToken(userAuth.getName()));		
-			return user;
+			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} catch (DisabledException e) {
-			throw new Exception("USER_DISABLED", e);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 		
 	}

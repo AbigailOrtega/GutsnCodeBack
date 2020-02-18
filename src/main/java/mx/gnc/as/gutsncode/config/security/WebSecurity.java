@@ -50,9 +50,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.headers().frameOptions().disable().and().sessionManagement()
+		http/*.headers().frameOptions().disable().and()*/.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // Disable cookies
-//		.cors().and() //Put the Cross-Origin Resource Sharing at default values
+				.cors().and() //Put the Cross-Origin Resource Sharing at default values
 				.csrf().disable() // Disable the Cross-site request forgery filter - could cause that any page
 									// could get the token
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class) // Add filters
