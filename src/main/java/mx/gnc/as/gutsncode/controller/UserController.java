@@ -14,11 +14,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,14 +43,15 @@ public class UserController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+//	public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+	public ResponseEntity<User> login(@RequestBody User user) {
 		try {
 			System.out.println("entre login");
-			Authentication userAuth=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, pwd));
+			Authentication userAuth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUser(), user.getPwd()));
 			//UserDetails userDetails=userDetailsService.loadUserByUsername(userAuth.getName());
-			User user = new User();
+			user = new User();
 			user.setUser(userAuth.getName());
-			user.setToken(getJWTToken(userAuth.getName()));		
+			user.setToken(getJWTToken(userAuth.getName()));
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} catch (DisabledException e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
