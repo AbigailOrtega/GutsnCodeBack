@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public enum TypeText {
 	
-	HEADER(0L,"HEADER","HEADER"),
-	BODY(1L, "BODY","BODY"),
-	FOOTER(2L,"FOOTER", "FOOTER"),
-	ANOTATION(3L,"ANOTATION","ANOTATION");
+	HEADER		(0L,"HEADER","HEADER"),
+	BODY		(1L, "BODY","BODY"),
+	FOOTER		(2L,"FOOTER", "FOOTER"),
+	ANOTATION	(3L,"ANOTATION","ANOTATION");
 	
 	private Long typeTextId;
 	private String name;

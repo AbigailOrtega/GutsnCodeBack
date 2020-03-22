@@ -223,7 +223,6 @@ public class GNCuController {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
 		List<Text> text = gncRepository.getTextContent(postId);
 		if(text == null || text.size() == 0)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
