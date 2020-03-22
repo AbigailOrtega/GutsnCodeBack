@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "POST")
+@Table(name = "POST", schema = "GutsNCode")
 //@ApiModel("POST MODEL")
 public class Post {
 	
@@ -40,9 +40,11 @@ public class Post {
 	private BigInteger numberView;
 	
 	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "TYPE_POST_ID")
 	private TypePost typePostId;
 	
 	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "STATUS_ID")
 	private Status statusId;
 	
 	@Column(name = "TOPIC")

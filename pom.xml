@@ -28,11 +28,17 @@
 		</dependency>
 
 		<!-- h2 -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.h2database</groupId> -->
+<!-- 			<artifactId>h2</artifactId> -->
+<!-- 		</dependency> -->
 		<!-- h2 -->
+		<!-- MariaDB -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+		</dependency>
+		<!-- MariaDB -->
 
 		<!-- SPRING -->
 		<dependency>
