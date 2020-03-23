@@ -33,8 +33,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// user for matching credentials
 		// Use BCryptPasswordEncoder
 		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username, password, enabled"
-	            + " from users where username=?").authoritiesByUsernameQuery("select username, authority "
-	                    + "from authorities where username=?")
+	            + " from USERS where username=?").authoritiesByUsernameQuery("select username, authority "
+	                    + "from AUTHORITIES where username=?")
 	                .passwordEncoder(new BCryptPasswordEncoder());
 	}
 
