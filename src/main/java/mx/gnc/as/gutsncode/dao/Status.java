@@ -23,10 +23,12 @@ public enum Status {
 	public static Status getEnum(String enumOption) {
 
 		switch (enumOption.toLowerCase()) {
-		case "published": 		return Status.PUBLISHED;
-		case "approved": 		return Status.APPROVED;
+		case "published": 	return Status.PUBLISHED;
+		case "approved": 	return Status.APPROVED;
 		case "revision": 	return Status.REVISION;
-		case "edition":	return Status.EDITION;
+		case "edition":		return Status.EDITION;
+		case "publiappr":	return Status.PUBLIAPPR;
+		case "publirev":	return Status.PUBLIREV;
 		case "publiedit":	return Status.PUBLIEDIT;
 		default: 			return null;
 		}

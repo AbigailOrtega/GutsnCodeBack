@@ -181,17 +181,17 @@ public class ManagementController {
 				}
 				if (listPost == 0) {
 					LOG.warn("NO CONTENT for: " + receiver.toString());
-					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+					return new ResponseEntity<>(1, HttpStatus.NO_CONTENT);
 				}
 
 				return new ResponseEntity<>((listPost / sizePage) + 1, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return new ResponseEntity<>(null, HttpStatus.OK);
+				return new ResponseEntity<>(1, HttpStatus.OK);
 			}
 		} else {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(1, HttpStatus.BAD_REQUEST);
 		}
 
 	}

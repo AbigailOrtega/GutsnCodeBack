@@ -84,4 +84,28 @@ public class UserController {
 
 		return "GNCTOKEN " + token;
 	}
+	
+	@PostMapping("logout")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+//	public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+	public ResponseEntity<User> logout(@RequestBody User user) {
+		try {
+			System.out.println("entre logout");
+			Authentication userAuth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUser(), user.getPwd()));
+			//UserDetails userDetails=userDetailsService.loadUserByUsername(userAuth.getName());
+			user = new User();
+			user.setUser(userAuth.getName());
+			user.setToken(getJWTToken(userAuth.getName()));
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		} catch (DisabledException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//			throw new Exception("USER_DISABLED", e);
+		} catch (BadCredentialsException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//			throw new Exception("INVALID_CREDENTIALS", e);
+		}
+		
+	}
 }
