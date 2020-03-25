@@ -81,6 +81,7 @@ public class UserController {
 				.signWith(SignatureAlgorithm.HS512,
 //						.signWith(SignatureAlgorithm.ES256,
 						secretKey.getBytes()).compact();
+		System.out.println("GNCTOKEN " + token);
 
 		return "GNCTOKEN " + token;
 	}
