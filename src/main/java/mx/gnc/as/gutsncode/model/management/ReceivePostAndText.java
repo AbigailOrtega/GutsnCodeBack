@@ -14,5 +14,4 @@ public class ReceivePostAndText {
 	private Text textHeader;
 	private Text textBody;
 	private Text textFooter;
-
 }

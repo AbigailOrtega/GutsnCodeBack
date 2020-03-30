@@ -22,8 +22,8 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 @Repository
 public interface GNCuRepository extends CrudRepository<Post, Long>{
 
-	@Query(value = "SELECT p FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic% order by lastUpDate desc")
-	List<Post> getPostOrdered( Status status, TypePost type, String topic, Pageable  pageRequest);
+	@Query(value = "SELECT p FROM Post p where p.statusId in :status and p.typePostId=:type and p.topic like %:topic% order by lastUpDate desc")
+	List<Post> getPostOrdered( List <Status> status, TypePost type, String topic, Pageable  pageRequest);
 	
 	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId=:status and p.typePostId=:type and p.topic like %:topic%")
 	Integer numberTotalPost( Status status, TypePost type, String topic);

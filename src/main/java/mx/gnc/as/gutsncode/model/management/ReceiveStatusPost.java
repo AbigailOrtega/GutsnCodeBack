@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class ReceiveStatusPost {
 	String id;
 	String status;
-
 }

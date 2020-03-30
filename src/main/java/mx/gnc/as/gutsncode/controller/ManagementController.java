@@ -35,6 +35,7 @@ import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectToReview;
 import mx.gnc.as.gutsncode.model.management.ReceivePostAndText;
+import mx.gnc.as.gutsncode.model.management.ReceivePostData;
 import mx.gnc.as.gutsncode.model.management.ReceiveStatusPost;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
 import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
@@ -288,6 +289,43 @@ public class ManagementController {
 		}
 	}
 
+	@PostMapping("/updatePost")
+	@ApiOperation(value = "Update post status", notes = "change current status")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+	public ResponseEntity<Boolean> updatePost(@RequestBody ReceivePostData receiver)
+			throws ResourceNotFoundException {
+		try {
+			if (receiver.getName() != null && receiver.getTopic() != null && receiver.getTypePost() != null && receiver.getPostId() != null) {
+				if (managmentRepository
+						.updatePost(
+							receiver.getName(), 
+							receiver.getTopic(), 
+							TypePost.getEnum(receiver.getTypePost()), 
+							receiver.getParentId()!=null?Long.parseLong(receiver.getParentId()):null,
+							receiver.getChildId()!=null?Long.parseLong(receiver.getChildId()):null,
+							Long.parseLong(receiver.getPostId())
+							)
+						.equals(1)) {
+					return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+				} else {
+					System.out.println("lo lance aqui");
+					throw new NullPointerException("Request Item null");
+				}
+			} else {
+				System.out.println("lo lance aca");
+				throw new NullPointerException("Request Item null");
+			}
+
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	@PostMapping("/updateStatusPost")
 	@ApiOperation(value = "Update post status", notes = "change current status")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),

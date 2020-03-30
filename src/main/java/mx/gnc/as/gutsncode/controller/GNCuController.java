@@ -75,8 +75,12 @@ public class GNCuController {
 			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
-		listPost = gncRepository.getPostOrdered(Status.PUBLISHED, TypePost.getEnum(type), topic, PageRequest.of(pageNumber, sizePage));
+		List<Status> allStatus = new ArrayList<Status>();
+		allStatus.add(Status.PUBLISHED);
+		allStatus.add(Status.PUBLIAPPR);
+		allStatus.add(Status.PUBLIREV);
+		allStatus.add(Status.PUBLIEDIT);
+		listPost = gncRepository.getPostOrdered(allStatus, TypePost.getEnum(type), topic, PageRequest.of(pageNumber, sizePage));
 		if(listPost == null || listPost.size() == 0) {
 			LOG.warn("NO CONTENT for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -1,6 +1,7 @@
 package mx.gnc.as.gutsncode.tests;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -67,7 +68,12 @@ public class GutsncodeApplicationTests {
 	// Prueba de Integración
 	void testGetPostOrdered() {
 		System.out.println("======TEST getPostOrdered EXECUTED=======");
-		List<Post> listPost = gncuRepository.getPostOrdered(Status.PUBLISHED, TypePost.POST, "", PageRequest.of(0,3));
+		List<Status> allStatus = new ArrayList<Status>();
+		allStatus.add(Status.PUBLISHED);
+		allStatus.add(Status.PUBLIAPPR);
+		allStatus.add(Status.PUBLIREV);
+		allStatus.add(Status.PUBLIEDIT);
+		List<Post> listPost = gncuRepository.getPostOrdered(allStatus, TypePost.POST, "", PageRequest.of(0,3));
 		Assertions.assertEquals(3, listPost.size());
 		for (Post post : listPost) {
 			Assertions.assertEquals(Long.class, post.getPostId().getClass());
