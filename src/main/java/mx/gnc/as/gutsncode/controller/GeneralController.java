@@ -2,7 +2,7 @@ package mx.gnc.as.gutsncode.controller;
 
 //@Component		
 public class GeneralController {
-	
+	//we have to delete this comment
 //	@Autowired
 //	private GeneralRepository generalRepository;
 		
