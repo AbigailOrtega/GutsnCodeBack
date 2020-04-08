@@ -39,7 +39,7 @@ import mx.gnc.as.gutsncode.repository.GNCuRepository;
 
 @RestController
 @RequestMapping("/gncu")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
 @Api(value = "User GNC Services")
 public class GNCuController {
 	
