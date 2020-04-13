@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,28 +28,25 @@ public class Founder {
 	private String name;
 	@Column(name = "LAST_NAME")
 	private String lastName;
-	@Column(name = "SECOND_LAST_NAME")
-	private String secondLastName;
 	@Column(name = "PHOTO")
 	private byte[] photo;
 	@Column(name = "SUMMARY")
 	private String summary;
 	@Column(name = "EMAIL")
 	private String email;
-	@Column(name = "PASSWORD")
-	private String password;
-
-	public Founder(String name, String lastName, String secondLastName, String summary, String email, String password) {
+	@Column(name = "ALIAS")
+	private String alias;
+	
+	public Founder(String name, String lastName, String summary, String email, String alias) {
 		this.name = name;
 		this.lastName = lastName;
-		this.secondLastName = secondLastName;
 		this.summary = summary;
 		this.email = email;
-		this.password = password;
+		this.alias = alias;
 	}
 
 	public boolean isNull() {
-		if(this.name != null || this.lastName != null || this.secondLastName != null)
+		if(this.name != null || this.lastName != null || this.alias != null)
 			return false;
 		else
 			return true;

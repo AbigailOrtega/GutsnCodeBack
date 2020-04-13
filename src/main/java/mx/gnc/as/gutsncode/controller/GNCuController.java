@@ -39,7 +39,8 @@ import mx.gnc.as.gutsncode.repository.GNCuRepository;
 
 @RestController
 @RequestMapping("/gncu")
-@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+//@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @Api(value = "User GNC Services")
 public class GNCuController {
 	
@@ -157,7 +158,7 @@ public class GNCuController {
 		return new ResponseEntity<>(withChildNFather, HttpStatus.OK);
 	}
 
-	// could change to admin services
+//	 could change to admin services
 	@PostMapping("/addNewView")
 	@ApiOperation(value = "Add a new visit to a Post", notes = "" )
 	@ApiResponses(value = { 

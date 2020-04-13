@@ -1,7 +1,9 @@
 package mx.gnc.as.gutsncode.controller;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,27 +25,29 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import mx.gnc.as.gutsncode.dao.Founder;
+import mx.gnc.as.gutsncode.dao.ImageOption;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
 import mx.gnc.as.gutsncode.dao.TypePost;
+import mx.gnc.as.gutsncode.dao.TypeText;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 import mx.gnc.as.gutsncode.model.PostId;
-
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectToReview;
-import mx.gnc.as.gutsncode.model.management.ReceivePostAndText;
 import mx.gnc.as.gutsncode.model.management.ReceivePostData;
 import mx.gnc.as.gutsncode.model.management.ReceiveStatusPost;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
 import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
-import mx.gnc.as.gutsncode.repository.ManagmentRepositoryText;
 import mx.gnc.as.gutsncode.repository.ManagmentRepositoryPost;
+import mx.gnc.as.gutsncode.repository.ManagmentRepositoryText;
 
 @RestController
 @RequestMapping("/managment")
-@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+//@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ManagementController {
 
 	private final Integer defaultSizePage = 20;
@@ -135,7 +138,7 @@ public class ManagementController {
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
 	public ResponseEntity<Integer> totalPages(@RequestBody ReceiveObjectRecent receiver)
 			throws ResourceNotFoundException {
-		LOG.info("recentPost service");
+//		LOG.info("recentPost service");
 		Integer listPost = 0;
 		Integer sizePage = (receiver.getSizePage() != null) ? receiver.getSizePage() : this.defaultSizePage;
 		String nameFounder;
@@ -248,21 +251,43 @@ public class ManagementController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
-	@PostMapping("/switchTextRealizeAndTextBeta")
+	@PostMapping("/switchTextBetaToTextRealize")
 	@ApiOperation(value = "Update textRealize to textBeta", notes = "change textRealize by textBeta")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<Boolean> switchTextRealizeAndTextBeta(@RequestBody List<ReceiveIdTextToEdit> receiver)
+	public ResponseEntity<Boolean> switchTextBetaToTextRealize(@RequestBody List<ReceiveIdTextToEdit> receiver)
 			throws ResourceNotFoundException {
 
 		try {
 			for (ReceiveIdTextToEdit item : receiver) {
-				if (item.getTextId() != null) {
-					managmentRepository.switchBetaRealize(Long.parseLong(item.getTextId()));
-				} else {
+				if (item.getTextId() != null)
+					managmentRepository.switchBetaToRealize(Long.parseLong(item.getTextId()));
+				else
 					throw new NullPointerException("Request Item null");
-				}
+			}
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+	
+	@PostMapping("/switchTextRealizeToTextBeta")
+	@ApiOperation(value = "Update textRealize to textBeta", notes = "change textRealize by textBeta")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
+			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
+			@ApiResponse(code = 400, message = "The payload do not contain required info") })
+	public ResponseEntity<Boolean> switchTextRealizeToTextBeta(@RequestBody List<ReceiveIdTextToEdit> receiver)
+			throws ResourceNotFoundException {
+
+		try {
+			for (ReceiveIdTextToEdit item : receiver) {
+				if (item.getTextId() != null)
+					managmentRepository.switchRealizeToBeta(Long.parseLong(item.getTextId()));
+				else 
+					throw new NullPointerException("Request Item null");
 			}
 		} catch (NullPointerException e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -310,11 +335,9 @@ public class ManagementController {
 						.equals(1)) {
 					return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 				} else {
-					System.out.println("lo lance aqui");
 					throw new NullPointerException("Request Item null");
 				}
 			} else {
-				System.out.println("lo lance aca");
 				throw new NullPointerException("Request Item null");
 			}
 
@@ -382,30 +405,67 @@ public class ManagementController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 	
-	@PostMapping("/savePostAndText")
+	@PostMapping("/savePost")
 	@ApiOperation(value = "Save Post and text ", notes = "Save 3 type ot text by post")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<Boolean> savePostAndText(@RequestBody ReceivePostAndText receivePostAndText)
+	public ResponseEntity<Boolean> savePostAndText(@RequestBody ReceivePostData receivePostData)
 			throws ResourceNotFoundException {
 		try {
-			if (receivePostAndText.getPost()==null /*&& receivePostAndText.getTextHeader()!=null && receivePostAndText.getTextBody()!=null && receivePostAndText.getTextFooter()!=null*/) {
+			if (receivePostData == null /*&& receivePostAndText.getTextHeader()!=null && receivePostAndText.getTextBody()!=null && receivePostAndText.getTextFooter()!=null*/) {
 				throw new NullPointerException();
 			} else {
-				managmentRepository.save(receivePostAndText.getPost());
-				Text textHeader=receivePostAndText.getTextHeader();
-				textHeader.setPostId(receivePostAndText.getPost());
-				Text textBody=receivePostAndText.getTextBody();
-				textBody.setPostId(receivePostAndText.getPost());
-				Text textFooter=receivePostAndText.getTextFooter();
-				textFooter.setPostId(receivePostAndText.getPost());
-				managmentRepositoryText.save(textHeader);
-				managmentRepositoryText.save(textBody);
-				managmentRepositoryText.save(textFooter);
-				System.out.println(receivePostAndText.getPost().getPostId());
+				
+				List<Founder> listEditors = managmentRepository.getEditors(receivePostData.getUser());
+				
+				Post postUtil = new Post(
+					receivePostData.getName(), 
+					BigInteger.ZERO, 
+					TypePost.getEnum(receivePostData.getTypePost()), 
+					Status.EDITION, 
+					ImageOption.getEnum(receivePostData.getImageOption()),
+					receivePostData.getTopic(),
+					new Date(), 
+					managmentRepository.getFounder(receivePostData.getUser()), 
+					listEditors.get((int)(Math.random() * listEditors.size())), 
+					null, 
+					receivePostData.getLocation(),
+					receivePostData.getParentId() != null?Long.valueOf(receivePostData.getParentId()):null,
+					receivePostData.getChildId() != null?Long.valueOf(receivePostData.getChildId()):null
+				);
+				//Give in automatic the postId
+				managmentRepository.save(postUtil);
+				
+//				Text textHeader = receivePostAndText.getTextHeader();
+//				textHeader.setPostId(receivePostAndText.getPost());
+//				Text textBody=receivePostAndText.getTextBody();
+//				textBody.setPostId(receivePostAndText.getPost());
+//				Text textFooter=receivePostAndText.getTextFooter();
+//				textFooter.setPostId(receivePostAndText.getPost());
+//				managmentRepositoryText.save(textHeader);
+//				managmentRepositoryText.save(textBody);
+//				managmentRepositoryText.save(textFooter);
+				
+				Text textUtil = new Text();
+				textUtil.setPostId(postUtil);
+				textUtil.setTypeTextId(TypeText.HEADER);
+				managmentRepositoryText.save(textUtil);
+				textUtil = new Text();
+				textUtil.setPostId(postUtil);
+				textUtil.setTypeTextId(TypeText.BODY);
+				managmentRepositoryText.save(textUtil);
+				textUtil = new Text();
+				textUtil.setPostId(postUtil);
+				textUtil.setTypeTextId(TypeText.FOOTER);
+				managmentRepositoryText.save(textUtil);
+				textUtil = new Text();
+				textUtil.setPostId(postUtil);
+				textUtil.setTypeTextId(TypeText.ANOTATION);
+				managmentRepositoryText.save(textUtil);
+				
+				System.out.println(postUtil.getPostId());
 				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 			}
 		} catch (NullPointerException e) {

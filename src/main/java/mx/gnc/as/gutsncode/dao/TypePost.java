@@ -24,7 +24,7 @@ public enum TypePost {
 		case "new": 		return TypePost.NEW;
 		case "post": 		return TypePost.POST;
 		case "experience": 	return TypePost.EXPERIENCE;
-//		case "founder":		return TypePost.FOUNDER;
+		case "founder":		return TypePost.FOUNDER;
 		case "philosophy":	return TypePost.PHILOSOPHY;
 		case "future":		return TypePost.FUTURE;
 		default: 			return null;

@@ -27,7 +27,8 @@ import io.swagger.annotations.ApiResponses;
 import mx.gnc.as.gutsncode.model.User;
 
 @RestController
-@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+//@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired
@@ -36,29 +37,27 @@ public class UserController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-//	@Autowired
-//	private UserDetailsService userDetailsService;
-
 	@PostMapping("login")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-//	public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 	public ResponseEntity<User> login(@RequestBody User user) {
 		try {
 			System.out.println("entre login");
 			Authentication userAuth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUser(), user.getPwd()));
-			//UserDetails userDetails=userDetailsService.loadUserByUsername(userAuth.getName());
+			System.out.println("QUERY EXITOSO");
 			user = new User();
 			user.setUser(userAuth.getName());
 			user.setToken(getJWTToken(userAuth.getName()));
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} catch (DisabledException e) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 //			throw new Exception("USER_DISABLED", e);
-		} catch (BadCredentialsException e) {
+//			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (BadCredentialsException e) {
 //			throw new Exception("INVALID_CREDENTIALS", e);
+//			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
 	}
@@ -67,7 +66,7 @@ public class UserController {
 		String secretKey = "tokenGNCtoken";
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 				.commaSeparatedStringToAuthorityList("ADMIN");
-		
+		System.out.println("TOKEN PREPARADO");
 		String token = Jwts
 				.builder()
 				.setId("GutsNCode")
@@ -79,9 +78,9 @@ public class UserController {
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 60000000))
 				.signWith(SignatureAlgorithm.HS512,
-//						.signWith(SignatureAlgorithm.ES256,
+//				.signWith(SignatureAlgorithm.ES256,
 						secretKey.getBytes()).compact();
-
+		System.out.println("REGRESANDO TOKEN");
 		return "GNCTOKEN " + token;
 	}
 	

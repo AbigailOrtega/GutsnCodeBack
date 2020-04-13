@@ -45,7 +45,7 @@ public interface GNCuRepository extends CrudRepository<Post, Long>{
 	@Query(value = "SELECT numberView FROM Post where postId=:postId")
 	Integer getViewCounter(Long postId);
 	
-	@Query(value = "SELECT f FROM Founder f where f.name like %:name% or f.lastName like %:name% or f.secondLastName like %:name% ")
+	@Query(value = "SELECT f FROM Founder f where f.name like %:name% or f.lastName like %:name%")
 	Founder getFounderInfo(String name);
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import mx.gnc.as.gutsncode.dao.Founder;
 import mx.gnc.as.gutsncode.dao.Post;
 import mx.gnc.as.gutsncode.dao.Status;
 import mx.gnc.as.gutsncode.dao.Text;
@@ -20,53 +21,54 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 
 @Repository
 public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
-	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.alias=:nameFounder and p.topic IN :topic order by lastUpDate desc")
 	List<Post> getPostRelatedCompleteParams(String nameFounder, Set<Status> status, Set<TypePost> type, List<String> topic, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.alias=:nameFounder order by lastUpDate desc")
 	List<Post> getPostRelatedStatusAndType(String nameFounder, Set<Status> status, Set<TypePost>  type,  Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status and p.writerId.alias=:nameFounder and p.topic IN :topic order by lastUpDate desc")
 	List<Post> getPostRelatedStatusAndTopic(String nameFounder, Set<Status> status,  List<String> topic, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where p.typePostId IN :type and p.writerId.alias=:nameFounder and p.topic IN :topic order by lastUpDate desc")
 	List<Post> getPostRelatedTypeAndTopic(String nameFounder, Set<TypePost>  type, List<String> topic, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where p.statusId IN :status  and p.writerId.name=:nameFounder  order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where p.statusId IN :status  and p.writerId.alias=:nameFounder  order by lastUpDate desc")
 	List<Post> getPostRelatedStatus(String nameFounder, Set<Status> status, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where  p.writerId.name=:nameFounder and p.topic IN :topic order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where  p.writerId.alias=:nameFounder and p.topic IN :topic order by lastUpDate desc")
 	List<Post> getPostRelatedTopic(String nameFounder, List<String> topic, Pageable  pageRequest);
 	
-	@Query(value = "SELECT p FROM Post p where  p.typePostId IN :type and p.writerId.name=:nameFounder  order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where  p.typePostId IN :type and p.writerId.alias=:nameFounder  order by lastUpDate desc")
 	List<Post> getPostRelatedType(String nameFounder,  Set<TypePost> type,  Pageable  pageRequest);
 
-	@Query(value = "SELECT p FROM Post p where p.writerId.name=:nameFounder order by lastUpDate desc")
+	@Query(value = "SELECT p FROM Post p where p.writerId.alias=:nameFounder order by lastUpDate desc")
 	List<Post> getPostRelated(  String nameFounder, Pageable  pageRequest);
 	
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.alias=:nameFounder and p.topic IN :topic")
 	Integer getCountPostRelatedCompleteParams(String nameFounder, Set<Status> status, Set<TypePost> type, List<String> topic);
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.name=:nameFounder")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.typePostId IN :type and p.writerId.alias=:nameFounder")
 	Integer getCountPostRelatedStatusAndType(String nameFounder, Set<Status> status, Set<TypePost>  type);
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.writerId.name=:nameFounder and p.topic IN :topic")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status and p.writerId.alias=:nameFounder and p.topic IN :topic")
 	Integer getCountPostRelatedStatusAndTopic(String nameFounder, Set<Status> status,  List<String> topic);
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.typePostId IN :type and p.writerId.name=:nameFounder and p.topic IN :topic")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.typePostId IN :type and p.writerId.alias=:nameFounder and p.topic IN :topic")
 	Integer getCountPostRelatedTypeAndTopic(String nameFounder, Set<TypePost>  type, List<String> topic);
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status  and p.writerId.name=:nameFounder ")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.statusId IN :status  and p.writerId.alias=:nameFounder ")
 	Integer getCountPostRelatedStatus(String nameFounder, Set<Status> status);
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where  p.writerId.name=:nameFounder and p.topic IN :topic")
+	@Query(value = "SELECT COUNT(p) FROM Post p where  p.writerId.alias=:nameFounder and p.topic IN :topic")
 	Integer getCountPostRelatedTopic(String nameFounder, List<String> topic);
 	
-	@Query(value = "SELECT COUNT(p) FROM Post p where  p.typePostId IN :type and p.writerId.name=:nameFounder ")
+	@Query(value = "SELECT COUNT(p) FROM Post p where  p.typePostId IN :type and p.writerId.alias=:nameFounder ")
 	Integer getCountPostRelatedType(String nameFounder,  Set<TypePost> type);
 //	
-	@Query(value = "SELECT COUNT(p) FROM Post p where p.writerId.name=:nameFounder")
+	@Query(value = "SELECT COUNT(p) FROM Post p where p.writerId.alias=:nameFounder")
 	Integer getCountPostRelated(String nameFounder);
 	
 
@@ -82,15 +84,20 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE Text p SET p.textRealize =p.textBeta where textId=:textId")
-	Integer switchBetaRealize(Long textId);
+	Integer switchBetaToRealize(Long textId);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE Text p SET p.textBeta =p.textRealize where textId=:textId")
+	Integer switchRealizeToBeta(Long textId);
 	
 	
-	@Query(value = "SELECT distinct p.topic FROM Post p where p.writerId.name=:nameFounder")
+	@Query(value = "SELECT distinct p.topic FROM Post p where p.writerId.alias=:nameFounder")
 	Set<String> getTopics(String nameFounder);
 	
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Post p SET p.name =:name, p.topic=:topic, p.typePostId=:typePost, p.title=:name, p.parentId=:parent, p.childId =:child where p.postId=:postId")
+	@Query(value = "UPDATE Post p SET p.name =:name, p.topic=:topic, p.typePostId=:typePost, p.parentId=:parent, p.childId =:child where p.postId=:postId")
 	Integer updatePost(String name, String topic, TypePost typePost, Long parent, Long child, Long postId);
 	
 	@Modifying
@@ -100,4 +107,13 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	
 	@Query(value = "SELECT p FROM Post p where p.reviewerId.name=:nameReviewer and p.statusId=:status order by lastUpDate asc")
 	List<Post> getPostToReview(Status status, String nameReviewer, Pageable  pageRequest);
+
+	@Query(value = "SELECT f FROM Founder f where f.alias =:user")
+	Founder getFounder(String user);
+	
+	@Query(value = "SELECT f FROM Founder f where f.alias is not :user")
+	List<Founder> getEditors(String user);
+	
+//	@Query(value = "SELECT f FROM founder f where f.founderId = (SELECT editorId FROM founder f where f. :user)")
+//	Founder getEditor(String user);
 }

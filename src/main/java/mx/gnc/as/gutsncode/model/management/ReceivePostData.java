@@ -12,9 +12,11 @@ public class ReceivePostData {
 	private String status;
 	private String name;
 	private String typePost;
+	private String imageOption;
 	private String topic;
 	private String lastUpDate;
-	private String title;
 	private String parentId;
 	private String childId;
+	private String user;
+	private String location;
 }

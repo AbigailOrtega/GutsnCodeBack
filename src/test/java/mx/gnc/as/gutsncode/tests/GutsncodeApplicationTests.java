@@ -90,7 +90,6 @@ public class GutsncodeApplicationTests {
 		Assertions.assertEquals(Founder.class, founder.getClass());
 		Assertions.assertEquals("SEBAS", founder.getName().toUpperCase());
 		Assertions.assertEquals("CUATEPOTZO", founder.getLastName().toUpperCase());
-		Assertions.assertEquals("MARTINEZ", founder.getSecondLastName().toUpperCase());
 	}
 
 	/**

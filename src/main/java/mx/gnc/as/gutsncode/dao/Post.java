@@ -22,7 +22,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "POST", schema = "GutsNCode")
+//@Table(name = "POST", schema = "GutsNCode")
+@Table(name = "POST")
 //@ApiModel("POST MODEL")
 public class Post {
 	
@@ -46,9 +47,14 @@ public class Post {
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "STATUS_ID")
 	private Status statusId;
+
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "IMAGE_ID")	
+	private ImageOption imageOptionId;
 	
 	@Column(name = "TOPIC")
 	private String topic;
+	
 	@Column(name = "LAST_UPDATE")
 	private Date lastUpDate;
 	
@@ -60,13 +66,9 @@ public class Post {
 	@JoinColumn(name = "REVIEWER_ID")
 	private Founder reviewerId;
 	
-	
 	@Column(name = "DATE_REVIEWER")
 	private Date dateReview;
 	
-	
-	@Column(name = "TITLE")
-	private String title;
 	@Column(name = "LOCATION")
 	private String location;
 	
@@ -75,36 +77,38 @@ public class Post {
 	@Column(name = "PARENT_ID")
 	private Long parentId;
 	
-	@Column(name = "IMAGE")	
-	private byte[] image;
-	
 //	@OneToOne
 //	@JoinColumn(name = "PARENT_ID")
 	@Column(name = "CHILD_ID")
 	private Long childId;
 	
+	@Column(name = "POST_EDIT_ID")
+	private Long postEditId;
 	
 	public boolean isNull() {
-		if(this.name != null || this.postId != null || this.title != null)
+		if(this.name != null && this.postId != null && this.topic != null && this.writerId != null)
 			return false;
 		else
 			return true;
 	}
 
-	public Post(String name, BigInteger numberView, TypePost typePostId, Status statusId,
-			String topic, Date lastUpDate, Founder writerId, Founder reviewerId, 
-			Date dateReview, String title, String location) {
+	public Post(String name, BigInteger numberView, TypePost typePostId, Status statusId, 
+			ImageOption imageId, String topic, Date lastUpDate, 
+			Founder writerId, Founder reviewerId, Date dateReview, String location,
+			Long childId, Long parentId) {
 		this.name = name;
 		this.numberView = numberView;
 		this.typePostId = typePostId;
 		this.statusId = statusId;
+		this.imageOptionId = imageId;
 		this.topic = topic;
 		this.lastUpDate = lastUpDate;
 		this.writerId = writerId;
 		this.reviewerId = reviewerId;
 		this.dateReview = dateReview;
-		this.title = title;
 		this.location = location;
+		this.childId = childId;
+		this.parentId = parentId;
 	}
 
 }

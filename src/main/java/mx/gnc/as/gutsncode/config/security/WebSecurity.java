@@ -32,10 +32,12 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// configure AuthenticationManager so that it knows from where to load
 		// user for matching credentials
 		// Use BCryptPasswordEncoder
-		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username, password, enabled"
-	            + " from USERS where username=?").authoritiesByUsernameQuery("select username, authority "
-	                    + "from AUTHORITIES where username=?")
-	                .passwordEncoder(new BCryptPasswordEncoder());
+		
+		auth.jdbcAuthentication().dataSource(dataSource)
+		.usersByUsernameQuery("select USERNAME, PASSWORD, EMAIL, ENABLED, NUMBER_TRIES from USERS where USERNAME=?")
+		.authoritiesByUsernameQuery("select USERNAME, AUTHORITY from AUTHORITIES where USERNAME=?")
+		.passwordEncoder(new BCryptPasswordEncoder())
+		;
 	}
 
 	@Bean
@@ -50,21 +52,24 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http/*.headers().frameOptions().disable().and()*/.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // Disable cookies
-				.cors().and() //Put the Cross-Origin Resource Sharing at default values
-				.csrf().disable() // Disable the Cross-site request forgery filter - could cause that any page
-									// could get the token
-				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class) 
-				// Add filters for required authentication services
-				.authorizeRequests() // Start to authorize the next connections
-				.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
-						"/swagger-ui.html", "/webjars/**")
-				.permitAll() // Swagger
-				.antMatchers("/managment/getTopic/*","/managment/*").permitAll() // User services don't need
-				.antMatchers("/gncu/*","/h2-console/*").permitAll() // User services don't need authorization
-				.antMatchers(HttpMethod.POST, "/login").permitAll() // Login doesn't need authorization
-				.anyRequest().authenticated(); // All other pages are securized
+		http
+			/*.headers().frameOptions().disable().and()*/
+			.sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Disable cookies
+			.and().cors() //Put the Cross-Origin Resource Sharing at default values
+			.and().csrf()
+			.disable() // Disable the Cross-site request forgery filter - could cause that any page
+//									// could get the token
+			.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class) 
+			// Add filters for required authentication services
+			.authorizeRequests() // Start to authorize the next connections
+			.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
+					"/swagger-ui.html", "/webjars/**")
+			.permitAll() // Swagger
+			.antMatchers("/managment/getTopic/*","/managment/*").permitAll() // User services don't need
+			.antMatchers("/gncu/*").permitAll() // User services don't need authorization
+			.antMatchers(HttpMethod.POST, "/login").permitAll() // Login doesn't need authorization
+			.anyRequest().authenticated(); // All other pages are securized
 
 	}
 }
