@@ -83,7 +83,7 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Text p SET p.textRealize =p.textBeta where textId=:textId")
+	@Query(value = "UPDATE Text p SET p.textRealize = p.textBeta, p.textBeta = '' where textId=:textId")
 	Integer switchBetaToRealize(Long textId);
 	
 	@Modifying

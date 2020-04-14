@@ -34,13 +34,13 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.dao.TypeText;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 import mx.gnc.as.gutsncode.model.PostId;
+import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectToReview;
 import mx.gnc.as.gutsncode.model.management.ReceivePostData;
 import mx.gnc.as.gutsncode.model.management.ReceiveStatusPost;
 import mx.gnc.as.gutsncode.model.management.ReceiveTextToEdit;
-import mx.gnc.as.gutsncode.model.management.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.repository.ManagmentRepositoryPost;
 import mx.gnc.as.gutsncode.repository.ManagmentRepositoryText;
 
@@ -88,7 +88,7 @@ public class ManagementController {
 		String[] topics = (receiver.getTopics() != null) ? receiver.getTopics() : null;
 
 		if (receiver.getFounderName() != null) {
-			nameFounder = receiver.getFounderName().toUpperCase();
+			nameFounder = receiver.getFounderName().toLowerCase();
 			try {
 				if (types != null && topics != null && status != null) {
 					listPost = managmentRepository.getPostRelatedCompleteParams(nameFounder, statusList, typePostList,
@@ -160,7 +160,7 @@ public class ManagementController {
 		String[] topics = (receiver.getTopics() != null) ? receiver.getTopics() : null;
 
 		if (receiver.getFounderName() != null) {
-			nameFounder = receiver.getFounderName().toUpperCase();
+			nameFounder = receiver.getFounderName().toLowerCase();
 			try {
 				if (types != null && topics != null && status != null) {
 					listPost = managmentRepository.getCountPostRelatedCompleteParams(nameFounder, statusList,
@@ -251,12 +251,14 @@ public class ManagementController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
-	@PostMapping("/switchTextBetaToTextRealize")
+//	@PostMapping("/switchTextBetaToTextRealize")
+	@PostMapping("/publishText")
 	@ApiOperation(value = "Update textRealize to textBeta", notes = "change textRealize by textBeta")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<Boolean> switchTextBetaToTextRealize(@RequestBody List<ReceiveIdTextToEdit> receiver)
+//	public ResponseEntity<Boolean> switchTextBetaToTextRealize(@RequestBody List<ReceiveIdTextToEdit> receiver)
+	public ResponseEntity<Boolean> publishText(@RequestBody List<ReceiveIdTextToEdit> receiver)
 			throws ResourceNotFoundException {
 
 		try {
@@ -274,12 +276,14 @@ public class ManagementController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 	
-	@PostMapping("/switchTextRealizeToTextBeta")
+//	@PostMapping("/switchTextRealizeToTextBeta")
+	@PostMapping("/startToEdit")
 	@ApiOperation(value = "Update textRealize to textBeta", notes = "change textRealize by textBeta")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<Boolean> switchTextRealizeToTextBeta(@RequestBody List<ReceiveIdTextToEdit> receiver)
+//	public ResponseEntity<Boolean> switchTextRealizeToTextBeta(@RequestBody List<ReceiveIdTextToEdit> receiver)
+	public ResponseEntity<Boolean> startToEdit(@RequestBody List<ReceiveIdTextToEdit> receiver)
 			throws ResourceNotFoundException {
 
 		try {
@@ -304,7 +308,8 @@ public class ManagementController {
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
 	public ResponseEntity<Set<String>> getTopics(@PathVariable String founderName) throws ResourceNotFoundException {
 		try {
-			Set<String> listTopic = managmentRepository.getTopics(founderName.toUpperCase());
+//			System.out.println("GET TOPICS");
+			Set<String> listTopic = managmentRepository.getTopics(founderName.toLowerCase());
 			return new ResponseEntity<Set<String>>(listTopic, HttpStatus.OK);
 
 		} catch (NullPointerException e) {

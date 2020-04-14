@@ -66,7 +66,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
 					"/swagger-ui.html", "/webjars/**")
 			.permitAll() // Swagger
-			.antMatchers("/managment/getTopic/*","/managment/*").permitAll() // User services don't need
+//			.antMatchers("/managment/getTopic/*","/managment/*").permitAll() // User services don't need
 			.antMatchers("/gncu/*").permitAll() // User services don't need authorization
 			.antMatchers(HttpMethod.POST, "/login").permitAll() // Login doesn't need authorization
 			.anyRequest().authenticated(); // All other pages are securized
