@@ -4,6 +4,8 @@ select * from GutsNCode.TYPE_POST;
 select * from GutsNCode.TYPE_TEXT;
 select * from GutsNCode.IMAGE_OPTION;
 select * from GutsNCode.POST;
+select max(POST_ID) + 1 from GutsNCode.POST;
+SELECT * FROM GutsNCode.FOUNDER where ALIAS != "sebas"
 select * from GutsNCode.TEXT;
 select * from GutsNCode.IMAGE;
 select * from GutsNCode.USERS;

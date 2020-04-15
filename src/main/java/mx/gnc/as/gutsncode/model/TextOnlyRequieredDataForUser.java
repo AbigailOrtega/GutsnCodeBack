@@ -18,7 +18,7 @@ public class TextOnlyRequieredDataForUser {
 		super();
 		this.textId 		= text.getTextId();
 		this.typeTextId 	= text.getTypeTextId().getTypeTextId();
-		this.text 	= text.getTextRealize();
+		this.text 			= text.getTextRealize();
 	}
 	
 	
@@ -26,7 +26,7 @@ public class TextOnlyRequieredDataForUser {
 		super();
 		this.textId 		= text.getTextId();
 		this.typeTextId 	= text.getTypeTextId().getTypeTextId();
-		this.text 	= text.getTextBeta();
+		this.text 			= text.getTextBeta();
 	}
 	
 }

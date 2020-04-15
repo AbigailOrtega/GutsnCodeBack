@@ -225,19 +225,19 @@ public class GNCuController {
 			postId = receiver.getPostId();
 		}
 		else {
-			LOG.error("BAD REQUEST for: " + receiver.toString());
+//			LOG.error("BAD REQUEST for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		List<Text> text = gncRepository.getTextContent(postId);
-		if(text == null || text.size() == 0)
+		List<Text> textList = gncRepository.getTextContent(postId);
+		if(textList == null || textList.size() == 0)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
 		List<TextOnlyRequieredDataForUser> textReduced = new ArrayList<TextOnlyRequieredDataForUser>();
-		for (Text text2 : text) {
-			textReduced.add(new TextOnlyRequieredDataForUser(text2, new byte[0]));
+		for (Text textUtil : textList) {
+			textReduced.add(new TextOnlyRequieredDataForUser(textUtil,null));
 		}
 		
-		LOG.info("SUCCESS REQUEST, SENDING INFO");
+//		LOG.info("SUCCESS REQUEST, SENDING INFO");
 		return new ResponseEntity<>(textReduced, HttpStatus.OK);
 	}
 
