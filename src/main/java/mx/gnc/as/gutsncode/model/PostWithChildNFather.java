@@ -22,7 +22,7 @@ public class PostWithChildNFather {
 	private BigInteger numberView;
 	private TypePost typePostId;
 	private Status statusId;
-	private ImageOption imageId;
+	private String imageColor;
 	private Date lastUpDate;
 	private Founder writerId;
 	private Founder reviewerId;
@@ -45,7 +45,7 @@ public class PostWithChildNFather {
 		this.dateReview		=post.getDateReview();
 		this.typePostId		=post.getTypePostId();
 		this.location		=post.getLocation();
-		this.imageId		=post.getImageId();
+		this.imageColor		=post.getImageId().getName();
 	}
 
 	public boolean isNull() {
