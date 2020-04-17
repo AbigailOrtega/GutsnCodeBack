@@ -480,7 +480,7 @@ public class ManagementController {
 							receiver.getName(), 
 							receiver.getTopic(), 
 							TypePost.getEnum(receiver.getTypePost()), 
-							(receiver.getImageOption() == null)?ImageOption.getEnum(receiver.getImageOption()):ImageOption.BLACK,
+							(receiver.getImageOption() != null)?ImageOption.getEnum(receiver.getImageOption()):ImageOption.BLACK,
 							receiver.getParentId()!=null?Long.parseLong(receiver.getParentId()):null,
 							receiver.getChildId()!=null?Long.parseLong(receiver.getChildId()):null,
 							Long.parseLong(receiver.getPostId())
