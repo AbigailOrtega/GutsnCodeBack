@@ -45,7 +45,7 @@ public class PostWithChildNFather {
 		this.dateReview		=post.getDateReview();
 		this.typePostId		=post.getTypePostId();
 		this.location		=post.getLocation();
-		this.imageId		=post.getImageOptionId();
+		this.imageId		=post.getImageId();
 	}
 
 	public boolean isNull() {
