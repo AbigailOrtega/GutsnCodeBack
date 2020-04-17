@@ -50,7 +50,7 @@ public class Post {
 
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "IMAGE_ID")	
-	private ImageOption imageOptionId;
+	private ImageOption imageId;
 	
 	@Column(name = "TOPIC")
 	private String topic;
@@ -100,7 +100,7 @@ public class Post {
 		this.numberView = numberView;
 		this.typePostId = typePostId;
 		this.statusId = statusId;
-		this.imageOptionId = imageId;
+		this.imageId = imageId;
 		this.topic = topic;
 		this.lastUpDate = lastUpDate;
 		this.writerId = writerId;

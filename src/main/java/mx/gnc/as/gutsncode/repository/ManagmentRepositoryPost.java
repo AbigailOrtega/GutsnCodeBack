@@ -154,7 +154,7 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Post p SET p.name =:name, p.topic=:topic, p.typePostId=:typePost, p.parentId=:parent, p.childId =:child where p.postId=:postId")
+	@Query(value = "UPDATE Post p SET p.name =:name, p.topic=:topic, p.typePostId=:typePost, p.imageId=:imageOption, p.parentId=:parent, p.childId =:child where p.postId=:postId")
 	Integer updatePost(String name, String topic, TypePost typePost, ImageOption imageOption, Long parent, Long child, Long postId);
 	
 	@Modifying

@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ImageOption {
 
+	PINK	(0L, "PINK"),
 	BLACK	(1L, "BLACK"),
 	ORANGE	(2L, "ORANGE"),
 	ORANGES	(3L, "ORANGES"),
@@ -16,10 +17,10 @@ public enum ImageOption {
 	BLUES	(7L, "BLUES"), 
 	BROWN	(8L, "BROWN"),
 	GREEN	(9L, "GREEN"), 
-	MINT	(10L, "MINT"),
-	PINK	(11L, "PINK"); 
+	MINT	(10L, "MINT");
+	 
 
-	private Long typePostId;
+	private Long imageId;
 	private String name;
 
 	public static ImageOption getEnum(String enumOption) {
