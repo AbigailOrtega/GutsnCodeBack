@@ -27,8 +27,8 @@ import io.swagger.annotations.ApiResponses;
 import mx.gnc.as.gutsncode.model.User;
 
 @RestController
-@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired

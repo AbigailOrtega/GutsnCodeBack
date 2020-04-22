@@ -11,13 +11,13 @@ public enum ImageOption {
 	BLACK	(1L, "BLACK"),
 	ORANGE	(2L, "ORANGE"),
 	ORANGES	(3L, "ORANGES"),
-	YELLOW	(4L, "YELLOW"),
+	MINT	(4L, "MINT"),
 	BLUE	(5L, "BLUE"), 
 	BLUEK	(6L, "BLUEK"),
 	BLUES	(7L, "BLUES"), 
 	BROWN	(8L, "BROWN"),
-	GREEN	(9L, "GREEN"), 
-	MINT	(10L, "MINT");
+	GREEN	(9L, "GREEN"); 
+	
 	 
 
 	private Long imageId;
