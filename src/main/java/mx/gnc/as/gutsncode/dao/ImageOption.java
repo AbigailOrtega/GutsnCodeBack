@@ -29,7 +29,6 @@ public enum ImageOption {
 		case "BLACK": 	return ImageOption.BLACK;
 		case "ORANGE": 	return ImageOption.ORANGE;
 		case "ORANGES": return ImageOption.ORANGES;
-		case "YELLOW":	return ImageOption.YELLOW;
 		case "BLUE":	return ImageOption.BLUE;
 		case "BLUEK": 	return ImageOption.BLUEK;
 		case "BLUES": 	return ImageOption.BLUES;
