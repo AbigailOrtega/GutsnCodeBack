@@ -39,8 +39,8 @@ import mx.gnc.as.gutsncode.repository.GNCuRepository;
 
 @RestController
 @RequestMapping("/gncu")
-//@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+//@CrossOrigin(origins = "http://localhost:4200")
 @Api(value = "User GNC Services")
 public class GNCuController {
 	
@@ -58,7 +58,7 @@ public class GNCuController {
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") 
 			})
-	public ResponseEntity<List<Post>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
+	public ResponseEntity<List<PostWithChildNFather>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
 		
 		LOG.info("recentPost service");
 		
@@ -82,13 +82,17 @@ public class GNCuController {
 		allStatus.add(Status.PUBLIREV);
 		allStatus.add(Status.PUBLIEDIT);
 		listPost = gncRepository.getPostOrdered(allStatus, TypePost.getEnum(type), topic, PageRequest.of(pageNumber, sizePage));
+		List<PostWithChildNFather> listPostwCnF = new ArrayList<PostWithChildNFather>(); 
+		for (Post postUtilPost : listPost) {
+			listPostwCnF.add(new PostWithChildNFather(postUtilPost));
+		}
 		if(listPost == null || listPost.size() == 0) {
 			LOG.warn("NO CONTENT for: " + receiver.toString());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		
 		LOG.info("SUCCESS REQUEST, SENDING INFO");
-		return new ResponseEntity<>(listPost, HttpStatus.OK);
+		return new ResponseEntity<>(listPostwCnF, HttpStatus.OK);
 	}
 	
 	@PostMapping("/totalPages")

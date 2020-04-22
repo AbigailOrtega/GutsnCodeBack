@@ -34,6 +34,7 @@ import mx.gnc.as.gutsncode.dao.TypePost;
 import mx.gnc.as.gutsncode.dao.TypeText;
 import mx.gnc.as.gutsncode.exceptions.ResourceNotFoundException;
 import mx.gnc.as.gutsncode.model.PostId;
+import mx.gnc.as.gutsncode.model.PostWithChildNFather;
 import mx.gnc.as.gutsncode.model.TextOnlyRequieredDataForUser;
 import mx.gnc.as.gutsncode.model.management.ReceiveIdTextToEdit;
 import mx.gnc.as.gutsncode.model.management.ReceiveObjectRecent;
@@ -46,8 +47,8 @@ import mx.gnc.as.gutsncode.repository.ManagmentRepositoryText;
 
 @RestController
 @RequestMapping("/managment")
-//@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ManagementController {
 
 	private final Integer defaultSizePage = 20;
@@ -63,15 +64,17 @@ public class ManagementController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<List<Post>> getPostWroteBy(@RequestBody ReceiveObjectRecent receiver)
+	public ResponseEntity<List<PostWithChildNFather>> getPostWroteBy(@RequestBody ReceiveObjectRecent receiver)
 			throws ResourceNotFoundException {
 		LOG.info("recentPost service");
+		
 		List<Post> listPost = null;
 		Integer pageNumber = (receiver.getPage() != null) ? receiver.getPage() : 0;
 		Integer sizePage = (receiver.getSizePage() != null) ? receiver.getSizePage() : this.defaultSizePage;
 		String nameFounder;
 		Set<TypePost> typePostList = new HashSet<TypePost>();
 		String[] types = (receiver.getTypes() != null) ? receiver.getTypes() : null;
+		
 		if (types != null) {
 			for (String item : types) {
 				typePostList.add(TypePost.getEnum(item));
@@ -119,7 +122,11 @@ public class ManagementController {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 				}
 
-				return new ResponseEntity<>(listPost, HttpStatus.OK);
+				List<PostWithChildNFather> listPostwCnF = new ArrayList<PostWithChildNFather>(); 
+				for (Post postUtilPost : listPost) {
+					listPostwCnF.add(new PostWithChildNFather(postUtilPost));
+				}
+				return new ResponseEntity<>(listPostwCnF, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return new ResponseEntity<>(null, HttpStatus.OK);
@@ -199,15 +206,13 @@ public class ManagementController {
 		}
 
 	}
-
-	
 	
 	@PostMapping(value = "/getPostToCheckBy")
 	@ApiOperation(value = "Return the recent post", notes = "need type and topic, pageNumber are 0 by default and pageSize are 20 by default")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The payload was correct"),
 			@ApiResponse(code = 204, message = "The payload do not contain correct/enough info"),
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
-	public ResponseEntity<List<Post>> getPostToCheckBy(@RequestBody ReceiveObjectRecent receiver)
+	public ResponseEntity<List<PostWithChildNFather>> getPostToCheckBy(@RequestBody ReceiveObjectRecent receiver)
 			throws ResourceNotFoundException {
 		LOG.info("recentPost service");
 		List<Post> listPost = null;
@@ -262,8 +267,11 @@ public class ManagementController {
 					LOG.warn("NO CONTENT for: " + receiver.toString());
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 				}
-
-				return new ResponseEntity<>(listPost, HttpStatus.OK);
+				List<PostWithChildNFather> listPostwCnF = new ArrayList<PostWithChildNFather>(); 
+				for (Post postUtilPost : listPost) {
+					listPostwCnF.add(new PostWithChildNFather(postUtilPost));
+				}
+				return new ResponseEntity<>(listPostwCnF, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return new ResponseEntity<>(null, HttpStatus.OK);
