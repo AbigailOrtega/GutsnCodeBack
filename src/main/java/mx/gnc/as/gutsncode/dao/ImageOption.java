@@ -18,7 +18,6 @@ public enum ImageOption {
 	BROWN	(8L, "BROWN"),
 	GREEN	(9L, "GREEN"); 
 	
-	 
 
 	private Long imageId;
 	private String name;
@@ -36,7 +35,7 @@ public enum ImageOption {
 		case "GREEN":	return ImageOption.GREEN;
 		case "MINT":	return ImageOption.MINT;
 		case "PINK":	return ImageOption.PINK;
-		default: 		return null;
+		default: 		return ImageOption.BLACK;
 		}
 	}
 

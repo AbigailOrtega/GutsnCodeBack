@@ -4,8 +4,6 @@ select * from GutsNCode.TYPE_POST;
 select * from GutsNCode.TYPE_TEXT;
 select * from GutsNCode.IMAGE_OPTION;
 select * from GutsNCode.POST;
-select max(POST_ID) + 1 from GutsNCode.POST;
-SELECT * FROM GutsNCode.FOUNDER where ALIAS != "sebas"
 select * from GutsNCode.TEXT;
 select * from GutsNCode.IMAGE;
 select * from GutsNCode.USERS;
@@ -38,3 +36,16 @@ select * from GutsNCode.MESSAGE;
 -- DROP TABLE GutsNCode.FOUNDER;
 -- DROP TABLE GutsNCode.AUTHORITIES;
 -- DROP TABLE GutsNCode.USERS;
+
+-- delete from GutsNCode.IMAGE;
+-- delete from GutsNCode.TEXT;
+-- delete from GutsNCode.POST;
+-- delete from GutsNCode.FOUNDER;
+-- delete from GutsNCode.STATUS;
+-- delete from GutsNCode.TYPE_POST;
+-- delete from GutsNCode.TYPE_TEXT;
+-- delete from GutsNCode.IMAGE_OPTION;
+-- delete from GutsNCode.STADISTICS;
+-- delete from GutsNCode.MESSAGE;
+-- delete from GutsNCode.AUTHORITIES;
+-- delete from GutsNCode.USERS;

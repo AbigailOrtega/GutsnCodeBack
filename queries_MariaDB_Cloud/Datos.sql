@@ -19,14 +19,15 @@
 --   ('BLACK')
 -- , ('ORANGE')
 -- , ('ORANGES')
--- , ('YELLOW')
+-- , ('MINT')
 -- , ('BLUE')
 -- , ('BLUEK')
 -- , ('BLUES')
 -- , ('BROWN')
 -- , ('GREEN')
--- , ('MINT')
 -- , ('PINK')
+-- ;
+-- UPDATE IMAGE_OPTION SET IMAGE_ID = 0 WHERE NAME = 'PINK'
 -- ;
 -- insert into TYPE_POST(NAME, DESCRIPTION) VALUES 
 --   ('POST','TECNOLOGY POST')
@@ -52,19 +53,21 @@
 -- /*Entries for News*/
 -- /*Entries for Guts N Code*/
 -- insert into POST (POST_ID, NAME, NUMBER_VIEW, STATUS_ID, TOPIC, LAST_UPDATE, WRITTER_ID, REVIEWER_ID, DATE_REVIEWER, TYPE_POST_ID, LOCATION, IMAGE_ID) VALUES
---   (1 ,'Java 01'   , 0,0, 'java'   , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 1)
--- , (2 ,'Docker 02' , 0,0, 'docker' , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 2)
--- , (3 ,'Centos 03' , 0,0, 'centos' , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 3)
--- , (4 ,'Python 04' , 0,0, 'python' , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 4)
--- , (5 ,'Spring 01' , 0,0, 'spring' , '2020-12-31', 1,0, '2020-12-31', 0, 'CDMX', 5)
--- , (6 ,'Devops 02' , 0,0, 'devops' , '2020-12-31', 1,0, '2020-12-31', 0, 'CDMX', 6)
--- , (7 ,'Kotlin 03' , 0,0, 'kotlin' , '2020-12-31', 1,0, '2020-12-31', 0, 'CDMX', 7)
--- , (8 ,'Angular 04', 0,0, 'angular', '2020-12-31', 1,0,' 2020-12-31', 0, 'CDMX', 8)
--- , (9 ,'ACERCA DE NOSOTROS', 0,0,'gutsncode','2020-12-31', 1,0, '2020-12-31', 4, 'CDMX',9)
--- , (10,'FUNDADORES'        , 0,0,'gutsncode','2020-12-31', 1,0, '2020-12-31', 3, 'CDMX',10)
--- , (11,'EXPERIENCIAS'      , 0,0,'gutsncode','2020-12-31', 1,0, '2020-12-31', 2, 'CDMX',1)
--- , (12,'FUTURO'            , 0,0,'gutsncode','2020-12-31', 0,1, '2020-12-31', 5, 'CDMX',2)
--- , (13,'FILOSOFIA'         , 0,0,'gutsncode','2020-12-31', 0,1, '2020-12-31', 4, 'CDMX',3)
+-- /*
+-- --   (1 ,'Java 01'   , 0,0, 'java'   , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 1)
+-- -- , (2 ,'Docker 02' , 0,0, 'docker' , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 2)
+-- -- , (3 ,'Centos 03' , 0,0, 'centos' , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 3)
+-- -- , (4 ,'Python 04' , 0,0, 'python' , '2020-12-31', 0,1, '2020-12-31', 1, 'CDMX', 4)
+-- -- , (5 ,'Spring 01' , 0,0, 'spring' , '2020-12-31', 1,0, '2020-12-31', 0, 'CDMX', 5)
+-- -- , (6 ,'Devops 02' , 0,0, 'devops' , '2020-12-31', 1,0, '2020-12-31', 0, 'CDMX', 6)
+-- -- , (7 ,'Kotlin 03' , 0,0, 'kotlin' , '2020-12-31', 1,0, '2020-12-31', 0, 'CDMX', 7)
+-- -- , (8 ,'Angular 04', 0,0, 'angular', '2020-12-31', 1,0,' 2020-12-31', 0, 'CDMX', 8),
+-- */
+--   (1 ,'ACERCA DE NOSOTROS', 0,0,'gutsncode','2020-12-31', 1,0, '2020-12-31', 4, 'CDMX',0)
+-- , (2,'FUNDADORES'         , 0,0,'gutsncode','2020-12-31', 1,0, '2020-12-31', 3, 'CDMX',4)
+-- , (3,'EXPERIENCIAS'       , 0,0,'gutsncode','2020-12-31', 1,0, '2020-12-31', 2, 'CDMX',1)
+-- , (4,'FUTURO'             , 0,0,'gutsncode','2020-12-31', 0,1, '2020-12-31', 5, 'CDMX',2)
+-- , (5,'FILOSOFIA'          , 0,0,'gutsncode','2020-12-31', 0,1, '2020-12-31', 4, 'CDMX',3)
 -- ;
 -- /**/
 -- update POST set                CHILD_ID = 2 where POST_ID = 1;
@@ -127,33 +130,33 @@
 -- , (32,3,8,'','Nos despendimos, y recuerden, Sebas es un flojo')
 -- 
 -- /*Text for Acerca de Nosotros*/
--- /*insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES*/
--- , (33,1,9,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code; creamos esta pagina para regañar a Sebas por flojo')
--- , (34,0,9,'','¿Quienes somos?')
--- , (35,2,9,'','Nos despendimos, y recuerden, Sebas es un flojo')
--- , (36,3,9,'','Nos despendimos, y recuerden, Sebas es un flojo')
+-- insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES
+--   (1,1,1,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code; creamos esta pagina para regañar a Sebas por flojo')
+-- , (2,0,1,'','¿Quienes somos?')
+-- , (3,2,1,'','Nos despendimos, y recuerden, Sebas es un flojo')
+-- , (4,3,1,'','Nos despendimos, y recuerden, Sebas es un flojo')
 -- 
 -- /*Text for Fundadores*/
--- , (37,1,10,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code; creamos esta pagina para regañar a Sebas por flojo')
--- , (38,0,10,'','¿Quienes somos?')
--- , (39,2,10,'','Nos despendimos, y recuerden, Sebas es un flojo')
--- , (40,3,10,'','Nos despendimos, y recuerden, Sebas es un flojo')
+-- , (5,1,2,'','Hola, somos Aby y Sebas y somos los fundadores de Guts & Code; creamos esta pagina para regañar a Sebas por flojo')
+-- , (6,0,2,'','¿Quienes somos?')
+-- , (7,2,2,'','Nos despendimos, y recuerden, Sebas es un flojo')
+-- , (8,3,2,'','Nos despendimos, y recuerden, Sebas es un flojo')
 -- 
 -- /*Text for Experiencias*/
--- , (41,1,11,'','Antes trabajabamos 20 horas al día, ahora solo 19, pues descubrimos que si existe la vida despues del trabajo')
--- , (42,0,11,'','De esclavos a Rockstars')
--- , (43,2,11,'','A rockear bebes')
--- , (44,3,11,'','A rockear bebes')
+-- , (9,1,3,'','Antes trabajabamos 20 horas al día, ahora solo 19, pues descubrimos que si existe la vida despues del trabajo')
+-- , (10,0,3,'','De esclavos a Rockstars')
+-- , (11,2,3,'','A rockear bebes')
+-- , (12,3,3,'','A rockear bebes')
 -- 
 -- /*Text for Futuro*/
 -- /*insert into TEXT (TEXT_ID,TYPE_TEXT_ID,POST_ID,TEXT_BETA,TEXT_REALIZE) VALUES*/
--- , (45,1,12,'','Esperamos que nuestra pagina se llene de contenido de todo tipo, a modo que podamos ser un referente de conocimientos')
--- , (46,0,12,'','¿Quienes somos?')
--- , (47,2,12,'','Nos despendimos, y recuerden, Sebas es un flojo')
--- , (48,3,12,'','Nos despendimos, y recuerden, Sebas es un flojo')
+-- , (13,1,4,'','Esperamos que nuestra pagina se llene de contenido de todo tipo, a modo que podamos ser un referente de conocimientos')
+-- , (14,0,4,'','¿Quienes somos?')
+-- , (15,2,4,'','Nos despendimos, y recuerden, Sebas es un flojo')
+-- , (16,3,4,'','Nos despendimos, y recuerden, Sebas es un flojo')
 -- 
 -- /*Text for Filosofia*/
--- , (49,1,13,'',
+-- , (17,1,5,'',
 -- 'Guts & Code nade del deseo de poder tener contenido de calidad de diferentes tecnologías en nuestra lengua materna, el Español. Creemos que las barreras del idioma no deben ser limitante para poder seguir desarrollandose dentro del mundo de la programación, en nuestro caso, más cercano a Java y las tecnologías que girán en torno a ella, aunque no nos limitamos solo a ella.
 -- G&C se representa por un gato (que sobra decir que nos gustan los gatos) del cual compartimos estas cualidades y similitudes:
 -- Agilidad
@@ -161,9 +164,9 @@
 -- Grandes cazadores.
 -- Esperamos que podamos llegar a muchas personas deseosas como nosotros de apreder sobre el mundo de la programación con Java
 -- ')
--- , (50,0,13,'','Filosofia')
--- , (51,2,13,'','Conocenos')
--- , (52,3,13,'','Conocenos')
+-- , (18,0,5,'','Filosofia')
+-- , (19,2,5,'','Conocenos')
+-- , (20,3,5,'','Conocenos')
 -- ;
 -- 
 -- insert into USERS(USERNAME, PASSWORD, EMAIL, ENABLED, NUMBER_TRIES) values

@@ -601,13 +601,16 @@ public class ManagementController {
 				Text textUtil = new Text();
 				textUtil.setPostId(postUtil);
 				textUtil.setTypeTextId(TypeText.HEADER);
+				textUtil.setTextBeta(receivePostData.getHeader());
 				managmentRepositoryText.save(textUtil);
 				textUtil = new Text();
 				textUtil.setPostId(postUtil);
+				textUtil.setTextBeta(receivePostData.getBody());
 				textUtil.setTypeTextId(TypeText.BODY);
 				managmentRepositoryText.save(textUtil);
 				textUtil = new Text();
 				textUtil.setPostId(postUtil);
+				textUtil.setTextBeta(receivePostData.getFooter());
 				textUtil.setTypeTextId(TypeText.FOOTER);
 				managmentRepositoryText.save(textUtil);
 				textUtil = new Text();

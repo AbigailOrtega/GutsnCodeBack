@@ -19,4 +19,7 @@ public class ReceivePostData {
 	private String childId;
 	private String user;
 	private String location;
+	private String header;
+	private String body;
+	private String footer;
 }
