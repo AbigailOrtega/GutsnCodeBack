@@ -47,8 +47,7 @@ import mx.gnc.as.gutsncode.repository.ManagmentRepositoryText;
 
 @RestController
 @RequestMapping("/managment")
-@CrossOrigin(origins = "https://guts-n-code-test.herokuapp.com")
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = CrossOriginURL.URL_FRONT)
 public class ManagementController {
 
 	private final Integer defaultSizePage = 20;

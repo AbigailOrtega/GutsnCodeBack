@@ -11,6 +11,9 @@ select * from GutsNCode.AUTHORITIES;
 select * from GutsNCode.STADISTICS;
 select * from GutsNCode.MESSAGE;
 
+select IF((p.POST_ID != 0 or p.POST_ID != null), true, FALSE) FROm POST p where p.POST_ID = 1
+select p.POST_ID from POST p where p.POST_ID = 22
+
 -- TRUNCATE TABLE GutsNCode.IMAGE;
 -- TRUNCATE TABLE GutsNCode.STADISTICS;
 -- TRUNCATE TABLE GutsNCode.MESSAGE;
