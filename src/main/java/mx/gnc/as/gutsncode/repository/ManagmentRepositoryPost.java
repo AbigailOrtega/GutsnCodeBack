@@ -174,8 +174,8 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	@Query(value = "SELECT max(POST_ID) + 1 FROM Post p")
 	Integer getNewPostId();
 	
-	@Query(value = "SELECT POST_ID FROM Post p where p.postId=:postId")
-	Boolean thisPostExist(Long postId);
+	@Query(value = "SELECT postId FROM Post p where postId=:postId")
+	Integer thisPostExist(Long postId);
 	
 //	@Query(value = "SELECT f FROM founder f where f.founderId = (SELECT editorId FROM founder f where f. :user)")
 //	Founder getEditor(String user);
