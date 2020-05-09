@@ -159,7 +159,7 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Post p SET p.statusId=:status where postId=:postId")
+	@Query(value = "UPDATE Post p SET p.statusId=:status where p.postId=:postId")
 	Integer updateStatusPost(Status status, Long postId);
 	
 	@Query(value = "SELECT p FROM Post p where p.reviewerId.name=:nameReviewer and p.statusId=:status order by lastUpDate asc")
@@ -173,6 +173,9 @@ public interface ManagmentRepositoryPost extends CrudRepository<Post, Long>{
 	
 	@Query(value = "SELECT max(POST_ID) + 1 FROM Post p")
 	Integer getNewPostId();
+	
+	@Query(value = "SELECT POST_ID FROM Post p where p.postId=:postId")
+	Boolean thisPostExist(Long postId);
 	
 //	@Query(value = "SELECT f FROM founder f where f.founderId = (SELECT editorId FROM founder f where f. :user)")
 //	Founder getEditor(String user);

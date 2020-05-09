@@ -580,19 +580,21 @@ public class ManagementController {
 			} else {
 				List<Founder> listEditors = managmentRepository.getEditors(receivePostData.getUser());
 				Post postUtil = new Post(
-					receivePostData.getName(), 
+					receivePostData.getName().toLowerCase(), 
 					BigInteger.ZERO, 
 					TypePost.getEnum(receivePostData.getTypePost()), 
 					Status.EDITION, 
 					ImageOption.getEnum(receivePostData.getImageOption()),
-					receivePostData.getTopic(),
+					receivePostData.getTopic().toLowerCase(),
 					new Date(), 
 					managmentRepository.getFounder(receivePostData.getUser()), 
 					listEditors.get((int)(Math.random() * listEditors.size())), 
 					null, 
 					receivePostData.getLocation(),
-					receivePostData.getParentId() != null?Long.valueOf(receivePostData.getParentId()):null,
-					receivePostData.getChildId() != null?Long.valueOf(receivePostData.getChildId()):null
+					(receivePostData.getParentId() != null && managmentRepository.thisPostExist(Long.valueOf(receivePostData.getParentId())) != null) ?
+							Long.valueOf(receivePostData.getParentId()):null,
+					(receivePostData.getChildId() != null && managmentRepository.thisPostExist(Long.valueOf(receivePostData.getChildId())) != null)?
+							Long.valueOf(receivePostData.getChildId()):null
 				);
 				//Give in automatic the postId
 				postUtil.setPostId(Long.valueOf(managmentRepository.getNewPostId().toString()));
