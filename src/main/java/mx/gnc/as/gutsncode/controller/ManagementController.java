@@ -389,7 +389,9 @@ public class ManagementController {
 		try {
 			for (ReceiveTextToEdit item : receiver) {
 				if (item.getTextBeta() != null && item.getTextId() != null) {
-					managmentRepository.updateTextBeta(item.getTextBeta(), Long.parseLong(item.getTextId()));
+					managmentRepository.updateTextBeta(
+							changeTagsToHTML(item.getTextBeta()),
+							Long.parseLong(item.getTextId()));
 				} else {
 					throw new NullPointerException("Request Item null");
 				}
@@ -601,12 +603,12 @@ public class ManagementController {
 				
 				Text textUtil = new Text();
 				textUtil.setPostId(postUtil);
-				textUtil.setTypeTextId(TypeText.HEADER);
 				textUtil.setTextBeta(receivePostData.getHeader());
+				textUtil.setTypeTextId(TypeText.HEADER);
 				managmentRepositoryText.save(textUtil);
 				textUtil = new Text();
 				textUtil.setPostId(postUtil);
-				textUtil.setTextBeta(receivePostData.getBody());
+				textUtil.setTextBeta(changeTagsToHTML(receivePostData.getBody()));
 				textUtil.setTypeTextId(TypeText.BODY);
 				managmentRepositoryText.save(textUtil);
 				textUtil = new Text();
@@ -628,5 +630,20 @@ public class ManagementController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	
+	/**
+	 * This method change the text of a TAG for HTML code
+	 * @param original
+	 * @return
+	 */
+	private static String changeTagsToHTML(String original) {
+		String changedText = new String();
+		
+		changedText = original.replace("[imgI,","<img class=\"imgBody\" src=\"");
+		changedText = changedText.replace(",imgI],","\">");
+		
+		return changedText;
 	}
 }
