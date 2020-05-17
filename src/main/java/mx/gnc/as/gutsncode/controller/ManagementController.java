@@ -641,7 +641,7 @@ public class ManagementController {
 	private static String changeTagsToHTML(String original) {
 		String changedText = new String();
 		
-		changedText = original.replace("[imgI,","<img class=\"imgBody\" src=\"");
+		changedText = original.replace("[imgI,","<img class=\"imgBody\" alt=\"Smiley face\" src=\"");
 		changedText = changedText.replace(",imgI],","\">");
 		
 		return changedText;
