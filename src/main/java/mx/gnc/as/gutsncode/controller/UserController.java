@@ -42,9 +42,9 @@ public class UserController {
 			@ApiResponse(code = 400, message = "The payload do not contain required info") })
 	public ResponseEntity<User> login(@RequestBody User user) {
 		try {
-			System.out.println("entre login");
+//			System.out.println("entre login");
 			Authentication userAuth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUser(), user.getPwd()));
-			System.out.println("QUERY EXITOSO");
+//			System.out.println("QUERY EXITOSO");
 			user = new User();
 			user.setUser(userAuth.getName());
 			user.setToken(getJWTToken(userAuth.getName()));
