@@ -63,9 +63,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class) 
 			// Add filters for required authentication services
 			.authorizeRequests() // Start to authorize the next connections
-//			.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
-//					"/swagger-ui.html", "/webjars/**")
-//			.permitAll() // Swagger
+			.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
+					"/swagger-ui.html", "/webjars/**")
+			.permitAll() // Swagger
 //			.antMatchers("/managment/getTopic/*","/managment/*").permitAll() // User services don't need
 			.antMatchers("/gncu/*").permitAll() // User services don't need authorization
 			.antMatchers(HttpMethod.POST, "/login").permitAll() // Login doesn't need authorization
