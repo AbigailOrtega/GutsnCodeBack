@@ -37,19 +37,27 @@ public class Post {
 	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "NUMBER_VIEW")
+	@Column(name = "NUMBER_VIEW"
+			, columnDefinition="int"
+	)
 	private BigInteger numberView;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "TYPE_POST_ID")
+	@Column(name = "TYPE_POST_ID"
+		, columnDefinition="bigint"
+	)
 	private TypePost typePostId;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "STATUS_ID")
+	@Column(name = "STATUS_ID"
+		, columnDefinition="bigint"
+	)
 	private Status statusId;
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "IMAGE_ID")	
+	@Column(name = "IMAGE_ID"
+		, columnDefinition="bigint"
+	)	
 	private ImageOption imageId;
 	
 	@Column(name = "TOPIC")
@@ -59,11 +67,15 @@ public class Post {
 	private Date lastUpDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "WRITTER_ID")
+	@JoinColumn(name = "WRITTER_ID"
+		, columnDefinition="bigint"
+	)
 	private Founder writerId;
 	
 	@ManyToOne
-	@JoinColumn(name = "REVIEWER_ID")
+	@JoinColumn(name = "REVIEWER_ID"
+		, columnDefinition="bigint"
+	)
 	private Founder reviewerId;
 	
 	@Column(name = "DATE_REVIEWER")

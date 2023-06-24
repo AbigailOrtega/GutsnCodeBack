@@ -28,7 +28,7 @@ public class Founder {
 	private String name;
 	@Column(name = "LAST_NAME")
 	private String lastName;
-	@Column(name = "PHOTO")
+	@Column(name = "PHOTO", columnDefinition="blob")
 	private byte[] photo;
 	@Column(name = "SUMMARY")
 	private String summary;

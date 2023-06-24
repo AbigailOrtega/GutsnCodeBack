@@ -30,11 +30,11 @@ public class Message{
     private String message_text;
     
     @ManyToOne
-    @JoinColumn(name="SENDER_ID")
+    @JoinColumn(name="SENDER_ID", columnDefinition="bigint")
     private Founder sender_id;
     
     @ManyToOne
-    @JoinColumn(name="RECEIVER_ID")
+    @JoinColumn(name="RECEIVER_ID", columnDefinition="bigint")
     private Founder receiver_id;
     
     @Column(name="CLASSIFICATION")

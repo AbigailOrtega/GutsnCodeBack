@@ -60,6 +60,7 @@ public class GNCuController {
 	public ResponseEntity<List<PostWithChildNFather>> postBy20(@RequestBody ReceiveObject receiver) throws ResourceNotFoundException {
 		
 		LOG.info("recentPost service");
+		System.out.println(receiver);
 		
 		Integer pageNumber = (receiver.getPage()!=null)? receiver.getPage():0;
 		Integer sizePage = (receiver.getSizePage()!=null)? receiver.getSizePage():this.defaultSizePage;
@@ -91,6 +92,7 @@ public class GNCuController {
 		}
 		
 		LOG.info("SUCCESS REQUEST, SENDING INFO");
+		System.out.println(listPostwCnF);
 		return new ResponseEntity<>(listPostwCnF, HttpStatus.OK);
 	}
 	

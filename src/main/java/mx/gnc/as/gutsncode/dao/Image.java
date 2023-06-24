@@ -25,7 +25,7 @@ public class Image {
 	private String imageName;
 	@Column(name="DESCRIPTION")
 	private String description;
-	@Column(name="IMAGE")
+	@Column(name="IMAGE", columnDefinition="blob")
 	private byte[] image;
 	
 	@ManyToOne

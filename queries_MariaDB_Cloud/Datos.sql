@@ -1,3 +1,4 @@
+/*
 insert into FOUNDER(NAME, LAST_NAME, SUMMARY, EMAIL, ALIAS, PHOTO) VALUES 
 ('Abigail','Ortega','Hola, soy Aby, me gusta estudiar','ABIGAILORTEGA31@GMAIL.COM','aby',null),
 ('Sebastian','Cuatepotzo','Hola, soy Sebas, me gusta flojear','SSTSACM@GMAIL.COM','sebas', null)
@@ -182,4 +183,4 @@ insert into AUTHORITIES(USERNAME, AUTHORITY) values
 ('sebas', 'ROLE_ADMIN'),
 ('aby'  , 'ROLE_ADMIN')
 ;
-
+*/

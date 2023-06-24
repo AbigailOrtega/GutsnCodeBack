@@ -28,11 +28,15 @@ public class Text {
 	private Long textId;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "TYPE_TEXT_ID")
+	@Column(name = "TYPE_TEXT_ID"
+	, columnDefinition="bigint"
+	)
 	private TypeText typeTextId;
 	
 	@ManyToOne
-	@JoinColumn(name = "POST_ID")
+	@JoinColumn(name = "POST_ID"
+	, columnDefinition="bigint"
+	)
 	private Post postId;
 	
 	@Column(name = "TEXT_BETA")
